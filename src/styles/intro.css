@@ -1,0 +1,501 @@
+/* helloworld.css */
+.hello-world {
+  width: 100%;
+  height: 100vh;
+  color: #bb86fc; /* neon purple */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  font-family: "JetBrains Mono", monospace;
+}
+
+/* Subtle grid / terminal effect */
+.terminal-overlay {
+  background: none; /* Or you can comment out the whole block */
+}
+
+/* Scanline flicker */
+.scanline {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    transparent,
+    transparent 2px,
+    rgba(255, 255, 255, 0.04) 3px
+  );
+  mix-blend-mode: overlay;
+  animation: scan 6s linear infinite;
+  z-index: 0;
+}
+
+@keyframes scan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+/* Glitch text styling */
+.glitch-title {
+  z-index: 2;
+  font-size: 5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+
+.glitch-sub {
+  margin-top: 10px;
+  z-index: 2;
+  opacity: 0.8;
+  font-size: 1.2rem;
+}
+
+/* Terminal log */
+.terminal-log {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  width: 70%;
+  height: 30%;
+  overflow: hidden;
+  z-index: 2;
+  font-size: 0.9rem;
+  color: #9d66ff;
+  opacity: 0.9;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.terminal-line {
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateX(-10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Device scanner */
+.device-scanner {
+  position: absolute;
+  right: 125px;
+  top: 120px;
+  width: 140px;
+  height: 140px;
+  border: 2px solid #bb86fc;
+  border-radius: 50%;
+  backdrop-filter: blur(4px);
+  background: rgba(187, 134, 252, 0.05);
+  box-shadow: 0 0 20px #bb86fc44;
+  cursor: pointer;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.2s ease;
+}
+
+.device-scanner:hover {
+  box-shadow: 0 0 25px #d7a1ffcc;
+  scale: 1.05;
+}
+
+.device-label {
+  position: absolute;
+  bottom: -35px;
+  color: #b77aff;
+  font-size: 0.75rem;
+  opacity: 0.8;
+  text-align: center;
+  width: 200%;
+  left: -50%;
+  letter-spacing: 2px;
+}
+
+.radar {
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+  border: 1px solid #bb86fc33;
+  background: radial-gradient(circle, #bb86fc22 0%, transparent 70%);
+  position: relative;
+  overflow: hidden;
+}
+
+.radar::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: #bb86fcaa;
+  top: 50%;
+  left: 0;
+  transform-origin: top left;
+  animation: radar-spin 4s linear infinite;
+}
+
+@keyframes radar-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Terminal window */
+.kali-terminal {
+  position: absolute;
+  right: 60px;
+  top: 220px;
+  width: 420px;
+  height: 310px;
+  background: rgba(10, 0, 20, 0.9);
+  border: 1px solid #bb86fc55;
+  box-shadow: 0 0 25px #bb86fc55;
+  border-radius: 6px;
+  backdrop-filter: blur(6px);
+  display: flex;
+  flex-direction: column;
+  animation: terminalPop 0.25s ease-out;
+  z-index: 20;
+}
+
+@keyframes terminalPop {
+  from {
+    opacity: 0;
+    transform: scale(0.85) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.terminal-header {
+  height: 35px;
+  background: rgba(187, 134, 252, 0.15);
+  border-bottom: 1px solid #bb86fc55;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  color: #d5b4ff;
+  font-size: 0.9rem;
+}
+
+.terminal-header button {
+  background: none;
+  border: none;
+  color: #bb86fc;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.terminal-header button:hover {
+  color: #ff7aed;
+}
+
+.terminal-body {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  font-family: "JetBrains Mono", monospace;
+}
+
+.term-line {
+  font-size: 0.85rem;
+  color: #c999ff;
+  margin-bottom: 4px;
+  white-space: pre-wrap;
+}
+
+/* Spin animation for nodes around PFP */
+@keyframes spin-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 12s linear infinite;
+}
+
+.cyber-injector {
+  backdrop-filter: blur(4px);
+  background: rgba(187, 134, 252, 0.05);
+  box-shadow: 0 0 25px #bb86fc44;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pulse-ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 1px solid #BB86FC33;
+  background: radial-gradient(circle, #bb86fc22 0%, transparent 70%);
+  z-index: 0;
+}
+
+.matrix-effect {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow: hidden;
+  font-family: "JetBrains Mono", monospace;
+}
+
+.matrix-line {
+  font-size: 0.75rem;
+  animation: flicker 0.15s infinite;
+}
+
+@keyframes flicker {
+  0% { opacity: 0.1; }
+  50% { opacity: 0.8; transform: translateX(-2px); }
+  100% { opacity: 0.1; }
+}
+
+.interactive-box {
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes virusAlert {
+  0% { color: #ff66ff; text-shadow: 0 0 4px #ff66ff; }
+  100% { color: #ff1ab8; text-shadow: 0 0 10px #ff1ab8; }
+}
+
+.animate-flicker {
+  animation: virusAlert 0.8s alternate infinite;
+}
+
+@keyframes flash {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.animate-flash {
+  animation: flash 0.15s linear forwards;
+}
+
+@keyframes virusPopup {
+  0% { transform: scale(0.5) rotate(0deg); opacity: 0; }
+  20% { transform: scale(1.1) rotate(1deg); opacity: 1; }
+  40% { transform: scale(1) rotate(-1deg); }
+  60% { transform: scale(1.05) rotate(0.5deg); }
+  100% { transform: scale(1); opacity: 0; }
+}
+
+.animate-virus-popup {
+  animation: virusPopup 2s ease-out forwards;
+}
+
+/* Click-me attention effect */
+.animate-click-me-glow {
+  animation: clickMeGlow 1.5s infinite alternate;
+}
+
+@keyframes clickMeGlow {
+  0% {
+    box-shadow: 0 0 10px #bb86fc77, 0 0 20px #bb86fc44, 0 0 30px #ff66ff22;
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 20px #bb86fcaa, 0 0 35px #bb86fc55, 0 0 50px #ff66ff44;
+    transform: scale(1.05);
+  }
+  100% {
+    box-shadow: 0 0 10px #bb86fc77, 0 0 20px #bb86fc44, 0 0 30px #ff66ff22;
+    transform: scale(1);
+  }
+}
+
+/* Flickering “CLICK ME” text */
+@keyframes flickerText {
+  0% { opacity: 0.6; text-shadow: 0 0 4px #bb86fc; }
+  25% { opacity: 1; text-shadow: 0 0 10px #bb86fc, 0 0 20px #ff66ff; }
+  50% { opacity: 0.8; text-shadow: 0 0 6px #bb86fc; }
+  75% { opacity: 1; text-shadow: 0 0 12px #bb86fc, 0 0 18px #ff66ff; }
+  100% { opacity: 0.6; text-shadow: 0 0 4px #bb86fc; }
+}
+
+.animate-flicker {
+  animation: flickerText 1s infinite alternate;
+}
+
+/* Hide scrollbar but keep scroll functionality */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+/* Full screen scan lines */
+.full-screen-scan {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 2px;
+  background-color: #00eaff;
+  z-index: 50;
+  animation: scan-bounce 2s linear infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes scan-bounce {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(100vh); }
+}
+
+.full-screen-scan-horizontal {
+  position: fixed;
+  top: 0%;
+  left: 0;
+  width: 2px;
+  height: 100vh;
+  background-color: #00eaff;
+  z-index: 51;
+  animation: scan-horizontal 2s linear infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes scan-horizontal {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(100vw); }
+}
+
+.glitch-text {
+  display: inline-block;
+  white-space: nowrap; /* Prevent line breaks */
+}
+/* ------------------ RESPONSIVE LAYOUT ------------------ */
+@media (max-width: 768px) {
+  /* Container stacking */
+  .hello-world .container {
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 2rem !important;
+  }
+
+  /* Profile image centered inside nodes, moved 4% down */
+  .hello-world img {
+    width: 200px !important;
+    height: 200px !important;
+    border-width: 2px !important;
+    position: relative !important;
+    z-index: 10;
+    margin: 4% auto 0 auto !important; /* 4% top margin to move down */
+  }
+
+  /* Main title */
+  .hello-world h1.glitch-main {
+    font-size: 2rem !important;
+    text-align: center !important;
+  }
+
+
+  .hello-world p {
+    padding-left: 1.25rem; /* same space for the arrow '→' */
+    text-indent: -1.25rem; /* pull the arrow back */
+    font-size: 1rem;
+  }
+
+
+
+  .hello-world ul {
+    text-align: center !important;
+    font-size: 0.7rem !important;
+  }
+
+  /* Interactive boxes stacked */
+  .interactive-box, .absolute.right-0.top-0.w-80 {
+    position: static !important;
+    width: 100% !important;
+    margin-top: 1rem !important;
+  }
+
+  /* Terminal window */
+  .kali-terminal {
+    position: fixed !important;
+    bottom: 20px !important;
+    left: 10px !important;
+    right: 10px !important;
+    width: auto !important;
+    max-height: 40vh !important;
+    font-size: 0.7rem !important;
+  }
+
+  /* Device scanner at bottom with 15% further down */
+  .device-scanner {
+    position: fixed !important;
+    bottom: 20% !important;   /* move 15% further down */
+    left: 89% !important;     /* center horizontally */
+    transform: translateX(-50%) !important;
+        transform: translateY(1340%) !important;
+    width: 40px !important;
+    height: 40px !important;
+    z-index: 20 !important;
+  }
+
+  /* Device label under scanner */
+  .device-label {
+   display: none;
+  }
+}.full-screen-scan {
+  position: fixed;
+  inset: 0;
+  background: white;
+  opacity: 0.1;
+  animation: scanVertical 1.5s linear infinite;
+  z-index: 9999;
+}
+
+.full-screen-scan-horizontal {
+  position: fixed;
+  inset: 0;
+  background: white;
+  opacity: 0.1;
+  animation: scanHorizontal 2s linear infinite;
+  z-index: 9999;
+}
+
+@keyframes scanVertical {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+@keyframes scanHorizontal {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.device-scanner {
+  width: 140px;
+  height: 140px;
+  border: 2px solid white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.radar {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid white;
+  animation: rotate 3s linear infinite;
+}
+
+@keyframes rotate {
+  100% { transform: rotate(360deg); }
+}
