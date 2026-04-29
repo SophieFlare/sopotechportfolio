@@ -4,6 +4,7 @@ import StarsBg from "../components/atoms/StarsBg";
 import About from "../components/About";
 import Navbar from "../components/layout/Navbar";
 import ITSupport from "../components/it/ITSupport";
+import Footer from "../components/layout/Footer"
 const Home = () => {
   return (
     <>
@@ -14,6 +15,7 @@ const Home = () => {
         <Hero />
         <About />
         <ITSupport />
+       
       </div>
     </>
   );

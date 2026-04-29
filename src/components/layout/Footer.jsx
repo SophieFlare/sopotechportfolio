@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { navLinks } from "../../constants"; // adjust path
+import { navLinks } from "../../constants";
 
 export default function Footer({ onAction }) {
 
@@ -14,8 +14,8 @@ export default function Footer({ onAction }) {
   const systemItems = navLinks.filter(item => item.type === "action");
 
   return (
-    <footer className="w-full mt-24 font-mono text-[#ff0033] bg-black border-t border-[#ff0033]/20 shadow-[0_-10px_40px_rgba(255,0,51,0.25)]">
-      
+    <footer className="w-full mt-24 font-mono text-sky-400 bg-black border-t border-sky-400/20 shadow-[0_-10px_40px_rgba(56,189,248,0.25)]">
+
       <div className="px-[6%] py-[5%]">
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-[6%]">
@@ -33,7 +33,7 @@ export default function Footer({ onAction }) {
             </p>
           </div>
 
-          {/* NAV (AUTO FROM navLinks) */}
+          {/* NAV */}
           <div className="flex flex-col gap-3 text-[1.1vw]">
             <div className="text-[1.2vw] tracking-[0.3em] text-white mb-2">
               NAVIGATION
@@ -43,14 +43,14 @@ export default function Footer({ onAction }) {
               <Link
                 key={item.id}
                 to={item.path}
-                className="text-[#ff0033] hover:text-white hover:scale-[1.03] transform-gpu transition-transform duration-200"
+                className="text-sky-400 hover:text-white hover:scale-[1.03] transform-gpu transition-transform duration-200"
               >
                 {item.title}
               </Link>
             ))}
           </div>
 
-          {/* SYSTEM (AUTO ACTIONS) */}
+          {/* SYSTEM */}
           <div className="flex flex-col gap-3 text-[1.1vw]">
             <div className="text-[1.2vw] tracking-[0.3em] text-white mb-2">
               SYSTEM
@@ -60,7 +60,7 @@ export default function Footer({ onAction }) {
               <button
                 key={item.id}
                 onClick={() => handleClick(item)}
-                className="text-left text-[#ff0033] hover:text-white hover:scale-[1.03] transform-gpu transition-transform duration-200"
+                className="text-left text-sky-400 hover:text-white hover:scale-[1.03] transform-gpu transition-transform duration-200"
               >
                 {item.title}
               </button>
@@ -70,9 +70,9 @@ export default function Footer({ onAction }) {
         </div>
 
         {/* BOTTOM */}
-        <div className="mt-10 flex justify-between text-[0.9vw] text-white/40 border-t border-[#ff0033]/10 pt-4">
+        <div className="mt-10 flex justify-between text-[0.9vw] text-white/40 border-t border-sky-400/10 pt-4">
           <div>© NETCAT 2026</div>
-          <div className="text-[#ff0033]">SIGNAL: STABLE</div>
+          <div className="text-sky-400">SIGNAL: STABLE</div>
         </div>
 
       </div>

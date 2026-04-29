@@ -22,7 +22,7 @@ export default function App() {
   }, []);
 
   return (
-    <div>
+    <div id="home">
       <Home />
     </div>
   );

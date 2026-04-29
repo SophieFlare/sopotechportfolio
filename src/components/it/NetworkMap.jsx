@@ -4,49 +4,7 @@ import About from "./About";
 import OSI from "./OSI";
 import WiFi from "./WiFi";
 import NetTopology from "./NetTopology";
-
-const nodes = [
-  {
-    img: "/assets/world.png",
-    label: "INTERNET_CORE",
-    info: "Global Backbone | Data Exists Across Networks"
-  },
-  {
-    img: "/assets/worldd.gif",
-    label: "INTERNET_EXCHANGE / ROUTING_LAYER",
-    info: "Traffic Distribution | Routes Data Between Networks"
-  },
-  {
-    img: "/assets/silknet_logo.png",
-    label: "ISP_NETWORK",
-    info: "Internet Service Provider | Connects Backbone to Local Areas"
-  },
-  {
-    img: "/assets/router.png",
-    label: "LOCAL_ROUTER / SWITCH",
-    info: "LAN Gateway | Directs Traffic Inside Local Network"
-  },
-  {
-    img: "/assets/client.png",
-    label: "CLIENT_DEVICE",
-    info: "End Device | Receives Data (PC / Phone / Laptop)"
-  },
-  {
-    img: "/assets/silknet_logo.png",
-    label: "ISP_RETURN_CHANNEL",
-    info: "ISP Layer | Handles Response Path Back to Core"
-  },
-  {
-    img: "/assets/earth.mp4",
-    label: "GLOBAL_NETWORK_CLOUD",
-    info: "Distributed Internet Systems | Redundant Routing Worldwide"
-  },
-  {
-    img: "/assets/cat.gif",
-    label: "USER_INTERFACE",
-    info: "Final Output | Data Rendered in Browser / App"
-  },
-];
+import nodes from "../../data/imgs";
 
 export default function NetworkMap() {
   return (
