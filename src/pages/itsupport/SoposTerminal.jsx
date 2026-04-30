@@ -1,87 +1,111 @@
 import React, { useState, useEffect } from "react";
 
-export default function SoposTerminal() {
-  const [log, setLog] = useState([]);
+export default function SoposTerminal({ onClose }) {
   const [input, setInput] = useState("");
+  const [output, setOutput] = useState([
+    "> SOPØ TERMINAL v1.0",
+    "> system ready...",
+    "> type HELP"
+  ]);
 
+  // ENTER key handling (fixed dependency bug)
   useEffect(() => {
-    setLog(["SOPOS TERMINAL v1.0", "type 'help' to start..."]);
-  }, []);
+    const handleKey = (e) => {
+      if (e.key === "Enter") {
+        runCommand();
+      }
+    };
 
-  const handleCommand = (cmd) => {
-    let response = "";
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [input]);
 
-    switch (cmd.toLowerCase()) {
+  const runCommand = () => {
+    let res = "";
+
+    switch (input.toLowerCase()) {
       case "help":
-        response = "commands: about / skills / clear / status";
+        res = "commands: about / skills / clear / exit";
         break;
+
       case "about":
-        response = "Sopo AI Terminal: interactive CV subsystem online.";
+        res = "SOPØ is a system explorer & tech learner.";
         break;
+
       case "skills":
-        response = "Windows, Linux, Networking, CLI, Troubleshooting";
+        res = "Windows, Linux, Networking, CLI, Hardware";
         break;
-      case "status":
-        response = "SYSTEM: ONLINE ● ALL MODULES ACTIVE";
-        break;
+
       case "clear":
-        setLog([]);
+        setOutput([]);
+        setInput("");
         return;
+
+      case "exit":
+        handleClose();
+        return;
+
       default:
-        response = `unknown command: ${cmd}`;
+        res = "command not found";
     }
 
-    setLog((prev) => [...prev, `> ${cmd}`, response]);
+    setOutput((p) => [...p, "> " + input, res]);
+    setInput("");
+  };
+
+  // ✅ SAFE CLOSE FUNCTION (IMPORTANT FIX)
+  const handleClose = () => {
+    setInput("");
+    onClose?.(); // this actually closes parent state
   };
 
   return (
     <div className="
-      w-[320px] h-full
-      bg-[#05070d]
-      border-l border-[#2b75ae]
-      flex flex-col
-      text-[#00ff9c]
-      font-mono text-xs
+      fixed inset-0 bg-black/70 backdrop-blur-sm
+      flex items-center justify-center
+      z-[99999]
     ">
 
-      {/* HEADER */}
-      <div className="h-10 px-3 flex items-center justify-between bg-[#0a0f1c] border-b border-[#2b75ae]">
-        <span className="text-[#2b75ae]">SOPOS TERMINAL</span>
+      <div className="
+        w-[600px] h-[400px]
+        bg-black
+        border border-sky-400/40
+        shadow-[0_0_25px_#38bdf8]
+        flex flex-col
+        font-mono
+      ">
+
+        {/* HEADER */}
+        <div className="flex justify-between p-2 border-b border-sky-400/30 text-sky-400 text-xs">
+          <span>SOPO TERMINAL</span>
+
+          {/* ✅ FIXED CLOSE BUTTON */}
+          <button
+            onClick={handleClose}
+            className="hover:text-white transition"
+          >
+            ✕
+          </button>
+        </div>
+
+        {/* OUTPUT */}
+        <div className="flex-1 p-3 text-sky-300 overflow-y-auto text-sm">
+          {output.map((line, i) => (
+            <div key={i}>{line}</div>
+          ))}
+        </div>
+
+        {/* INPUT */}
+        <div className="border-t border-sky-400/30 p-2 flex">
+          <span className="text-sky-400 mr-2">&gt;</span>
+          <input
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            className="flex-1 bg-transparent outline-none text-white"
+          />
+        </div>
+
       </div>
-
-      {/* OUTPUT */}
-      <div className="flex-1 p-2 overflow-y-auto whitespace-pre-line">
-        {log.map((l, i) => (
-          <div key={i}>{l}</div>
-        ))}
-      </div>
-
-      {/* INPUT */}
-      <div className="p-2 border-t border-[#2b75ae] flex gap-2">
-        <input
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          className="
-            flex-1 bg-black
-            text-[#00ff9c]
-            outline-none
-            px-2 py-1
-            border border-[#2b75ae]/40
-          "
-          placeholder="type command..."
-        />
-
-        <button
-          onClick={() => {
-            handleCommand(input);
-            setInput("");
-          }}
-          className="text-[#2b75ae] hover:text-white"
-        >
-          run
-        </button>
-      </div>
-
     </div>
   );
 }
