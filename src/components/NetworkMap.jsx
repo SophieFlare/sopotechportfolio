@@ -83,27 +83,27 @@ const NetworkMap = () => {
   const getNode = (id) => nodes.find((n) => n.id === id);
 
   return (
-<div className="absolute inset-0 overflow-hidden bg-transparent pointer-events-none">
+    <div className="absolute inset-0 overflow-hidden bg-transparent pointer-events-none">
 
-      {/* 🔷 CENTER HERO LOGO */}
-  <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
-  <svg
-    width="1820"
-    height="1820"
-    viewBox="0 0 600 600"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className="drop-shadow-[0_0_60px_rgba(56,189,248,0.6)]"
-  >
-    <path
-      d="M298.074,473.47c-1.749,3.355-7.26,5.039-11.922,2.19-6.286-3.84-6.633-11.617-6.115-15.507a22.7,22.7,0,0,1,4.872.153c-2.224,7.326.086,11.476,2.2,12.764,1.862,1.132,5.72,1.766,7.815-1.5-.223.078-3.167,1.126-4.861-.7-1.494-1.612-.745-6.174,1.171-8.849,6.527,2.755,8.847,7.6,6.835,11.454m-8.4-20.2a17,17,0,0,0-2.35,2.592,35.076,35.076,0,0,0-5.727-.262c2.438-3.733,6.75-3.5,8.076-2.33m9.2-3.574a13.249,13.249,0,0,0-8.623,3.082c-4.016-5.329-14.586-5.023-16.559,4.677-6.507,3.489-3.651,10.625,1.7,12.657-2.479-1.5-3.9-4.357-2.387-6.942a3.552,3.552,0,0,1,.536-.689c.837,5.584,5.006,11.751,11.416,14.88,9.326,4.554,18.948.585,20.249-5.847,1.214-6-2.676-10.761-9.378-13.5,3.643-2.243,6.625-2.117,8.417-1.117,2.718,1.516,2.042,5.846,2.042,5.846a8.066,8.066,0,0,0,1.6-3.4c.815-4.533-2.437-9.576-9.013-9.657"
-      fill="#38bdf8"
-    />
-  </svg>
-</div>
+      {/* ===================== */}
+      {/* 🔵 BIG CENTER LOGO */}
+      {/* ===================== */}
+      <div className="absolute inset-0 flex items-center justify-center z-0 pointer-events-none">
+        <img
+          src="/silknet_logoo.png"
+          alt="logo"
+          className="
+            w-[55%] h-[55%]
+            object-contain
+           
+          "
+        />
+      </div>
 
-      {/* CONNECTIONS + PACKETS */}
-      <svg className="w-full h-full absolute z-20">
+      {/* ===================== */}
+      {/* CONNECTIONS */}
+      {/* ===================== */}
+      <svg className="absolute inset-0 w-full h-full z-10">
         {connections.map(([a, b], i) => {
           const n1 = getNode(a);
           const n2 = getNode(b);
@@ -143,7 +143,9 @@ const NetworkMap = () => {
         })}
       </svg>
 
+      {/* ===================== */}
       {/* NODES */}
+      {/* ===================== */}
       {nodes.map((node) => {
         const Icon = iconMap[node.type];
 

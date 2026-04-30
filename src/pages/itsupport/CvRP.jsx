@@ -78,7 +78,7 @@ export default function CvRP() {
 
   return (
  <div className="fixed top-0 right-0 h-screen w-[320px] z-[9999] flex flex-col bg-black border border-sky-400">
-      <div className="flex-1 flex flex-col gap-4 p-4 overflow-y-auto">
+      <div className="flex-1 flex flex-col gap-4 p-4 overflow-hidden">
 
         <MessageBox sections={sections} />
 

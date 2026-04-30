@@ -15,9 +15,9 @@ export default function CvViewer() {
           flex items-center justify-center gap-2
           px-5 py-2.5
           text-white font-semibold tracking-wide
-          bg-[#2b75ae]
+          bg-[#81c2f3]
           rounded-lg
-          border border-[#6bb7ff]/40
+          border border-[#81c2f3]
           shadow-[0_0_18px_rgba(43,117,174,0.55)]
           hover:shadow-[0_0_35px_rgba(43,117,174,0.95)]
           transition-all duration-300
@@ -51,14 +51,14 @@ export default function CvViewer() {
         <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex z-[9999]">
 
           {/* MAIN WRAPPER */}
-          <div className="flex w-[50%] h-full">
+        <div className="flex w-[43%] h-full border-2 border-sky-400 shadow-[0_0_20px_#38bdf8]">
 
             {/* LEFT PDF */}
-            <div className="flex-1 flex flex-col bg-[#266698]">
+            <div className="flex-1 flex flex-col bg-[#000000]">
 
               {/* HEADER */}
               <div className="h-12 flex items-center justify-between px-4 bg-gradient-to-r from-[#2b75ae] to-[#225e8b] text-white">
-                <span className="font-semibold">📄 CV Viewer</span>
+                <span className="font-semibold text-sky-400">📄 CV Viewer</span>
 
                 <button
                   onClick={() => setOpen(false)}
@@ -79,13 +79,7 @@ export default function CvViewer() {
             </div>
 
             {/* GAP AREA (ONLY BUTTON HERE) */}
-       {/* GAP AREA (ONLY BUTTON HERE) */}
-<div className="w-[90px] relative flex items-end justify-end pl-6 pb-16 translate-x-[10%]">
 
-
-
-
-</div>
 
             {/* RIGHT PANEL */}
             <CvRP />
