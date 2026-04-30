@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import WindowsBar from "./cv/WindowsBar";
+import WindowsBar from "../components/layout/WindowsBar";
 import Form from "./itsupport/Form";
 import JobPage from "./itsupport/JobPage";
 

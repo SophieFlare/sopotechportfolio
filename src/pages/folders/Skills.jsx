@@ -1,9 +1,17 @@
-import React from 'react'
-
-const Skills = () => {
+export default function Skills({ onClose }) {
   return (
-    <div>Skills</div>
-  )
-}
+    <div className="w-full h-full flex flex-col font-mono text-white">
 
-export default Skills
+
+
+      <div className="text-sm space-y-2">
+        <p>• Windows / Linux</p>
+        <p>• Networking (ping, traceroute, DNS)</p>
+        <p>• CLI / Terminal usage</p>
+        <p>• Hardware basics</p>
+        <p>• Troubleshooting systems</p>
+      </div>
+
+    </div>
+  );
+}

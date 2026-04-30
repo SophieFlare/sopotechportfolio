@@ -1,5 +1,5 @@
 import React from "react";
-import WindowsBar from "./cv/WindowsBar";
+import WindowsBar from "../components/layout/WindowsBar"
 import CForm from "./contact/CForm";
 import CSH from "./contact/CSH";
 import StarsBgC from "../components/atoms/StarsBgC"

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import KaliDesktop from "./cv/KaliDesktop";
-import WindowsBar from "./cv/WindowsBar";
-
+import WindowsBar from "../components/layout/WindowsBar";
 import Sopo from "./cv/folders/Sopo";
 import Contact from "./cv/folders/Contact";
 import Certificate from "./cv/folders/Certificate";
