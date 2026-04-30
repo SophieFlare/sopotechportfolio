@@ -32,7 +32,7 @@ export default function FileExplorer() {
     }
   };
 
-  /* BACK (FIXED) */
+  /* BACK */
   const goBack = () => {
     if (activeFile) {
       setActiveFile(null);
@@ -68,14 +68,9 @@ export default function FileExplorer() {
             ←
           </button>
 
-          {/* PATH */}
-          <div className="text-xs opacity-70 flex gap-1">
-            {history.map((h, i) => (
-              <span key={i} className="flex items-center gap-1">
-                {i !== 0 && <span>/</span>}
-                {h.name}
-              </span>
-            ))}
+          {/* CURRENT VIEW NAME (NO ROOT) */}
+          <div className="text-xs opacity-70">
+            {activeFile ? activeFile.name : current.name !== "root" ? current.name : ""}
           </div>
 
         </div>
@@ -119,20 +114,7 @@ export default function FileExplorer() {
         ) : (
           <div className="h-full flex flex-col">
 
-            {/* FILE HEADER */}
-            <div className="flex justify-between items-center mb-2 text-sky-400 text-xs border-b border-sky-400/20 pb-2">
 
-              <span className="tracking-wide">
-                OPEN: {activeFile.name}
-              </span>
-
-              <button
-                onClick={() => setActiveFile(null)}
-                className="hover:text-white transition"
-              >
-                ✕
-              </button>
-            </div>
 
             {/* FILE CONTENT */}
             <div className="

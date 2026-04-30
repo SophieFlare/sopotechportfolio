@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { FaHome, FaDesktop, FaEnvelope, FaTerminal } from "react-icons/fa";
 import SoposTerminal from "../../pages/itsupport/SoposTerminal";
-import FileExplorer from "../../pages//FileExplorer";
+import FileExplorer from "../../pages/FileExplorer";
 
 const WindowsBar = () => {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -32,7 +34,10 @@ const WindowsBar = () => {
       {/* TASKBAR */}
       <div className="fixed bottom-0 left-0 w-full h-12 bg-black border-t border-sky-400 flex items-center font-mono text-sky-400 z-[9999]">
 
-        <div className="flex items-center h-full">
+        {/* LEFT SIDE */}
+        <div className="flex items-center h-full relative">
+
+          {/* START BUTTON */}
           <div
             onClick={() => setStartOpen(!startOpen)}
             className="w-12 h-full flex items-center justify-center hover:bg-sky-400/10 cursor-pointer"
@@ -40,23 +45,78 @@ const WindowsBar = () => {
             ⊞
           </div>
 
+          {/* START MENU */}
+     {/* START MENU */}
+{startOpen && (
+  <div className="absolute bottom-12 left-0 w-52 bg-black border border-sky-400/40 shadow-[0_0_20px_#38bdf8] text-sm z-[10000]">
+
+    {/* HEADER */}
+    <div className="p-2 border-b border-sky-400/30 text-xs opacity-70">
+      SYSTEM MENU
+    </div>
+
+    {/* ITEMS */}
+    <div className="flex flex-col text-sm">
+
+      <Link
+        to="/"
+        onClick={() => setStartOpen(false)}
+        className="px-3 py-2 flex items-center gap-2 text-sky-400 hover:bg-sky-400/10 transition"
+      >
+        <FaHome className="text-blue-400" />
+        Home
+      </Link>
+
+      <Link
+        to="/desktop"
+        onClick={() => setStartOpen(false)}
+        className="px-3 py-2 flex items-center gap-2 text-sky-400 hover:bg-sky-400/10 transition"
+      >
+        <FaDesktop className="text-blue-400" />
+        Desktop
+      </Link>
+
+      <Link
+        to="/contact"
+        onClick={() => setStartOpen(false)}
+        className="px-3 py-2 flex items-center gap-2 text-sky-400 hover:bg-sky-400/10 transition"
+      >
+        <FaEnvelope className="text-blue-400" />
+        Contact
+      </Link>
+
+      <div
+        onClick={() => openApp("terminal")}
+        className="px-3 py-2 flex items-center gap-2 text-sky-400 hover:bg-sky-400/10 cursor-pointer transition"
+      >
+        <FaTerminal className="text-blue-400" />
+        Terminal
+      </div>
+
+    </div>
+  </div>
+)}
+
+          {/* SEARCH BUTTON */}
           <div
             onClick={() => setSearchOpen(true)}
             className="w-12 h-full flex items-center justify-center hover:bg-sky-400/10 cursor-pointer"
           >
             🔍
           </div>
+
         </div>
 
         <div className="flex-1" />
 
+        {/* CLOCK */}
         <div className="flex items-center gap-4 pr-3 text-xs text-sky-400/80">
           <span>{time}</span>
           <span className="text-[10px] opacity-70">{date}</span>
         </div>
       </div>
 
-      {/* SEARCH */}
+      {/* SEARCH WINDOW */}
       {searchOpen && (
         <div className="fixed bottom-12 left-0 w-[420px] h-[520px] bg-black border border-sky-400/40 shadow-[0_0_25px_#38bdf8] z-[10000] flex flex-col font-mono">
 
@@ -75,8 +135,16 @@ const WindowsBar = () => {
 
           <div className="flex-1 px-3 space-y-2">
 
-            <SearchItem label="📁 FILE EXPLORER" onClick={() => openApp("explorer")} />
-            <SearchItem label="⌨ TERMINAL" onClick={() => openApp("terminal")} highlight />
+            <SearchItem
+              label="📁 FILE EXPLORER"
+              onClick={() => openApp("explorer")}
+            />
+
+            <SearchItem
+              label="⌨ TERMINAL"
+              onClick={() => openApp("terminal")}
+              highlight
+            />
 
           </div>
         </div>
@@ -91,7 +159,9 @@ const WindowsBar = () => {
             {/* HEADER */}
             <div className="flex justify-between items-center px-3 py-2 border-b border-sky-400/30 text-sky-400">
               <span>{activeWindow.toUpperCase()}</span>
-              <button onClick={closeWindow} className="hover:text-white">✕</button>
+              <button onClick={closeWindow} className="hover:text-white">
+                ✕
+              </button>
             </div>
 
             {/* CONTENT */}
@@ -115,7 +185,6 @@ const WindowsBar = () => {
 };
 
 export default WindowsBar;
-
 
 /* SEARCH ITEM */
 function SearchItem({ label, onClick, highlight }) {
