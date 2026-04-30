@@ -29,7 +29,7 @@ const Carousel = () => {
     "assets/net/4.gif",
     "assets/net/5.gif",
     "assets/net/6.gif",
-    "assets/net/7.jpg",
+    "assets/net/5.gif",
     "assets/net/earth.gif",
     "assets/net/earth.jpg",
     "assets/net/earth.jpg",

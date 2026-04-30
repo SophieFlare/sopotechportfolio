@@ -11,7 +11,7 @@ const StarsBg = () => {
     const glyph = [];
 
     // ⭐ WHITE STARS
-    for (let i = 0; i < 220; i++) {
+    for (let i = 0; i < 270; i++) {
       white.push({
         id: i,
         top: Math.random() * 200,

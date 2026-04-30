@@ -115,13 +115,16 @@
 }
 
 .radar {
-  width: 80%;
-  height: 80%;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
-  border: 1px solid #bb86fc33;
-  background: radial-gradient(circle, #bb86fc22 0%, transparent 70%);
+  border: 2px solid #38bdf8;
+
+  box-shadow:
+    0 0 20px #38bdf8,
+    0 0 60px rgba(56,189,248,0.4);
+
   position: relative;
-  overflow: hidden;
 }
 
 .radar::after {
@@ -374,14 +377,6 @@
   white-space: nowrap; /* Prevent line breaks */
 }
 /* ------------------ RESPONSIVE LAYOUT ------------------ */
-@media (max-width: 768px) {
-  /* Container stacking */
-  .hello-world .container {
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    padding: 2rem !important;
-  }
 
   /* Profile image centered inside nodes, moved 4% down */
   .hello-world img {

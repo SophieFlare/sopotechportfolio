@@ -5,56 +5,48 @@ const Scanner = () => {
 
   return (
     <>
-      {/* SCAN LINES OVERLAY */}
+      {/* FULL SCREEN SCAN (VERTICAL) */}
       {active && (
-        <div className="fixed inset-0 z-[9997] pointer-events-none overflow-hidden">
-
-          {/* horizontal */}
-          <div className="absolute w-full h-[2px] bg-sky-400 shadow-[0_0_15px_#38bdf8] animate-scanY" />
-
-          {/* vertical */}
-          <div className="absolute h-full w-[2px] bg-sky-400 shadow-[0_0_15px_#38bdf8] animate-scanX" />
-        </div>
+        <div className="full-screen-scan bg-white opacity-80"></div>
       )}
 
-      {/* BUTTON (BELOW VIRUS POPUPS BUT STILL CLICKABLE) */}
+      {/* FULL SCREEN SCAN (HORIZONTAL) */}
+      {active && (
+        <div className="full-screen-scan-horizontal bg-white opacity-80"></div>
+      )}
+
+      {/* SCANNER UI */}
       <div
-        onClick={() => setActive((prev) => !prev)}
-        className="fixed bottom-10 right-10 z-[9995] cursor-pointer select-none"
+        className="device-scanner mt-[11%]  ml-[7%]  border-white shadow-[0_0_20px_white]"
+        onClick={() => setActive(!active)}
       >
-        <div className="relative w-[120px] h-[120px] rounded-full border border-sky-400 bg-black/40 backdrop-blur-md shadow-[0_0_15px_#38bdf8] flex items-center justify-center">
+        <div className="radar border-white"></div>
 
-          <div className="absolute inset-0 rounded-full border border-sky-400 animate-ping opacity-20" />
-          <div className="absolute inset-3 rounded-full border border-sky-400 animate-spin opacity-40" />
-
-          <p className="text-sky-400 font-mono text-[10px] tracking-widest z-10">
-            SCANNER
-          </p>
-        </div>
+        <p className="device-label font-mono text-white tracking-widest">
+          DEVICE SCANNER
+        </p>
       </div>
 
-      {/* ANIMATIONS */}
-      <style>{`
-        @keyframes scanY {
-          0% { transform: translateY(-100vh); }
-          100% { transform: translateY(100vh); }
-        }
+      {/* LOCAL STYLE FIXES */}
+      <style>
+        {`
+          /* REMOVE ANY COLOR MIXING */
+          .full-screen-scan,
+          .full-screen-scan-horizontal {
+            mix-blend-mode: normal !important;
+          }
 
-        @keyframes scanX {
-          0% { transform: translateX(-100vw); }
-          100% { transform: translateX(100vw); }
-        }
+          /* OPTIONAL: CLEAN WHITE GLOW */
+          .device-scanner {
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(2px);
+          }
 
-        .animate-scanY {
-          animation: scanY 2.0s linear infinite;
-          will-change: transform;
-        }
-
-        .animate-scanX {
-          animation: scanX 2.8s linear infinite;
-          will-change: transform;
-        }
-      `}</style>
+          .radar {
+            box-shadow: 0 0 15px white, 0 0 30px rgba(255,255,255,0.4);
+          }
+        `}
+      </style>
     </>
   );
 };
