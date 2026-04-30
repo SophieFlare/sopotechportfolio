@@ -447,23 +447,7 @@
   .device-label {
    display: none;
   }
-}.full-screen-scan {
-  position: fixed;
-  inset: 0;
-  background: white;
-  opacity: 0.1;
-  animation: scanVertical 1.5s linear infinite;
-  z-index: 9999;
-}
 
-.full-screen-scan-horizontal {
-  position: fixed;
-  inset: 0;
-  background: white;
-  opacity: 0.1;
-  animation: scanHorizontal 2s linear infinite;
-  z-index: 9999;
-}
 
 @keyframes scanVertical {
   0% { transform: translateY(-100%); }

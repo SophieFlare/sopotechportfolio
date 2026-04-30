@@ -16,14 +16,12 @@ const About = () => {
 
   const terminalRef = useRef(null);
 
-  /* AUTO SCROLL */
   useEffect(() => {
     if (terminalRef.current) {
       terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
     }
   }, [terminalOutput]);
 
-  /* VIRUS CHAOS */
   useEffect(() => {
     if (!virusTriggered) return;
 
@@ -53,7 +51,6 @@ const About = () => {
     return () => clearInterval(interval);
   }, [virusTriggered, username]);
 
-  /* AUTH */
   const handleAuthentication = () => {
     if (!username) return;
 
@@ -84,22 +81,26 @@ const About = () => {
     }, 1000);
   };
 
-  /* FLOATING NODES */
   const nodes = Array.from({ length: 20 }).map((_, i) => ({
     id: i,
     top: Math.random() * 100,
     left: Math.random() * 100,
     size: Math.random() * 6 + 2,
   }));
-
+const closePopup = (id) => {
+  setVirusPopups((prev) => prev.filter((p) => p.id !== id));
+};
   return (
-    <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-terminal">
+    <section className="relative isolate w-full min-h-screen flex items-center justify-center overflow-hidden bg-terminal">
+
+      {/* SCANNER (NOW INSIDE LAYER SYSTEM) */}
+      <Scanner />
 
       {/* FLOATING NODES */}
       {nodes.map((n) => (
         <div
           key={n.id}
-          className="absolute rounded-full bg-sky-400 opacity-40 shadow-[0_0_10px_#38bdf8]"
+          className="absolute z-0 rounded-full bg-sky-400 opacity-40 shadow-[0_0_10px_#38bdf8]"
           style={{
             top: `${n.top}%`,
             left: `${n.left}%`,
@@ -111,19 +112,20 @@ const About = () => {
 
       {/* FLASH */}
       {flash && (
-        <div className="fixed inset-0 bg-sky-400 opacity-50 pointer-events-none z-[9998]" />
+        <div className="fixed inset-0 bg-sky-400 opacity-50 pointer-events-none z-[40]" />
       )}
 
       {/* WARNING */}
       {warningFlash && (
-        <div className="fixed inset-0 flex items-center justify-center z-[9999] pointer-events-none">
+        <div className="fixed inset-0 flex items-center justify-center z-[50] pointer-events-none">
           <div className="text-sky-400 text-7xl font-mono animate-pulse">
             ⚠
           </div>
         </div>
       )}
 
-      <div className="container mx-auto px-6 flex flex-col md:flex-row items-start gap-12 relative z-10">
+      {/* MAIN UI */}
+      <div className="relative z-10 container mx-auto px-6 flex flex-col md:flex-row items-start gap-12">
 
         {/* LEFT */}
         <div className="flex flex-col items-center md:items-start gap-5 md:w-1/3">
@@ -144,8 +146,9 @@ const About = () => {
           </div>
         </div>
 
-        {/* RIGHT PANEL */}
-        <div className="absolute right-10 top-20 flex flex-col items-center gap-6 w-[420px]">
+        {/* RIGHT */}
+        <div className="absolute right-10 top-20 flex flex-col items-center gap-6 w-[420px] z-20">
+
           {panelActivated && (
             <div className="w-full p-4 bg-black/40 backdrop-blur-md border border-sky-400 rounded-md shadow-[0_0_15px_#38bdf8]">
               <input
@@ -167,35 +170,34 @@ const About = () => {
 
         {/* TERMINAL */}
         {terminalOpen && (
-          <div className="fixed bottom-10 left-1/2 -translate-x-1/2 w-[600px] bg-black border border-sky-400 shadow-[0_0_20px_#38bdf8] font-mono text-sky-400 p-4 z-[10000]">
+          <div className="fixed bottom-10 left-1/2 -translate-x-1/2 w-[600px] bg-black border border-sky-400 shadow-[0_0_20px_#38bdf8] font-mono text-sky-400 p-4 z-[60]">
             <div className="flex justify-between mb-2 text-xs">
               <span>root@system :: VIRUS.EXE</span>
               <button onClick={() => setTerminalOpen(false)}>✕</button>
             </div>
 
-            <div
-              ref={terminalRef}
-              className="h-60 overflow-y-auto text-sm space-y-1"
-            >
+            <div ref={terminalRef} className="h-60 overflow-y-auto text-sm space-y-1">
               {terminalOutput.map((line, i) => (
                 <p key={i}>{line}</p>
               ))}
             </div>
           </div>
         )}
-
-        <Scanner />
-
-        {/* POPUPS */}
-        {virusPopups.map((p) => (
-          <div
-            key={p.id}
-            className="fixed w-[260px] bg-black border border-sky-400 text-sky-400 font-mono p-3 shadow-[0_0_20px_#38bdf8] z-[99999]"
-            style={{ top: p.y, left: p.x }}
-          >
-            <p>{p.text}</p>
+{/* VIRUS POPUPS (TOP LAYER) */}
+   {/* VIRUS POPUPS */}
+      {virusPopups.map((p) => (
+        <div
+          key={p.id}
+          className="fixed w-[240px] bg-black border border-sky-400 text-sky-400 p-3 z-[999]"
+          style={{ top: p.y, left: p.x }}
+        >
+          <div className="flex justify-between mb-2">
+            <span className="text-xs">WARNING</span>
+            <button onClick={() => closePopup(p.id)}>✕</button>
           </div>
-        ))}
+          <p className="text-sm">{p.text}</p>
+        </div>
+      ))}
       </div>
     </section>
   );

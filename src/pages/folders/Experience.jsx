@@ -56,7 +56,7 @@ const Experience = () => {
   const job = jobs[active];
 
   return (
-    <div className="h-full flex flex-col text-white font-mono">
+    <div className="h-full flex flex-col bg-black  text-white font-mono">
 
       {/* FILE TABS */}
       <div className="flex gap-2 mb-3 overflow-x-auto">

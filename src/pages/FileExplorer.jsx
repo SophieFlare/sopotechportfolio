@@ -1,18 +1,18 @@
 import React, { useState } from "react";
+import { FaUser, FaTools, FaBriefcase, FaCertificate } from "react-icons/fa";
 
 import Profile from "./folders/Profile";
 import Skills from "./folders/Skills";
 import Experience from "./folders/Experience";
 import Certificate from "./folders/Certificate";
-
 const fileSystem = {
   name: "root",
   type: "folder",
   children: [
-    { name: "Profile", type: "file", component: <Profile /> },
-    { name: "Skills", type: "file", component: <Skills /> },
-    { name: "Experience", type: "file", component: <Experience /> },
-    { name: "Certificates", type: "file", component: <Certificate /> },
+    { name: "პროფილი", type: "file", icon: <FaUser />, component: <Profile /> },
+    { name: "უნარები", type: "file", icon: <FaTools />, component: <Skills /> },
+    { name: "გამოცდილება", type: "file", icon: <FaBriefcase />, component: <Experience /> },
+    { name: "სერთიფიკატი", type: "file", icon: <FaCertificate />, component: <Certificate /> },
   ],
 };
 
@@ -44,92 +44,90 @@ export default function FileExplorer() {
     }
   };
 
-  return (
-    <div className="w-full h-full flex flex-col font-mono bg-sky-400 text-black border-2 border-black">
 
-      {/* HEADER */}
-      <div className="flex items-center justify-between px-3 py-2 border-b-2 border-black bg-white">
+ return (
+  <div className="w-full h-full flex flex-col font-mono bg-slate-200 text-black rounded-lg overflow-hidden shadow-xl border border-slate-300">
 
-        <div className="flex items-center gap-2">
+    {/* HEADER */}
+    <div className="flex items-center justify-between px-4 py-2 bg-sky-800 text-white">
 
-          <button
-            onClick={goBack}
-            className="
-              px-2 py-1
-              border border-black
-              text-black
-              hover:bg-black hover:text-white
-              transition
-            "
-          >
-            ←
-          </button>
+      <div className="flex items-center gap-3">
+        <button
+          onClick={goBack}
+          className="px-2 py-1 rounded bg-black-700 hover:bg-slate-600 transition"
+        >
+          ←
+        </button>
 
-          <div className="text-xs text-sky-600">
-            {activeFile
-              ? activeFile.name
-              : current.name !== "root"
-              ? current.name
-              : ""}
-          </div>
+        <div className="text-xs text-slate-300">
+          {activeFile
+            ? activeFile.name
+            : current.name !== "root"
+            ? current.name
+            : "Home"}
+        </div>
+      </div>
+
+      <span className="text-xs tracking-widest opacity-70">
+        FILE EXPLORER
+      </span>
+    </div>
+
+    {/* CONTENT */}
+    <div className="flex-1  overflow-y-auto bg-slate-100">
+
+      {!activeFile ? (
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+
+          {current.children.map((item, i) => (
+            <div
+              key={i}
+              onClick={() => openItem(item)}
+              className="group flex flex-col items-center cursor-pointer select-none"
+            >
+
+    <div
+  className="
+    text-4xl
+    text-sky-700
+    drop-shadow-sm p-6
+    transition-all duration-200
+    group-hover:scale-110
+    group-hover:-translate-y-1
+    group-hover:text-blue-500
+    group-active:scale-95
+  "
+>
+  {item.icon}
+</div>
+              {/* NAME */}
+              <div className="mt-2 text-sm text-center text-slate-700 group-hover:text-blue-600 transition">
+                {item.name}
+              </div>
+
+            </div>
+          ))}
 
         </div>
-
-        <span className="text-xs tracking-widest text-sky-600">
-          FILE EXPLORER
-        </span>
-      </div>
-
-      {/* CONTENT */}
-      <div className="flex-1 p-4 overflow-y-auto bg-white">
-
-        {!activeFile ? (
-          <div className="grid grid-cols-2 gap-4">
-
-            {current.children.map((item, i) => (
-              <div
-                key={i}
-                onClick={() => openItem(item)}
-                className="
-                  group
-                  p-4 bg-white
-                  border-2 border-black
-                  hover:border-sky-500
-                  hover:shadow-[0_0_10px_#38bdf8]
-                  cursor-pointer
-                  transition-all duration-200
-                  rounded
-                "
-              >
-                <div className="text-2xl text-sky-600 group-hover:scale-110 transition">
-                  {item.type === "folder" ? "📁" : "📄"}
-                </div>
-
-                <div className="text-sm mt-2 text-black group-hover:text-sky-600">
-                  {item.name}
-                </div>
-              </div>
-            ))}
-
-          </div>
-        ) : (
-          <div className="h-full flex flex-col">
-
-            <div className="
+      ) : (
+        <div className="h-full flex flex-col">
+          <div
+            className="
               flex-1 overflow-y-auto
-              border-2 border-black
-              rounded
-              p-3
+              border border-slate-300
+              rounded-lg
+              p-4
               bg-white
-              text-black
-            ">
-              {activeFile.component}
-            </div>
-
+              shadow-inner
+            "
+          >
+            {activeFile.component}
           </div>
-        )}
+        </div>
+      )}
 
-      </div>
     </div>
-  );
+  </div>
+);
+  
 }

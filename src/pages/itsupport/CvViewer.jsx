@@ -58,7 +58,7 @@ export default function CvViewer() {
 
               {/* HEADER */}
               <div className="h-12 flex items-center justify-between px-4 bg-gradient-to-r from-[#2b75ae] to-[#225e8b] text-white">
-                <span className="font-semibold text-sky-400">📄 CV Viewer</span>
+                <span className="font-semibold text-წჰიტე">📄 CV Viewer</span>
 
                 <button
                   onClick={() => setOpen(false)}
