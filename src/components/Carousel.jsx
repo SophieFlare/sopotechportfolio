@@ -23,18 +23,18 @@ const Carousel = () => {
   }, []);
 
   const images = [
-    "/red/1.jpg",
-    "/red/2.jpg",
-    "/red/3.gif",
-    "/red/4.jpg",
-    "/red/5.jpg",
-    "/red/6.jpg",
-    "/red/7.jpg",
-    "/red/8.gif",
-    "/red/17.jpg",
-    "/red/10.jpg",
-    "/red/14.gif",
-    "/red/12.jpg",
+    "assets/net/1.gif",
+    "assets/net/2.gif",
+    "assets/net/3.gif",
+    "assets/net/4.gif",
+    "assets/net/5.gif",
+    "assets/net/6.gif",
+    "assets/net/7.jpg",
+    "assets/net/earth.gif",
+    "assets/net/earth.jpg",
+    "assets/net/earth.jpg",
+    "assets/net/earth.gif",
+    "assets/net/earth.jpg",
   ];
 
   return (

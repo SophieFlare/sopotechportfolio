@@ -5,7 +5,6 @@ import Skills from "./folders/Skills";
 import Experience from "./folders/Experience";
 import Certificate from "./folders/Certificate";
 
-/* 📁 FILE SYSTEM */
 const fileSystem = {
   name: "root",
   type: "folder",
@@ -22,7 +21,6 @@ export default function FileExplorer() {
   const [current, setCurrent] = useState(fileSystem);
   const [activeFile, setActiveFile] = useState(null);
 
-  /* OPEN */
   const openItem = (item) => {
     if (item.type === "folder") {
       setHistory((prev) => [...prev, item]);
@@ -32,7 +30,6 @@ export default function FileExplorer() {
     }
   };
 
-  /* BACK */
   const goBack = () => {
     if (activeFile) {
       setActiveFile(null);
@@ -48,40 +45,43 @@ export default function FileExplorer() {
   };
 
   return (
-    <div className="w-full h-full flex flex-col font-mono text-white">
+    <div className="w-full h-full flex flex-col font-mono bg-sky-400 text-black border-2 border-black">
 
       {/* HEADER */}
-      <div className="flex items-center justify-between px-3 py-2 border-b border-sky-400/30 text-sky-400">
+      <div className="flex items-center justify-between px-3 py-2 border-b-2 border-black bg-white">
 
         <div className="flex items-center gap-2">
 
-          {/* BACK */}
           <button
             onClick={goBack}
             className="
-              px-2 py-1 border border-sky-400/30
-              hover:bg-sky-400/10
-              active:scale-95
+              px-2 py-1
+              border border-black
+              text-black
+              hover:bg-black hover:text-white
               transition
             "
           >
             ←
           </button>
 
-          {/* CURRENT VIEW NAME (NO ROOT) */}
-          <div className="text-xs opacity-70">
-            {activeFile ? activeFile.name : current.name !== "root" ? current.name : ""}
+          <div className="text-xs text-sky-600">
+            {activeFile
+              ? activeFile.name
+              : current.name !== "root"
+              ? current.name
+              : ""}
           </div>
 
         </div>
 
-        <span className="text-xs tracking-widest opacity-70">
+        <span className="text-xs tracking-widest text-sky-600">
           FILE EXPLORER
         </span>
       </div>
 
       {/* CONTENT */}
-      <div className="flex-1 p-4 overflow-y-auto">
+      <div className="flex-1 p-4 overflow-y-auto bg-white">
 
         {!activeFile ? (
           <div className="grid grid-cols-2 gap-4">
@@ -92,19 +92,20 @@ export default function FileExplorer() {
                 onClick={() => openItem(item)}
                 className="
                   group
-                  p-4 border border-sky-400/20
-                  hover:bg-sky-400/10
-                  hover:border-sky-400/50
+                  p-4 bg-white
+                  border-2 border-black
+                  hover:border-sky-500
+                  hover:shadow-[0_0_10px_#38bdf8]
                   cursor-pointer
                   transition-all duration-200
                   rounded
                 "
               >
-                <div className="text-2xl group-hover:scale-110 transition">
+                <div className="text-2xl text-sky-600 group-hover:scale-110 transition">
                   {item.type === "folder" ? "📁" : "📄"}
                 </div>
 
-                <div className="text-sm mt-2 text-white/80 group-hover:text-white">
+                <div className="text-sm mt-2 text-black group-hover:text-sky-600">
                   {item.name}
                 </div>
               </div>
@@ -114,16 +115,13 @@ export default function FileExplorer() {
         ) : (
           <div className="h-full flex flex-col">
 
-
-
-            {/* FILE CONTENT */}
             <div className="
               flex-1 overflow-y-auto
-              border border-sky-400/20
+              border-2 border-black
               rounded
               p-3
-              bg-black/30
-              backdrop-blur
+              bg-white
+              text-black
             ">
               {activeFile.component}
             </div>

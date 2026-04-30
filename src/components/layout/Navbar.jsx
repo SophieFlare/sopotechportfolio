@@ -53,31 +53,73 @@ const Navbar = () => {
           </button>
 
           {/* DROPDOWN */}
-          {toggle && (
-            <div className="absolute top-16 right-0 w-48
-                            bg-white/90 backdrop-blur-md
-                            border border-sky-300
-                            rounded-2xl shadow-xl
-                            p-4 flex flex-col gap-3">
+   {/* DROPDOWN */}
+{toggle && (
+  <div className="absolute top-16 right-0 w-32
+                  bg-white/90 backdrop-blur-md
+                  border border-sky-300
+                   shadow-xl
+                  p-4 flex flex-col gap-3">
 
-              <button onClick={() => go("/")} className="text-left text-sky-700 hover:text-sky-500">
-                // HOME
-              </button>
+    {/* HOME */}
+    <button
+      onClick={() => go("/")}
+      className="text-left text-sky-700 hover:text-sky-500"
+    >
+      // HOME
+    </button>
 
-              <button onClick={() => go("/pages/itsupport")} className="text-left text-sky-700 hover:text-sky-500">
-                // CV
-              </button>
+    {/* CV */}
+    <button
+      onClick={() => go("/pages/itsupport")}
+      className="text-left text-sky-700 hover:text-sky-500"
+    >
+      // CV
+    </button>
 
-              <button onClick={() => go("/pages/desktop")} className="text-left text-sky-700 hover:text-sky-500">
-                // desktop
-              </button>
+      {/* DESKTOP (LOCKED) */}
+    <div className="relative group cursor-not-allowed text-sky-700">
 
-              <button onClick={() => go("/pages/contact")} className="text-left text-sky-700 hover:text-sky-500">
-                // Contact
-              </button>
+      <div className="text-left hover:text-sky-500 transition">
+        // DESKTOP
+      </div>
 
-            </div>
-          )}
+      {/* tooltip BELOW */}
+      <div className="
+        absolute left-0 top-full mt-1
+        text-[10px] text-white bg-black/80 px-2 py-[2px]
+        rounded
+        opacity-0 group-hover:opacity-100
+        transition
+        tracking-widest
+      ">
+        LOCKED
+      </div>
+    </div>
+
+    {/* CONTACT (LOCKED) */}
+    {/* CONTACT (LOCKED) */}
+    <div className="relative group cursor-not-allowed text-sky-700">
+
+      <div className="text-left hover:text-sky-500 transition">
+        // CONTACT
+      </div>
+
+      {/* tooltip BELOW */}
+      <div className="
+        absolute left-0 top-full mt-1
+        text-[10px] text-white bg-black/80 px-2 py-[2px]
+        rounded
+        opacity-0 group-hover:opacity-100
+        transition
+        tracking-widest
+      ">
+        LOCKED
+      </div>
+    </div>
+
+  </div>
+)}
         </div>
       </div>
     </nav>

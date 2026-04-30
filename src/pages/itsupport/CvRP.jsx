@@ -16,30 +16,29 @@ function MessageBox({ sections }) {
       setText((prev) => prev + currentText[i]);
       i++;
 
-      if (i >= currentText.length) {
-        clearInterval(interval);
-      }
+      if (i >= currentText.length) clearInterval(interval);
     }, 20);
 
     return () => clearInterval(interval);
   }, [index]);
 
   return (
-    <div className="bg-[#05070d] rounded-xl border border-[#2b75ae]/30 p-3 flex flex-col h-[250px] font-mono text-s text-[#ffffff]">
+    <div className="bg-black rounded-xl border border-sky-400/40 p-3 flex flex-col h-[250px] font-mono text-white">
 
       {/* HEADER */}
-      <div className="text-[10px] text-[#2b75ae] mb-2">
+      <div className="text-[10px] text-sky-400 mb-2">
         SYSTEM // {currentKey.toUpperCase()}
       </div>
 
       {/* TEXT */}
-      <div className="flex-1 overflow-hidden whitespace-pre-line">
+      <div className="flex-1 overflow-hidden whitespace-pre-line text-white/90">
         {"> " + text}
-        <span className="animate-pulse">▍</span>
+        <span className="animate-pulse text-sky-400">▍</span>
       </div>
 
       {/* NAV */}
-      <div className="flex justify-between text-[#2b75ae] text-xs mt-2">
+      <div className="flex justify-between text-sky-400 text-xs mt-2">
+
         <button
           onClick={() => setIndex((p) => Math.max(0, p - 1))}
           disabled={index === 0}
@@ -48,7 +47,7 @@ function MessageBox({ sections }) {
           {"< PREV"}
         </button>
 
-        <span className="text-gray-500">
+        <span className="text-white/40">
           {index + 1}/{keys.length}
         </span>
 
@@ -59,14 +58,13 @@ function MessageBox({ sections }) {
         >
           {"NEXT >"}
         </button>
+
       </div>
     </div>
   );
 }
 
 export default function CvRP() {
-  const [active, setActive] = useState(null);
-
   const sections = {
     about:
       "მე ვარ სოფო — ტექნოლოგიებზე შეყვარებული ადამიანი.\nმიყვარს სისტემების დაშლა, პრობლემების დიაგნოსტიკა და ქსელების კვლევა.",
@@ -75,25 +73,27 @@ export default function CvRP() {
     experience:
       "Junior Support — 1 წელი\nმომხმარებლების დახმარება და ქსელური პრობლემების დიაგნოსტიკა.",
     contact:
-      "Email: sopo@email.com\nTel: +995 555 12 34 56"
+      "Email: sopo@email.com\nTel: +995 555 12 34 56",
   };
 
   return (
-    <div className="fixed top-0 right-0 h-screen w-[320px] z-[9999] flex flex-col bg-[#0a0f1c] border-l border-[#2b75ae]">
-
+ <div className="fixed top-0 right-0 h-screen w-[320px] z-[9999] flex flex-col bg-black border border-sky-400">
       <div className="flex-1 flex flex-col gap-4 p-4 overflow-y-auto">
- <MessageBox sections={sections} />
+
+        <MessageBox sections={sections} />
 
         {/* USER CARD */}
-    {/* USER CARD */}
-<div className="flex flex-col items-center gap-2 bg-[#05070d] rounded-xl border border-[#2b75ae]/30 p-3 flex-1 min-h-0">   <div className="text-white font-semibold tracking-wide">
-            SOPHIE // TECH
+        <div className="flex flex-col items-center gap-2 bg-black rounded-xl border border-sky-400/40 p-3 flex-1 min-h-0">
+
+          <div className="text-white font-semibold tracking-wide">
+            SOPO TECHIE GIRL
           </div>
 
-          <div className="text-[11px] text-[#2b75ae]">
+          <div className="text-[11px] text-sky-400">
             ● ONLINE
           </div>
-          <div className="w-full h-full overflow-hidden rounded-lg border border-[#2b75ae]/40">
+
+          <div className="w-full h-full overflow-hidden rounded-lg border border-sky-400/40">
             <img
               src="/cv/sopo_pixel.png"
               alt="Sopo"
@@ -103,8 +103,6 @@ export default function CvRP() {
 
         </div>
 
-      
-       
       </div>
     </div>
   );
