@@ -64,12 +64,12 @@ const Navbar = () => {
                 // HOME
               </button>
 
-              <button onClick={() => go("/pages/cv")} className="text-left text-sky-700 hover:text-sky-500">
+              <button onClick={() => go("/pages/itsupport")} className="text-left text-sky-700 hover:text-sky-500">
                 // CV
               </button>
 
-              <button onClick={() => go("/pages/itsupport")} className="text-left text-sky-700 hover:text-sky-500">
-                // IT Support
+              <button onClick={() => go("/pages/desktop")} className="text-left text-sky-700 hover:text-sky-500">
+                // desktop
               </button>
 
               <button onClick={() => go("/pages/contact")} className="text-left text-sky-700 hover:text-sky-500">

@@ -13,7 +13,7 @@ const CSH = () => {
       {/* CLIENT (LEFT) */}
       <div className="absolute top-1/2 left-10 -translate-y-1/2 flex flex-col items-center z-10">
         <img
-          src="/assets/net/client.png"
+          src="/assets/net/clientt.jpg"
           alt="client"
           className="w-64 h-64 object-contain drop-shadow-[0_0_20px_#38bdf8]"
         />

@@ -2,7 +2,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Home from "../pages/Home";
-import CV from "../pages/CV";
+import Desktop from "../pages/Desktop";
 import Contact from "../pages/Contact";
 import ITSupport from "../pages/ITSupport";
 
@@ -13,7 +13,7 @@ const Router = () => {
       <Route path="/" element={<Home />} />
 
       {/* CV */}
-      <Route path="/pages/cv" element={<CV />} />
+      <Route path="/pages/desktop" element={<Desktop />} />
 
       {/* CONTACT */}
       <Route path="/pages/contact" element={<Contact />} />

@@ -1,5 +1,5 @@
 import React from "react";
-
+import CvViewer from "./CvViewer";
 export default function Form({ onClose }) {
   const fields = [
     { label: "სახელი:", value: "სოფო" },
@@ -55,13 +55,13 @@ export default function Form({ onClose }) {
           <div className="text-xs text-gray-500 mb-1 font-geo">
             რეზიუმე (PDF/Word)
           </div>
-          <div className="text-sm text-gray-800 font-sans">
-            Sopo_IT_CV.pdf
-          </div>
+        <div className="text-sm font-sans flex justify-center">
+  <CvViewer />
+</div>
         </div>
 
         {/* EDUCATION */}
-        <div className="bg-white p-3 rounded-xl border border-[#266698]">
+        <div className="bg-n p-3 rounded-xl border border-[#266698]">
           <div className="font-semibold text-sm mb-2 font-geo">
             განათლება
           </div>

@@ -11,7 +11,8 @@ export default function Footer({ onAction }) {
 
   const navItems = [
     { id: 1, title: "// HOME", path: "/" },
-    { id: 2, title: "// CV", path: "/pages/cv" },
+     { id: 2, title: "// CV", path: "/pages/itsupport" },
+    { id: 2, title: "// desktop", path: "/pages/desktop" },
     { id: 3, title: "// CONTACT", path: "/pages/contact" },
   ];
 

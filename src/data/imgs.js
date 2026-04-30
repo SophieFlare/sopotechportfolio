@@ -25,7 +25,7 @@ const nodes = [
     info: "End Device | Receives Data (PC / Phone / Laptop)",
   },
   {
-    img: "/assets/net/silknet_logoo.png",
+    img: "/assets/net/bits.gif",
     label: "ISP_RETURN_CHANNEL",
     info: "ISP Layer | Handles Response Path Back to Core",
   },

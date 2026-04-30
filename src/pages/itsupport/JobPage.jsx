@@ -6,7 +6,7 @@ export default function JobPage({ onApply }) {
 
       {/* NAVBAR */}
  {/* NAVBAR */}
-<div className="bg-white shadow-md border-b border-sky-200">
+<div className=" shadow-md border-b border-sky-200">
   <div className="max-w-6xl mx-auto px-4 flex items-center justify-between h-14">
     
     <div className="font-bold text-sky-600">

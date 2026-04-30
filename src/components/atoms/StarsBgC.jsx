@@ -11,7 +11,7 @@ const StarsBg = () => {
     const glyph = [];
 
     // ⭐ WHITE STARS
-    for (let i = 0; i < 70; i++) {
+    for (let i = 0; i < 90; i++) {
       white.push({
         id: i,
         top: Math.random() * 200,
@@ -21,7 +21,7 @@ const StarsBg = () => {
     }
 
     // 🔴 RED STARS
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 120; i++) {
       red.push({
         id: i,
         top: Math.random() * 200,
@@ -31,7 +31,7 @@ const StarsBg = () => {
     }
 
     // ✦ GLYPH STARS
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 30; i++) {
       glyph.push({
         id: i,
         top: Math.random() * 200,
@@ -71,7 +71,7 @@ const StarsBg = () => {
       {redStars.map((star) => (
         <div
           key={`r-${star.id}`}
-          className="absolute bg-[#ff0033] rounded-full opacity-80"
+          className="absolute bg-[#00fff7] rounded-full opacity-80"
           style={{
             top: `${star.top}%`,
             left: `${star.left}%`,

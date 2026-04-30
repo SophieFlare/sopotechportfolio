@@ -5,7 +5,7 @@ import About from "../components/About";
 import Navbar from "../components/layout/Navbar";
 import Network from "../components/it/Network";
 import Footer from "../components/layout/Footer"
-
+import Carousel from "../components/Carousel";
 
 const Home = () => {
   return (
@@ -17,7 +17,7 @@ const Home = () => {
         <Hero />
         <About />
         <Network />
-       
+        <Carousel/>
       </div>
       <Footer />
     </>
