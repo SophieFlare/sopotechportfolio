@@ -1,8 +1,8 @@
 import React from "react";
-import Navbar from "../layouts/Navbar";
+import Navbar from "../components/layout/Navbar";
 import CForm from "./contact/CForm";
 import CSH from "./contact/CSH";
-import StarsBgContact from "../atoms/StarsBgC"
+import StarsBgC from "../components/atoms/StarsBgC"
 
 const Contact = ({}) => {
   return (

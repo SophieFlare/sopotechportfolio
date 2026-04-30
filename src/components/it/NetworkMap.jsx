@@ -8,7 +8,7 @@ import nodes from "../../data/imgs";
 
 export default function NetworkMap() {
   return (
-    <div className="relative w-full h-[300vh] text-sky-400 overflow-hidden">
+    <div className="relative w-full h-[340vh] text-sky-400 overflow-hidden">
 
       {/* LEFT SYSTEM MAP */}
       <div className="absolute left-0 top-0 w-[60%] pl-16 z-10">
@@ -88,20 +88,31 @@ export default function NetworkMap() {
 /* ================= NODE ================= */
 function Node({ img, label, info }) {
   return (
-    <div className="flex items-center gap-6 h-[240px]">
+   <div className="flex items-center gap-24 h-[300px]">
+      {/* IMAGE WITH PLANET EFFECT (LARGER) */}
+      <div className="relative flex items-center justify-center">
 
-      {/* IMAGE WITH SKY NEON GLOW */}
-      <div className="relative">
-        <img
-          src={img}
-          className="h-[160px] w-[200px] object-cover rounded-md
-                     drop-shadow-[0_0_12px_rgba(56,189,248,0.6)]
-                     hover:drop-shadow-[0_0_28px_rgba(56,189,248,1)]
-                     transition-all duration-300"
-        />
+        {/* OUTER GLOW (bigger aura) */}
+        <div className="absolute w-[260px] h-[260px] rounded-full bg-sky-400/20 blur-3xl" />
+        <div className="absolute w-[210px] h-[210px] rounded-full bg-sky-400/30 blur-2xl" />
 
-        {/* glow aura */}
-        <div className="absolute inset-0 -z-10 blur-2xl opacity-60 bg-sky-400/20 rounded-md" />
+        {/* MAIN CIRCLE CONTAINER (INCREASED SIZE) */}
+        <div
+          className="
+            relative w-[220px] h-[220px]
+            rounded-full overflow-hidden
+            border border-sky-400/40
+            shadow-[0_0_35px_rgba(56,189,248,0.6)]
+            hover:shadow-[0_0_70px_rgba(56,189,248,1)]
+            transition-all duration-300
+          "
+        >
+          <img
+            src={img}
+            className="w-full h-full object-cover rounded-full"
+          />
+        </div>
+
       </div>
 
       {/* TEXT */}
@@ -113,7 +124,6 @@ function Node({ img, label, info }) {
     </div>
   );
 }
-
 /* ================= STYLE ================= */
 const style = `
 .node-text {

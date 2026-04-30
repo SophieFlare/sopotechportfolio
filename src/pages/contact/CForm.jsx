@@ -72,20 +72,21 @@ const CForm = () => {
   }, []);
 
   return (
-    <div className="w-full max-w-md mx-auto mt-[-20px] bg-black border border-[#ff0033] shadow-[0_0_25px_#ff0033] p-6 flex flex-col gap-4 font-mono text-[#ff0033] overflow-hidden relative">
+    <div className="w-full max-w-md mx-auto mt-[-20px] bg-black border border-sky-400 shadow-[0_0_25px_#38bdf8] p-6 flex flex-col gap-4 font-mono text-sky-400 overflow-hidden relative">
 
+      {/* FLASH */}
       {flash && (
-        <div className="fixed inset-0 bg-[#ff0033]/40 pointer-events-none z-[9999] animate-ping" />
+        <div className="fixed inset-0 bg-sky-400/30 pointer-events-none z-[9999] animate-ping" />
       )}
 
       {/* HEADER */}
       <div className="flex justify-between items-center mb-2">
         <span className="text-white">CONTACT_TERMINAL.EXE</span>
-        <span className="text-xs text-[#ff0033] opacity-80">ONLINE</span>
+        <span className="text-xs text-sky-400 opacity-80">ONLINE</span>
       </div>
 
       {/* MATRIX TOP */}
-      <div className="flex justify-between mb-3 text-xs text-[#ff0033]">
+      <div className="flex justify-between mb-3 text-xs text-sky-400">
         {matrixLinesTop.map((line, i) => (
           <p key={i}>{line}</p>
         ))}
@@ -103,7 +104,7 @@ const CForm = () => {
             name="name"
             value={form.name}
             onChange={handleChange}
-            className="bg-black border border-[#ff0033] rounded-md px-3 py-2 text-[#ff0033] shadow-[0_0_10px_#ff0033]/30"
+            className="bg-black border border-sky-400 rounded-md px-3 py-2 text-sky-300 shadow-[0_0_10px_#38bdf8]/30"
           />
         </div>
 
@@ -116,7 +117,7 @@ const CForm = () => {
             name="email"
             value={form.email}
             onChange={handleChange}
-            className="bg-black border border-[#ff0033] rounded-md px-3 py-2 text-[#ff0033] shadow-[0_0_10px_#ff0033]/30"
+            className="bg-black border border-sky-400 rounded-md px-3 py-2 text-sky-300 shadow-[0_0_10px_#38bdf8]/30"
           />
         </div>
 
@@ -129,12 +130,12 @@ const CForm = () => {
             name="message"
             value={form.message}
             onChange={handleChange}
-            className="bg-black border border-[#ff0033] rounded-md px-3 py-2 text-[#ff0033] shadow-[0_0_10px_#ff0033]/30"
+            className="bg-black border border-sky-400 rounded-md px-3 py-2 text-sky-300 shadow-[0_0_10px_#38bdf8]/30"
           />
         </div>
 
         {/* MATRIX BOTTOM */}
-        <div className="flex justify-between text-xs text-[#ff0033]">
+        <div className="flex justify-between text-xs text-sky-400">
           {matrixLinesBottom.map((line, i) => (
             <p key={i}>{line}</p>
           ))}
@@ -143,7 +144,7 @@ const CForm = () => {
         {/* BUTTON */}
         <button
           type="submit"
-          className="w-full bg-black border border-[#ff0033] py-2 rounded-md text-[#ff0033] shadow-[0_0_15px_#ff0033] hover:bg-[#1a0000] transition"
+          className="w-full bg-black border border-sky-400 py-2 rounded-md text-sky-400 shadow-[0_0_15px_#38bdf8] hover:bg-sky-950 transition"
         >
           {loading ? "SENDING_PACKET..." : "SEND_PACKET()"}
         </button>

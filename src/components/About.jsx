@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import akamePfp from "/assets/silknet_logo.png";
+import akamePfp from "/silknet_logoo.png";
 import Scanner from "./ui/Scanner";
 
 const About = () => {

@@ -29,6 +29,7 @@ module.exports = {
       fontFamily: {
         minster: ["'UnifrakturCook'", "cursive"],
         mono: ["'JetBrains Mono'", "monospace"],
+         geo: ["Geo", "sans-serif"],
       },
 
       keyframes: {

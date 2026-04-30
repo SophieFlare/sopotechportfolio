@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { navLinks } from "../../constants";
 
 export default function Footer({ onAction }) {
 
@@ -10,8 +9,13 @@ export default function Footer({ onAction }) {
     }
   };
 
-  const navItems = navLinks.filter(item => item.type === "route");
-  const systemItems = navLinks.filter(item => item.type === "action");
+  const navItems = [
+    { id: 1, title: "// HOME", path: "/" },
+    { id: 2, title: "// CV", path: "/pages/cv" },
+    { id: 3, title: "// CONTACT", path: "/pages/contact" },
+  ];
+
+  const systemItems = []; // keep empty for now
 
   return (
     <footer className="w-full mt-24 font-mono text-sky-400 bg-black border-t border-sky-400/20 shadow-[0_-10px_40px_rgba(56,189,248,0.25)]">
@@ -33,7 +37,7 @@ export default function Footer({ onAction }) {
             </p>
           </div>
 
-          {/* NAV */}
+          {/* NAVIGATION */}
           <div className="flex flex-col gap-3 text-[1.1vw]">
             <div className="text-[1.2vw] tracking-[0.3em] text-white mb-2">
               NAVIGATION
@@ -50,21 +54,17 @@ export default function Footer({ onAction }) {
             ))}
           </div>
 
-          {/* SYSTEM */}
+          {/* SYSTEM (EMPTY FOR NOW) */}
           <div className="flex flex-col gap-3 text-[1.1vw]">
             <div className="text-[1.2vw] tracking-[0.3em] text-white mb-2">
               SYSTEM
             </div>
 
-            {systemItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => handleClick(item)}
-                className="text-left text-sky-400 hover:text-white hover:scale-[1.03] transform-gpu transition-transform duration-200"
-              >
-                {item.title}
-              </button>
-            ))}
+            {systemItems.length === 0 && (
+              <div className="text-white/30 text-sm">
+                NO SYSTEM MODULES
+              </div>
+            )}
           </div>
 
         </div>

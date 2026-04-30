@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import Home from "./pages/Home";
 import Lenis from "lenis";
+import Router from "./routes/Router";
 
 export default function App() {
 
@@ -21,9 +21,5 @@ export default function App() {
     };
   }, []);
 
-  return (
-    <div id="home">
-      <Home />
-    </div>
-  );
+  return <Router />;
 }
