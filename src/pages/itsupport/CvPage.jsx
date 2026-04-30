@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function JobPage({ onApply }) {
+export default function CvPage({ onApply }) {
   return (
     <div className="bg-gray-100 min-h-screen font-sans">
 
@@ -142,7 +142,7 @@ export default function JobPage({ onApply }) {
 function InfoRow({ label, value }) {
   return (
     <div className="flex justify-between border-b py-1">
-      <span className="text-[#266698] font-geo">{label}</span>
+      <span className="text-gray-500">{label}</span>
       <span className="font-medium">{value}</span>
     </div>
   );
