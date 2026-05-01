@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaHome, FaDesktop, FaEnvelope, FaTerminal } from "react-icons/fa";
 import SoposTerminal from "../../pages/itsupport/SoposTerminal";
@@ -8,6 +8,11 @@ const WindowsBar = () => {
   const [searchOpen, setSearchOpen] = useState(false);
   const [startOpen, setStartOpen] = useState(false);
   const [activeWindow, setActiveWindow] = useState(null);
+
+  // 🟢 DRAG STATE
+  const [position, setPosition] = useState({ x: 500, y: 120 });
+  const [dragging, setDragging] = useState(false);
+  const offset = useRef({ x: 0, y: 0 });
 
   const now = new Date();
 
@@ -29,6 +34,38 @@ const WindowsBar = () => {
 
   const closeWindow = () => setActiveWindow(null);
 
+  // 🟢 DRAG HANDLERS
+  const handleMouseDown = (e) => {
+    setDragging(true);
+    offset.current = {
+      x: e.clientX - position.x,
+      y: e.clientY - position.y,
+    };
+  };
+
+  const handleMouseMove = (e) => {
+    if (!dragging) return;
+
+    setPosition({
+      x: e.clientX - offset.current.x,
+      y: e.clientY - offset.current.y,
+    });
+  };
+
+  const handleMouseUp = () => {
+    setDragging(false);
+  };
+
+  useEffect(() => {
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseup", handleMouseUp);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseup", handleMouseUp);
+    };
+  }, [dragging]);
+
   return (
     <>
       {/* TASKBAR */}
@@ -46,56 +83,56 @@ const WindowsBar = () => {
           </div>
 
           {/* START MENU */}
-     {/* START MENU */}
-{startOpen && (
-  <div className="absolute bottom-12 left-0 w-52 bg-black border border-sky-400/40 shadow-[0_0_20px_#38bdf8] text-sm z-[10000]">
+          {startOpen && (
+            <div className="absolute bottom-12 left-0 w-52 bg-black border border-sky-400/40 shadow-[0_0_20px_#38bdf8] text-sm z-[10000]">
 
-    {/* HEADER */}
-    <div className="p-2 border-b border-sky-400/30 text-xs opacity-70">
-      SYSTEM MENU
-    </div>
+              <div className="p-2 border-b border-sky-400/30 text-xs opacity-70">
+                SYSTEM MENU
+              </div>
 
-    {/* ITEMS */}
-    <div className="flex flex-col text-sm">
+              <div className="flex flex-col text-sm">
 
-      <Link
-        to="/"
-        onClick={() => setStartOpen(false)}
-        className="px-3 py-2 flex items-center gap-2 text-sky-400 hover:bg-sky-400/10 transition"
-      >
-        <FaHome className="text-blue-400" />
-        Home
-      </Link>
+                <Link
+                  to="/"
+                  onClick={() => setStartOpen(false)}
+                  className="px-3 py-2 flex items-center gap-2 text-sky-400 hover:bg-sky-400/10"
+                >
+                  <FaHome /> Home
+                </Link>
 
-      <Link
-        to="/pages/desktop"
-        onClick={() => setStartOpen(false)}
-        className="px-3 py-2 flex items-center gap-2 text-sky-400 hover:bg-sky-400/10 transition"
-      >
-        <FaDesktop className="text-blue-400" />
-        Desktop
-      </Link>
+                <Link
+                  to="/pages/desktop"
+                  onClick={() => setStartOpen(false)}
+                  className="px-3 py-2 flex items-center gap-2 text-sky-400 hover:bg-sky-400/10"
+                >
+                  <FaDesktop /> Desktop
+                </Link>
 
-      <Link
-        to="/pages/contact"
-        onClick={() => setStartOpen(false)}
-        className="px-3 py-2 flex items-center gap-2 text-sky-400 hover:bg-sky-400/10 transition"
-      >
-        <FaEnvelope className="text-blue-400" />
-        Contact
-      </Link>
+                <Link
+                  to="/pages/contact"
+                  onClick={() => setStartOpen(false)}
+                  className="px-3 py-2 flex items-center gap-2 text-sky-400 hover:bg-sky-400/10"
+                >
+                  <FaEnvelope /> Contact
+                </Link>
 
-      <div
-        onClick={() => openApp("terminal")}
-        className="px-3 py-2 flex items-center gap-2 text-sky-400 hover:bg-sky-400/10 cursor-pointer transition"
-      >
-        <FaTerminal className="text-blue-400" />
-        Terminal
-      </div>
+                <div
+                  onClick={() => openApp("terminal")}
+                  className="px-3 py-2 flex items-center gap-2 text-sky-400 hover:bg-sky-400/10 cursor-pointer"
+                >
+                  <FaTerminal /> Terminal
+                </div>
 
-    </div>
-  </div>
-)}
+                <div
+                  onClick={() => openApp("explorer")}
+                  className="px-3 py-2 flex items-center gap-2 text-sky-400 hover:bg-sky-400/10 cursor-pointer"
+                >
+                  📁 Explorer
+                </div>
+
+              </div>
+            </div>
+          )}
 
           {/* SEARCH BUTTON */}
           <div
@@ -134,30 +171,25 @@ const WindowsBar = () => {
           </div>
 
           <div className="flex-1 px-3 space-y-2">
-
-            <SearchItem
-              label="📁 FILE EXPLORER"
-              onClick={() => openApp("explorer")}
-            />
-
-            <SearchItem
-              label="⌨ TERMINAL"
-              onClick={() => openApp("terminal")}
-              highlight
-            />
-
+            <SearchItem label="📁 FILE EXPLORER" onClick={() => openApp("explorer")} />
+            <SearchItem label="⌨ TERMINAL" onClick={() => openApp("terminal")} highlight />
           </div>
         </div>
       )}
 
-      {/* WINDOWS */}
+      {/* DRAGGABLE WINDOW */}
       {activeWindow && (
-        <div className="fixed inset-0 flex items-start justify-end pt-5 pr-[20%] z-[99999]">
-
+        <div
+          className="fixed z-[99999]"
+          style={{ left: position.x, top: position.y }}
+        >
           <div className="w-[620px] h-[620px] bg-[#05070d] border border-sky-400 shadow-[0_0_30px_#38bdf8] flex flex-col font-mono">
 
-            {/* HEADER */}
-            <div className="flex justify-between items-center px-3 py-2 border-b border-sky-400/30 text-sky-400">
+            {/* HEADER (DRAG AREA) */}
+            <div
+              onMouseDown={handleMouseDown}
+              className="flex justify-between items-center px-3 py-2 border-b border-sky-400/30 text-sky-400 cursor-grab active:cursor-grabbing select-none"
+            >
               <span>{activeWindow.toUpperCase()}</span>
               <button onClick={closeWindow} className="hover:text-white">
                 ✕
@@ -166,15 +198,12 @@ const WindowsBar = () => {
 
             {/* CONTENT */}
             <div className="flex-1 overflow-hidden">
-
               {activeWindow === "explorer" && (
                 <FileExplorer onClose={closeWindow} />
               )}
-
               {activeWindow === "terminal" && (
                 <SoposTerminal onClose={closeWindow} />
               )}
-
             </div>
 
           </div>
