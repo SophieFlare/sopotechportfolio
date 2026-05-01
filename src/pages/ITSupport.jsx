@@ -6,7 +6,12 @@ import JobPage from "./itsupport/JobPage";
 export default function Itsuport() {
   const [showForm, setShowForm] = useState(false);
 
-  // 🔒 lock background scroll
+  // 🔓 unlock system when CV page is opened
+  useEffect(() => {
+    localStorage.setItem("cv_unlocked", "true");
+  }, []);
+
+  // lock scroll
   useEffect(() => {
     if (showForm) {
       document.body.style.overflow = "hidden";

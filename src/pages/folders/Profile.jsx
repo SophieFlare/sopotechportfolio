@@ -1,5 +1,5 @@
 import React from "react";
-import sopo from "/cv/sopo_cvv.jpg";
+import sopo from "/cv/sopoo_cv_main.jpg";
 
 const Profile = () => {
   return (

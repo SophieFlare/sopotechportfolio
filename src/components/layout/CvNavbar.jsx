@@ -32,7 +32,7 @@ export default function Navbar() {
     contact: {
       title: "კონტაქტი",
       items: [
-        "Email: sopo@example.com",
+        "Email: sopo.gurgenidze3@gmail.com",
         "Phone: +995 593 833 833",
         "Location: Tbilisi",
       ],
