@@ -18,7 +18,7 @@ const Desktop = () => {
     <div
       className="w-full h-screen relative overflow-hidden font-mono"
       style={{
-        backgroundImage: `url(/cv/kalli_desktop.jpeg)`,
+        backgroundImage: `url(/cv/windows.jpg)`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}

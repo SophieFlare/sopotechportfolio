@@ -134,7 +134,7 @@ export default function CvViewer({ hideArrowTrigger }) {
 
                 <div className="flex-1 overflow-y-auto bg-black">
                   <iframe
-                    src="/Sopo_IT_CV.pdf"
+                    src="/Sopo_IT_CV_.pdf"
                     className="w-full h-[200vh]"
                     title="CV PDF"
                   />

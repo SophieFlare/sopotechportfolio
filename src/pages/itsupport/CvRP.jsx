@@ -8,19 +8,30 @@ function MessageBox({ sections }) {
   const currentKey = keys[index];
   const currentText = sections[currentKey];
 
-  useEffect(() => {
-    setText("");
+ useEffect(() => {
+  const currentText = sections[currentKey];
 
-    let i = 0;
-    const interval = setInterval(() => {
-      setText((prev) => prev + currentText[i]);
-      i++;
+  // ✅ HARD SAFETY CHECK (this is what you’re missing)
+  if (typeof currentText !== "string") return;
 
-      if (i >= currentText.length) clearInterval(interval);
-    }, 20);
+  setText("");
 
-    return () => clearInterval(interval);
-  }, [index]);
+  let i = 0;
+
+  const interval = setInterval(() => {
+    if (i >= currentText.length) {
+      clearInterval(interval);
+      return;
+    }
+
+    const char = currentText.charAt(i); // safer than [i]
+
+    setText((prev) => prev + char);
+    i++;
+  }, 20);
+
+  return () => clearInterval(interval);
+}, [index, sections]);
 
   return (
     <div className="bg-black rounded-xl border border-sky-400/40 p-3 flex flex-col h-[250px] font-mono text-white">
@@ -67,13 +78,13 @@ function MessageBox({ sections }) {
 export default function CvRP() {
   const sections = {
     about:
-      "მე ვარ სოფო — ტექნოლოგიებზე შეყვარებული ადამიანი.\nმიყვარს სისტემების დაშლა, პრობლემების დიაგნოსტიკა და ქსელების კვლევა.",
+      " სალამი მე ვარ სოფო ★ \n > ტექნოლოგიებზე შეყვარებული ადამიანი.\n > მიყვარს სისტემების დაშლა, პრობლემების დიაგნოსტიკა და ქსელების კვლევა ⚡︎",
     skills:
-      "• Windows\n• Linux (basic)\n• Networking\n• CLI / Terminal\n• Troubleshooting\n• Hardware ცოდნა",
+      "• Windows\n• Linux (basic)\n• Networking\n• CLI / Terminal\n• Troubleshooting\n• Hardware ",
     experience:
-      "Junior Support — 1 წელი\nმომხმარებლების დახმარება და ქსელური პრობლემების დიაგნოსტიკა.",
+      "მაქვს გამოცდილება IT Support-ის პოზიციაზე კიბერ-სპორტ არენაში, სადაც ვუზრუნველყოფდი:  კომპიუტერის Hard|Soft-ware სისტემების & ინტერნეტის სტაბილურობას",
     contact:
-      "Email: sopo@email.com\nTel: +995 555 12 34 56",
+      "გაეცანით CV-ს\n > მეტი დეტალური ინფორმაციის სანახავად გახსენით File_Explorer",
   };
 
   return (
@@ -95,7 +106,7 @@ export default function CvRP() {
 
           <div className="w-full h-full overflow-hidden rounded-lg border border-sky-400/40">
             <img
-              src="/cv/sopo_pixel.png"
+              src="/cv/sss.jpg"
               alt="Sopo"
               className="w-full h-full object-cover"
             />
