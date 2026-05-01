@@ -20,7 +20,7 @@ const nodes = [
     info: "LAN Gateway | Directs Traffic Inside Local Network",
   },
   {
-    img: "/assets/net/clientt.jpg",
+    img: "/assets/net/clienttt.jpg",
     label: "CLIENT_DEVICE",
     info: "End Device | Receives Data (PC / Phone / Laptop)",
   },
