@@ -68,7 +68,7 @@ const WindowsBar = () => {
       </Link>
 
       <Link
-        to="/desktop"
+        to="/pages/desktop"
         onClick={() => setStartOpen(false)}
         className="px-3 py-2 flex items-center gap-2 text-sky-400 hover:bg-sky-400/10 transition"
       >
@@ -77,7 +77,7 @@ const WindowsBar = () => {
       </Link>
 
       <Link
-        to="/contact"
+        to="/pages/contact"
         onClick={() => setStartOpen(false)}
         className="px-3 py-2 flex items-center gap-2 text-sky-400 hover:bg-sky-400/10 transition"
       >

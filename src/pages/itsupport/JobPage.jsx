@@ -1,56 +1,29 @@
 import React from "react";
-
+import CvNavbar from "../../components/layout/CvNavbar"
 export default function JobPage({ onApply }) {
   return (
     <div className="bg-gray-100 min-h-screen font-sans">
 
-      {/* NAVBAR */}
- {/* NAVBAR */}
-<div className=" shadow-md border-b border-sky-200">
-  <div className="max-w-6xl mx-auto px-4 flex items-center justify-between h-14">
-    
-    <div className="font-bold text-sky-600">
-      JOBS.SILKNET.COM
-    </div>
+     
 
-    <div className="flex gap-6 text-sm text-gray-700">
-      
-      <button
-        type="button"
-        className="hover:text-sky-600 transition"
-        onClick={() => console.log("Vacancies clicked")}
-      >
-        ჩემს შესახებ
-      </button>
+  <CvNavbar
+        onAbout={() => {
+          document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
+        }}
 
-      <a
-        href="https://silknet.com/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="hover:text-sky-600 transition"
-      >
-        გამოცდილება
-      </a>
+        onExperience={() => {
+          document.getElementById("experience")?.scrollIntoView({ behavior: "smooth" });
+        }}
 
-      <button
-        type="button"
-        className="hover:text-sky-600 transition"
-        onClick={() => console.log("FAQ clicked")}
-      >
-        უნარები
-      </button>
+        onSkills={() => {
+          document.getElementById("skills")?.scrollIntoView({ behavior: "smooth" });
+        }}
 
-      <button
-        type="button"
-        className="hover:text-sky-600 transition"
-        onClick={() => console.log("Contact clicked")}
-      >
-        კონტაქტი
-      </button>
+        onContact={() => {
+          document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+        }}
+      />
 
-    </div>
-  </div>
-</div>
 
       {/* MAIN */}
       <div className="max-w-6xl mx-auto mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -58,12 +31,12 @@ export default function JobPage({ onApply }) {
         {/* LEFT CONTENT */}
         <div className="md:col-span-2 bg-white p-6 rounded-xl shadow">
 
-          <h1 className="text-2xl font-semibold mb-4">
+          <h1 className="text-2xl text-black font-semibold mb-4">
             აბონენტთა ტექნიკური მხარდაჭერის სპეციალისტი
           </h1>
 
           {/* INFO TABLE */}
-          <div className="space-y-2 text-sm">
+          <div className="space-y-2 text-sm text-black ">
             <InfoRow label="განცხ. ვადა" value="30 აპრ. 2026" />
             <InfoRow label="კატეგორია" value="აბონენტთა მომსახურება" />
             <InfoRow label="ანაზღაურება" value="1000 - 1280 ლარი + ბონუსი" />
@@ -74,34 +47,84 @@ export default function JobPage({ onApply }) {
 
 <button
   onClick={onApply}
-  className="mt-4 w-full bg-sky-600 text-white py-2 rounded-lg hover:bg-sky-700 transition"
+  className="
+    relative w-full mt-4 py-2 rounded-lg
+    bg-sky-600 text-white font-semibold
+    border border-sky-300
+    shadow-[0_0_25px_rgba(56,189,248,0.6)]
+    overflow-hidden
+    transition-all duration-300
+    active:scale-95
+  "
 >
-  განაცხადის გაკეთება
+  {/* STRONG WHITE GLOW LAYER */}
+  <span className="
+    absolute inset-0 rounded-lg
+    bg-white/10
+  " />
+
+  {/* WHITE SCANNING LIGHT (VERY VISIBLE) */}
+  <span className="
+    absolute inset-0
+    bg-gradient-to-r from-transparent via-white to-transparent
+    opacity-40
+    -translate-x-full
+    animate-[slide_1.8s_linear_infinite]
+  " />
+
+  {/* SOFT OUTER EDGE GLOW */}
+  <span className="
+    absolute inset-0 rounded-lg
+    border border-white/30
+    shadow-[0_0_20px_rgba(255,255,255,0.25)]
+  " />
+
+  {/* TEXT */}
+  <span className="relative z-10 tracking-wide font-geo">
+    განაცხადის გაკეთება
+  </span>
+
+  {/* ANIMATION */}
+  <style>
+    {`
+      @keyframes slide {
+        0% { transform: translateX(-120%); }
+        100% { transform: translateX(120%); }
+      }
+    `}
+  </style>
 </button>
-          {/* FUNCTIONS */}
-          <Section title="ძირითადი ფუნქციები">
-            <li>ტელეფონით მომხმარებელთა დახმარება</li>
-            <li>ინტერნეტისა და ქსელის დიაგნოსტიკა</li>
-            <li>სისტემური პრობლემების იდენტიფიკაცია</li>
-            <li>მომხმარებლის კონსულტაცია</li>
-          </Section>
+<div className="mt-3 divide-y divide-sky-400/30 ">
 
-          {/* REQUIREMENTS */}
-          <Section title="საკვალიფიკაციო მოთხოვნები">
-            <li>Windows ცოდნა</li>
-            <li>ქსელის საბაზისო ცოდნა</li>
-            <li>ping / traceroute / nslookup</li>
-            <li>პრობლემების დიაგნოსტიკა</li>
-          </Section>
+  <div className="py-2 pb-4">
+    <Section title="ძირითადი ფუნქციები">
+      <li>ტელეფონით მომხმარებელთა დახმარება</li>
+      <li>ინტერნეტისა და ქსელის დიაგნოსტიკა</li>
+      <li>სისტემური პრობლემების იდენტიფიკაცია</li>
+      <li>მომხმარებლის კონსულტაცია</li>
+    </Section>
+  </div>
 
-          {/* SKILLS */}
-          <Section title="პიროვნული მახასიათებლები">
-            <li>კომუნიკაცია</li>
-            <li>დისციპლინა</li>
-            <li>მომხმარებელზე ორიენტაცია</li>
-            <li>სწავლის სწრაფი უნარი</li>
-          </Section>
+  <div className="py-2 pb-4">
+    <Section title="საკვალიფიკაციო მოთხოვნები">
+      <li>Windows ცოდნა</li>
+      <li>ქსელის საბაზისო ცოდნა</li>
+      <li>ping / traceroute / nslookup</li>
+      <li>პრობლემების დიაგნოსტიკა</li>
+    </Section>
+  </div>
 
+  <div className="py-2 pb-4">
+    <Section title="პიროვნული მახასიათებლები">
+      <li>კომუნიკაცია</li>
+      <li>დისციპლინა</li>
+      <li>მომხმარებელზე ორიენტაცია</li>
+      <li>სწავლის სწრაფი უნარი</li>
+    </Section>
+  </div>
+
+</div>
+        
         </div>
 
         {/* RIGHT SIDEBAR */}
@@ -109,14 +132,14 @@ export default function JobPage({ onApply }) {
 <div className="space-y-[1px]">
 
   {/* COUNTDOWN */}
-  <div className="
+  <div className="bg-[#3173a7]
     bg-black/70
     p-3
     text-center
     border border-[#266698]
     shadow-[0_0_10px_rgba(34,94,139,0.25)]
   ">
-    <h3 className="text-[#225e8b] mb-1 text-sm">
+    <h3 className=" text-[#ffffff] mb-1 text-sm  font-geo">
       დარჩენილი დრო
     </h3>
     <div className="text-xl font-mono text-white">
@@ -142,18 +165,35 @@ export default function JobPage({ onApply }) {
 function InfoRow({ label, value }) {
   return (
     <div className="flex justify-between border-b py-1">
-      <span className="text-[#266698] font-geo">{label}</span>
-      <span className="font-medium">{value}</span>
+      <span className="text-[#3a95db] font-geo font-bold">
+        {label}
+      </span>
+      <span className="font-medium text-gray-800">
+        {value}
+      </span>
     </div>
   );
 }
-
 function Section({ title, children }) {
   return (
     <div className="mt-6">
-      <h2 className="text-lg font-semibold mb-2 text-sky-600">{title}</h2>
-      <ul className="list-disc pl-5 text-sm text-gray-700 space-y-1">
-        {children}
+      <h2 className="text-lg font-semibold mb-2 text-sky-600">
+        {title}
+      </h2>
+
+      <ul className="space-y-1 text-sm text-gray-700">
+        {React.Children.map(children, (child, i) => (
+          <li key={i} className="flex items-start gap-2">
+            
+            {/* BLUE CHECK MARK */}
+            <span className="text-sky-500 mt-[2px] text-sm">
+              ✓
+            </span>
+
+            {/* CONTENT */}
+            <span>{child.props.children}</span>
+          </li>
+        ))}
       </ul>
     </div>
   );

@@ -8,43 +8,69 @@ export default function CvViewer() {
   return (
     <>
       {/* BUTTON */}
-      <button
-        onClick={() => setOpen(true)}
-        className="
-          relative w-full max-w-[260px]
-          flex items-center justify-center gap-2
-          px-5 py-2.5
-          text-white font-semibold tracking-wide
-          bg-[#81c2f3]
-          rounded-lg
-          border border-[#81c2f3]
-          shadow-[0_0_18px_rgba(43,117,174,0.55)]
-          hover:shadow-[0_0_35px_rgba(43,117,174,0.95)]
-          transition-all duration-300
-          overflow-hidden group
-          active:scale-95
-        "
-      >
-        <span className="
-          absolute inset-0 rounded-lg
-          border border-[#6bb7ff]
-          opacity-40
-          group-hover:opacity-80
-          blur-[1px]
-        " />
+<button
+  onClick={() => setOpen(true)}
+  className="
+    relative w-full max-w-[240px]
+    mx-auto
 
-        <span className="
-          absolute inset-0
-          bg-gradient-to-r from-transparent via-white/25 to-transparent
-          -translate-x-full
-          group-hover:translate-x-full
-          transition-transform duration-700
-        " />
+    flex items-center justify-center gap-2
 
-        <span className="relative z-10 flex items-center gap-2">
-          📄 CV გახსნა
-        </span>
-      </button>
+    px-4 py-2
+
+    text-white font-semibold tracking-wide text-sm
+
+    bg-gradient-to-r from-[#81c2f3] to-[#2b75ae]
+
+    rounded-lg
+
+    border border-[#81c2f3]/60
+
+    shadow-[0_0_14px_rgba(43,117,174,0.45)]
+
+    hover:shadow-[0_0_28px_rgba(43,117,174,0.8)]
+    hover:scale-[1.03]
+
+    transition-all duration-300
+
+    overflow-hidden
+    active:scale-95
+
+    animate-pulse
+  "
+>
+  {/* static glow ring */}
+  <span className="
+    absolute inset-0 rounded-lg
+    border border-[#6bb7ff]
+    opacity-40
+  " />
+
+  {/* 🔥 AUTO MOVING SHINE (NO HOVER REQUIRED) */}
+  <span className="
+    absolute inset-0
+    bg-gradient-to-r from-transparent via-white/25 to-transparent
+    animate-[shine_2.5s_linear_infinite]
+  " />
+
+  <span className="relative z-10 flex items-center gap-2">
+    📄  CV ჩამოტვირთვა
+  </span>
+
+  {/* LOCAL KEYFRAMES */}
+  <style>
+    {`
+      @keyframes shine {
+        0% {
+          transform: translateX(-120%);
+        }
+        100% {
+          transform: translateX(120%);
+        }
+      }
+    `}
+  </style>
+</button>
 
       {/* MODAL */}
       {open && (
