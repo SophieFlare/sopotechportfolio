@@ -106,7 +106,7 @@ export default function CvRP() {
 
           <div className="w-full h-full overflow-hidden rounded-lg border border-sky-400/40">
             <img
-              src="/cv/sss.jpg"
+              src="/cv/ss.jpg"
               alt="Sopo"
               className="w-full h-full object-cover"
             />
