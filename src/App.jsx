@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Lenis from "lenis";
-import Router from "./routes/Router";
+import AppRouter from "./routes/AppRouter";
 import LoadingPage from "./components/LoadingPage"; // adjust path if needed
 
 export default function App() {
@@ -28,7 +28,7 @@ export default function App() {
       {!loadingDone ? (
         <LoadingPage onFinish={() => setLoadingDone(true)} />
       ) : (
-        <Router />
+        <AppRouter />
       )}
     </>
   );

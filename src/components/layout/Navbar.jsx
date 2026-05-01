@@ -76,7 +76,13 @@ const Navbar = () => {
     >
       // CV
     </button>
-
+    {/* CV */}
+    <button
+      onClick={() => go("/pages/network")}
+      className="text-left text-sky-700 hover:text-sky-500"
+    >
+      // Router
+    </button>
       {/* DESKTOP (LOCKED) */}
     <div className="relative group cursor-not-allowed text-sky-700">
 
