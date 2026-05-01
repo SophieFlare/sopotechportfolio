@@ -106,14 +106,14 @@ export default function Form({ onClose }) {
         {/* LANGUAGES */}
         <Card title="ენების ცოდნა">
           <div className="text-sm text-gray-700 font-sans">
-            English, Russian
+            ინგლისური / რუსული
           </div>
         </Card>
 
         {/* LICENSE */}
         <Card title="მართვის მოწმობა">
           <div className="text-sm text-gray-700 font-sans">
-            B, C
+            x
           </div>
         </Card>
 
