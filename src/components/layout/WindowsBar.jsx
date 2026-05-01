@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { FaHome, FaDesktop, FaEnvelope, FaTerminal } from "react-icons/fa";
+import { FaHome, FaDesktop, FaEnvelope, FaTerminal, FaSearch  } from "react-icons/fa";
 import SoposTerminal from "../../pages/itsupport/SoposTerminal";
 import FileExplorer from "../../pages/FileExplorer";
 
@@ -75,12 +75,12 @@ const WindowsBar = () => {
         <div className="flex items-center h-full relative">
 
           {/* START BUTTON */}
-          <div
-            onClick={() => setStartOpen(!startOpen)}
-            className="w-12 h-full flex items-center justify-center hover:bg-sky-400/10 cursor-pointer"
-          >
-            ⊞
-          </div>
+<div
+  onClick={() => setStartOpen(!startOpen)}
+  className="w-12 h-full flex items-center justify-center text-sky-400 text-lg drop-shadow-[0_0_8px_#38bdf8] hover:text-white transition cursor-pointer"
+>
+  ⊞
+</div>
 
           {/* START MENU */}
           {startOpen && (
@@ -123,24 +123,19 @@ const WindowsBar = () => {
                   <FaTerminal /> Terminal
                 </div>
 
-                <div
-                  onClick={() => openApp("explorer")}
-                  className="px-3 py-2 flex items-center gap-2 text-sky-400 hover:bg-sky-400/10 cursor-pointer"
-                >
-                  📁 Explorer
-                </div>
+         
 
               </div>
             </div>
           )}
 
           {/* SEARCH BUTTON */}
-          <div
-            onClick={() => setSearchOpen(true)}
-            className="w-12 h-full flex items-center justify-center hover:bg-sky-400/10 cursor-pointer"
-          >
-            🔍
-          </div>
+  <div
+  onClick={() => setSearchOpen(true)}
+  className="w-12 h-full flex items-center justify-center hover:bg-sky-400/10 cursor-pointer"
+>
+ <FaSearch className="text-sky-400 text-lg drop-shadow-[0_0_8px_#38bdf8] hover:text-white transition" />
+</div>
 
         </div>
 

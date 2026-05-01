@@ -6,22 +6,29 @@ import Desktop from "../pages/Desktop";
 import Contact from "../pages/Contact";
 import ITSupport from "../pages/ITSupport";
 
+import ScrollToTop from "./ScrollToTop";
+
 const Router = () => {
   return (
-    <Routes>
-      {/* HOME */}
-      <Route path="/" element={<Home />} />
+    <>
+      {/* AUTO SCROLL RESET ON NAVIGATION */}
+      <ScrollToTop />
 
-      {/* CV */}
-      <Route path="/pages/desktop" element={<Desktop />} />
+      <Routes>
+        {/* HOME */}
+        <Route path="/" element={<Home />} />
 
-      {/* CONTACT */}
-      <Route path="/pages/contact" element={<Contact />} />
+        {/* DESKTOP */}
+        <Route path="/pages/desktop" element={<Desktop />} />
 
-      {/* FORM */}
-      <Route path="/pages/itsupport" element={<ITSupport />} />
-    </Routes>
-  )
-}
+        {/* CONTACT */}
+        <Route path="/pages/contact" element={<Contact />} />
 
-export default Router
+        {/* IT SUPPORT */}
+        <Route path="/pages/itsupport" element={<ITSupport />} />
+      </Routes>
+    </>
+  );
+};
+
+export default Router;

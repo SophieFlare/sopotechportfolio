@@ -9,25 +9,26 @@ const CSH = () => {
       <div className="absolute top-4 left-4 text-xs text-sky-300 opacity-80 tracking-widest">
         CLIENT → SERVER CONNECTION FLOW
       </div>
+{/* CLIENT (LEFT) */}
+<div className="absolute top-1/2 left-10 -translate-y-1/2 flex flex-col items-center z-10">
 
-      {/* CLIENT (LEFT) */}
-      <div className="absolute top-1/2 left-10 -translate-y-1/2 flex flex-col items-center z-10">
-        <img
-          src="/assets/net/clienttt.jpg"
-          alt="client"
-          className="w-64 h-64 object-contain drop-shadow-[0_0_20px_#38bdf8]"
-        />
-        <div className="text-[10px] mt-1 text-sky-300">
-          192.168.1.2
-        </div>
-      </div>
+  <img
+    src="/assets/net/clienttt.jpg"
+    alt="client"
+    className="w-64 h-64 object-cover rounded-full drop-shadow-[0_0_20px_#38bdf8]"
+  />
 
+  <div className="text-[10px] mt-1 text-sky-300">
+    192.168.1.2
+  </div>
+
+</div>
       {/* SERVER (RIGHT) */}
       <div className="absolute top-1/2 right-10 -translate-y-1/2 flex flex-col items-center z-10">
         <img
           src="/assets/net/server.png"
           alt="server"
-          className="w-64 h-64 object-contain drop-shadow-[0_0_20px_#38bdf8]"
+          className="w-80 h-80 object-contain drop-shadow-[0_0_20px_#38bdf8]"
         />
         <div className="text-[10px] mt-1 text-white opacity-70">
           10.0.0.1 : 22 (SSH)

@@ -114,43 +114,82 @@ export default function Footer({ onAction }) {
       </div>
 
       {/* ================= CV BUTTON ================= */}
-    <button
+  <button
   onClick={() => navigate("/pages/itsupport")}
   className="
     absolute right-10 top-[35%] -translate-y-1/2
 
-    w-[440px] h-[240px]
+    w-[400px] h-[240px]
 
-    border border-sky-400/40
-    bg-black/60
+    text-white
 
-    shadow-[0_0_40px_rgba(56,189,248,0.4)]
-    hover:shadow-[0_0_90px_rgba(56,189,248,0.8)]
+    bg-white/5 backdrop-blur-sm
+
+    border border-sky-400/30
+
+    shadow-[0_0_25px_rgba(56,189,248,0.25)]
+
+    hover:shadow-[0_0_70px_rgba(56,189,248,0.7)]
+    hover:border-sky-300/70
+    hover:scale-105
 
     transition-all duration-500 ease-out
-    hover:scale-110
 
     flex items-center justify-center gap-4
 
-    text-white
     tracking-[0.35em]
 
-    p-0 m-0
+    overflow-hidden
+    group
   "
 >
-  <span className="text-[72px] font-black leading-none">
+
+  {/* glass inner glow */}
+  <span className="
+    absolute inset-0
+    bg-gradient-to-br from-sky-500/10 via-white/5 to-sky-500/10
+    opacity-60
+  " />
+
+  {/* moving shine */}
+  <span className="
+    absolute inset-0
+    -translate-x-full
+    bg-gradient-to-r from-transparent via-white/25 to-transparent
+    group-hover:translate-x-full
+    transition-transform duration-700
+  " />
+
+  {/* border glow layer */}
+  <span className="
+    absolute inset-0
+    border border-sky-400/20
+    shadow-[inset_0_0_20px_rgba(56,189,248,0.15)]
+  " />
+
+  {/* CV TEXT */}
+  <span className="text-[72px] font-black leading-none relative z-10">
     CV
   </span>
 
+  {/* arrow */}
   <FaAngleDoubleRight
     className="
       text-sky-300
       text-[42px]
-      transition-transform duration-500 ease-out
+      relative z-10
+      transition-transform duration-500
       group-hover:translate-x-2
     "
   />
+
+  {/* corner accents */}
+  <span className="absolute top-3 left-3 w-2 h-2 bg-sky-400/70 rotate-45" />
+  <span className="absolute bottom-3 right-3 w-2 h-2 bg-sky-400/70 rotate-45" />
+
 </button>
+
+
 
     </footer>
   );

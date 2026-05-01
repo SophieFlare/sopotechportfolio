@@ -78,9 +78,9 @@ function MessageBox({ sections }) {
 export default function CvRP() {
   const sections = {
     about:
-      " სალამი მე ვარ სოფო ★ \n > ტექნოლოგიებზე შეყვარებული ადამიანი.\n > მიყვარს სისტემების დაშლა, პრობლემების დიაგნოსტიკა და ქსელების კვლევა ⚡︎",
+      " სალამი ★ მე ვარ სოფო  \n > ტექნოლოგიებზე შეყვარებული ადამიანი.\n > მიყვარს სისტემების დაშლა, პრობლემების დიაგნოსტიკა და ქსელების კვლევა ⚡︎",
     skills:
-      "• Windows\n• Linux (basic)\n• Networking\n• CLI / Terminal\n• Troubleshooting\n• Hardware ",
+      "• Windows OS (User & Basic Admin)\n• Linux (Basic CLI & Navigation)\n• Networking Basics (TCP/IP, OSI)\n• Command Line / Terminal\n• System Troubleshooting\n• Hardware Fundamentals",
     experience:
       "მაქვს გამოცდილება IT Support-ის პოზიციაზე კიბერ-სპორტ არენაში, სადაც ვუზრუნველყოფდი:  კომპიუტერის Hard|Soft-ware სისტემების & ინტერნეტის სტაბილურობას",
     contact:
@@ -93,26 +93,34 @@ export default function CvRP() {
 
         <MessageBox sections={sections} />
 
-        {/* USER CARD */}
-        <div className="flex flex-col items-center gap-2 bg-black rounded-xl border border-sky-400/40 p-3 flex-1 min-h-0">
+      {/* USER CARD */}
+<div className="flex flex-col items-center gap-2 bg-black rounded-xl border border-sky-400/40 p-3 flex-1 min-h-0">
 
-          <div className="text-white font-semibold tracking-wide">
-            SOPO TECHIE GIRL
-          </div>
+  {/* HEADER ROW */}
+  <div className="w-full flex items-center justify-between text-xs">
 
-          <div className="text-[11px] text-sky-400">
-            ● ONLINE
-          </div>
+    <div className="text-white font-semibold tracking-wide">
+     <span className="text-skye-400">⚡︎</span>  SOPO TECHIE GIRL 
+    </div>
 
-          <div className="w-full h-full overflow-hidden rounded-lg border border-sky-400/40">
-            <img
-              src="/cv/ss.jpg"
-              alt="Sopo"
-              className="w-full h-full object-cover"
-            />
-          </div>
+    <div className="text-sky-400 flex items-center gap-1">
+      <span className="w-2 h-2 bg-sky-400 rounded-full animate-pulse" />
+      ONLINE
+    </div>
 
-        </div>
+  </div>
+
+  {/* IMAGE */}
+  <div className="w-full h-full overflow-hidden rounded-lg border border-sky-400/40 mt-2">
+    <img
+      src="/cv/ss.jpg"
+      alt="Sopo"
+      className="w-full h-full object-cover"
+    />
+  </div>
+
+</div>
+   
 
       </div>
     </div>

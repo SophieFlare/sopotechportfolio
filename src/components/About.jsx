@@ -137,21 +137,21 @@ const About = () => {
             className="rounded-full w-52 h-52 border-4 border-sky-400 shadow-[0_0_20px_#38bdf8]"
           />
 
-          <h1 className="text-5xl font-bold text-sky-400">
-            HELLO_WORLD.exe
-          </h1>
+         <h1 className="glitch text-5xl font-bold text-sky-400">
+  HELLO_WORLD.exe
+</h1>
 
-          <div className="flex flex-col space-y-3">
-            <p className="font-mono text-sky-400/80">
-              → Networking Systems Initialized
-            </p>
-            <p className="font-mono text-sky-400/80">
-              → Programming Modules Active
-            </p>
-            <p className="font-mono text-sky-400/80">
-              → Secure Channel Established
-            </p>
-          </div>
+<div className="flex flex-col space-y-3">
+  <p className="font-mono text-white animate-pulse drop-shadow-[0_0_8px_rgba(255,255,255,0.9)]">
+    → Networking Systems Initialized
+  </p>
+  <p className="font-mono text-white animate-pulse drop-shadow-[0_0_8px_rgba(255,255,255,0.9)]">
+    → Programming Modules Active
+  </p>
+  <p className="font-mono text-white animate-pulse drop-shadow-[0_0_8px_rgba(255,255,255,0.9)]">
+    → Secure Channel Established
+  </p>
+</div>
         </div>
 
         {/* RIGHT PANEL */}

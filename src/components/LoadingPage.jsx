@@ -130,7 +130,7 @@ const LoadingPage = ({ onFinish }) => {
           "
         >
           <span className="animate-pulse tracking-widest">
-            CONNECT
+            CONNECT:443
           </span>
         </button>
       )}
