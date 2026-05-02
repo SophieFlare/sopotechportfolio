@@ -7,7 +7,7 @@ const LoadingPage = ({ onFinish }) => {
   const [typedParagraph, setTypedParagraph] = useState("");
   const [showButton, setShowButton] = useState(false);
 
-  const fullText = "HELLO WORLD";
+  const fullText = "HELLO_WORLD";
   const paragraphText = "Welcome to my NETWORK PORTAL";
 
   const titleRef = useRef(null);

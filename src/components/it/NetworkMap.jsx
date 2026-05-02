@@ -8,7 +8,7 @@ import nodes from "../../data/imgs";
 
 export default function NetworkMap() {
   return (
-    <div className="relative w-full h-[340vh]  text-sky-400 overflow-hidden">
+    <div className="relative w-full h-[340vh]  text-sky-400 overflow-visible">
 
       {/* LEFT SYSTEM MAP */}
       <div className="absolute left-0 top-0 w-[60%] pl-16 z-10">

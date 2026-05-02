@@ -86,7 +86,7 @@ const WindowsBar = () => {
 
           {/* START MENU */}
           {startOpen && (
-            <div className={`absolute bottom-12 left-0 w-52 bg-black border ${theme.borderSoft} ${theme.glow} text-sm z-[10000]`}>
+            <div className={`absolute bottom-12 left-0 w-52 bg-black border uppercase ${theme.borderSoft} ${theme.glow} text-sm z-[10000]`}>
 
               <div className={`p-2 border-b ${theme.borderSoft} text-xs opacity-70`}>
                 SYSTEM MENU
@@ -102,7 +102,10 @@ const WindowsBar = () => {
                   className={`px-3 py-2 flex items-center gap-2 ${theme.text} ${theme.hoverBg}`}>
                   <FaDesktop /> CV
                 </Link>
-
+    <Link to="/pages/desktop" onClick={() => setStartOpen(false)}
+                  className={`px-3 py-2 flex items-center gap-2 ${theme.text} ${theme.hoverBg}`}>
+                  ᯤ Network
+                </Link>
                 <Link to="/pages/desktop" onClick={() => setStartOpen(false)}
                   className={`px-3 py-2 flex items-center gap-2 ${theme.text} ${theme.hoverBg}`}>
                   <FaDesktop /> Desktop

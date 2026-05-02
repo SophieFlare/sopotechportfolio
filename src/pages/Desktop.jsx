@@ -16,7 +16,6 @@ const Desktop = () => {
     { id: "sopo", label: "SOPØ", icon: "📁", x: 4, y: 35 },
   ];
 
-  // 🔴 RED THEME (DESKTOP MODE)
   const theme = {
     border: "border-[#ff0033]",
     text: "text-[#ff0033]",
@@ -34,7 +33,7 @@ const Desktop = () => {
         backgroundPosition: "center",
       }}
     >
-      {/* 🔴 RED OVERLAY */}
+      {/* OVERLAY */}
       <div
         className={`absolute inset-0 ${theme.bgOverlay} backdrop-brightness-50`}
       />
@@ -45,59 +44,54 @@ const Desktop = () => {
       {/* TASKBAR */}
       <WindowsBar />
 
-      {/* ================= SOPØ ================= */}
+      {/* ================= RIGHT IMAGE PANEL ================= */}
+      <div className="absolute top-40 right-0 h-full w-[320px] z-20 flex items-center justify-center">
+        <div className="w-[190px] h-[52vh] border border-[#ff0033] shadow-[0_0_30px_#ff0033] bg-white  relative overflow-hidden">
+
+          <img
+            src="/cv/pixel_sc.png"
+            className="w-full h-full object-cover "
+            alt="system panel"
+          />
+
+          {/* glow overlay */}
+          <div className="absolute inset-0 bg-[#ff0033]/10" />
+
+          {/* scan line effect */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent,rgba(255,0,51,0.2),transparent)] animate-pulse" />
+        </div>
+      </div>
+
+      {/* ================= WINDOWS ================= */}
+
       {openFolder === "sopo" && (
-        <Window
-          title="SOPØ File Explorer"
-          theme={theme}
-          onClose={() => setOpenFolder(null)}
-        >
+        <Window title="SOPØ File Explorer" theme={theme} onClose={() => setOpenFolder(null)}>
           <FileExplorer />
         </Window>
       )}
 
-      {/* ================= TRASH ================= */}
       {openFolder === "trash" && (
-        <Window
-          title="Recycle Bin"
-          theme={theme}
-          onClose={() => setOpenFolder(null)}
-        >
+        <Window title="Recycle Bin" theme={theme} onClose={() => setOpenFolder(null)}>
           <p className={theme.softText}>Trash is empty.</p>
         </Window>
       )}
 
-      {/* ================= THIS PC ================= */}
       {openFolder === "thispc" && (
-        <Window
-          title="This PC"
-          theme={theme}
-          onClose={() => setOpenFolder(null)}
-        >
+        <Window title="This PC" theme={theme} onClose={() => setOpenFolder(null)}>
           <p className={theme.softText}>
             Local drives not found (simulated system).
           </p>
         </Window>
       )}
 
-      {/* ================= NETWORK ================= */}
       {openFolder === "network" && (
-        <Window
-          title="Network"
-          theme={theme}
-          onClose={() => setOpenFolder(null)}
-        >
+        <Window title="Network" theme={theme} onClose={() => setOpenFolder(null)}>
           <Network />
         </Window>
       )}
 
-      {/* ================= NMAP ================= */}
       {openFolder === "nmap" && (
-        <Window
-          title="NMAP"
-          theme={theme}
-          onClose={() => setOpenFolder(null)}
-        >
+        <Window title="NMAP" theme={theme} onClose={() => setOpenFolder(null)}>
           <Nmap />
         </Window>
       )}
@@ -106,8 +100,10 @@ const Desktop = () => {
 };
 
 export default Desktop;
+
+/* ================= WINDOW COMPONENT ================= */
+
 const Window = ({ title, onClose, children, theme }) => {
-  // fallback (prevents crash)
   const t = theme || {
     border: "border-sky-400",
     text: "text-sky-400",
@@ -116,8 +112,9 @@ const Window = ({ title, onClose, children, theme }) => {
 
   return (
     <div className="absolute inset-0 flex items-center justify-center z-40">
-      <div className={`w-[650px] max-h-[80vh] min-h-[300px] bg-black border ${t.border} ${t.glow} flex flex-col`}>
-
+      <div
+        className={`w-[650px] max-h-[80vh] min-h-[300px] bg-black border ${t.border} ${t.glow} flex flex-col`}
+      >
         {/* HEADER */}
         <div className={`flex justify-between p-2 border-b ${t.border} ${t.text}`}>
           <span>{title}</span>
@@ -125,10 +122,7 @@ const Window = ({ title, onClose, children, theme }) => {
         </div>
 
         {/* CONTENT */}
-        <div className="p-3 overflow-auto h-full">
-          {children}
-        </div>
-
+        <div className="p-3 overflow-auto h-full">{children}</div>
       </div>
     </div>
   );

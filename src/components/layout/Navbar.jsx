@@ -26,14 +26,23 @@ const Navbar = () => {
       <div className="flex justify-between items-center w-full">
 
         {/* LOGO */}
-        <div className="flex items-center gap-3 cursor-pointer"
-             onClick={() => navigate("/")}>
-          <img src={sLogo} className="w-10 h-10" />
-          <p className="text-sky-700 text-xl font-bold">
-            <GlitchText>SILKNET</GlitchText>
-          </p>
-        </div>
-
+      {/* LOGO */}
+<div
+  className="flex items-center gap-3 cursor-pointer select-none"
+  onClick={() => {
+    if (window.location.pathname !== "/") {
+      navigate("/");
+    } else {
+      // ✅ Lenis-safe scroll reset
+      window.scrollTo(0, 0);
+    }
+  }}
+>
+  <img src={sLogo} className="w-10 h-10" alt="Silknet Logo" />
+  <p className="text-sky-700 text-xl font-bold">
+    <GlitchText>SILKNET</GlitchText>
+  </p>
+</div>
         {/* RIGHT SIDE */}
         <div className="flex items-center gap-4 relative">
 
@@ -81,7 +90,7 @@ const Navbar = () => {
       onClick={() => go("/pages/network")}
       className="text-left text-sky-700 hover:text-sky-500"
     >
-      // Router
+      // NETWORK
     </button>
       {/* DESKTOP (LOCKED) */}
     <div className="relative group cursor-not-allowed text-sky-700">

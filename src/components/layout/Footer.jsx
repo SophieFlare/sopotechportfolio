@@ -8,6 +8,8 @@ export default function Footer({ onAction }) {
   const navItems = [
     { id: 1, title: "// HOME", path: "/" },
     { id: 2, title: "// CV", path: "/pages/itsupport" },
+   { id: 5, title: "// NETWORK", path: "/pages/network" },
+    
     { id: 3, title: "// DESKTOP", path: "/pages/desktop" },
     { id: 4, title: "// CONTACT", path: "/pages/contact" },
   ];
@@ -15,7 +17,7 @@ export default function Footer({ onAction }) {
   const systemItems = [];
 
   return (
-    <footer className="relative w-full mt-24 font-mono text-sky-400 bg-black border-t border-sky-400/20 shadow-[0_-10px_40px_rgba(56,189,248,0.25)]">
+    <footer className="relative w-full  font-mono text-sky-400 bg-black border-t border-sky-400/20 shadow-[0_-10px_40px_rgba(56,189,248,0.25)]">
 
       <div className="px-[6%] py-[5%]">
 

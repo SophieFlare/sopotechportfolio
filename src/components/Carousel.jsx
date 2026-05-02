@@ -30,81 +30,70 @@ const Carousel = () => {
     "assets/net/5.gif",
     "assets/net/6.gif",
     "assets/net/5.gif",
-    "assets/net/earth.gif",
-    "assets/net/earth.jpg",
-    "assets/net/earth.jpg",
-    "assets/net/earth.gif",
-    "assets/net/earth.jpg",
+    "assets/net/11.jpg",
+    "assets/net/12.jpg",
+    "assets/net/ss.jpg",
+    "assets/net/14.jpg",
+    "assets/net/15.jpg",
   ];
 
-  return (
-    <div id="gallery" className="banner">
+return (
+  <div id="gallery" className="w-full min-h-[80vh] py-20 flex justify-center items-center overflow-hidden pt-[35%]">
 
-      <style>{`
-        .banner {
-          width: 100%;
-          height: 70vh;
-          position: relative;
-          overflow: hidden;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
+    <style>{`
+      .banner {
+        width: 100%;
+        min-height: 150vh;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: visible;
+      }
 
-        .slider {
-          position: relative;
-          width: 270px;
-          height: 370px;
-          transform-style: preserve-3d;
-        }
+      .slider {
+        position: relative;
+        width: 270px;
+        height: 370px;
+        transform-style: preserve-3d;
+      }
 
-        .item {
-          position: absolute;
-          inset: 0;
-          transform:
-            rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg))
-            translateZ(-1200px);
-        }
+      .item {
+        position: absolute;
+        inset: 0;
+        transform:
+          rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+          translateZ(-1200px);
+      }
 
-        .item img {
-          width: 130%;
-          height: 130%;
-          object-fit: cover;
-          transform: rotateY(180deg);
-          border-radius: 12px;
+      .item img {
+        width: 130%;
+        height: 130%;
+        object-fit: cover;
+        transform: rotateY(180deg);
+        border-radius: 12px;
 
-          /* SKY BLUE CYBER GLOW */
-          box-shadow:
-            0 0 18px rgba(56, 189, 248, 0.9),
-            0 0 55px rgba(56, 189, 248, 0.6),
-            0 0 110px rgba(56, 189, 248, 0.25);
+        box-shadow:
+          0 0 18px rgba(56, 189, 248, 0.9),
+          0 0 55px rgba(56, 189, 248, 0.6),
+          0 0 110px rgba(56, 189, 248, 0.25);
+      }
+    `}</style>
 
-          transition: all 0.3s ease;
-        }
-
-        .item img:hover {
-          box-shadow:
-            0 0 25px rgba(56, 189, 248, 1),
-            0 0 80px rgba(56, 189, 248, 0.7),
-            0 0 140px rgba(56, 189, 248, 0.35);
-        }
-      `}</style>
-
-      {/* ROTATING CARDS */}
-      <div
-        className="slider"
-        ref={sliderRef}
-        style={{ "--quantity": images.length }}
-      >
-        {images.map((img, i) => (
-          <div className="item" key={i} style={{ "--position": i + 1 }}>
-            <img src={img} alt="" draggable="false" />
-          </div>
-        ))}
-      </div>
-
+    <div
+      className="slider"
+      ref={sliderRef}
+      style={{ "--quantity": images.length }}
+    >
+      {images.map((img, i) => (
+        <div className="item" key={i} style={{ "--position": i + 1 }}>
+          <img src={img} alt="" draggable="false" />
+        </div>
+      ))}
     </div>
-  );
+
+  </div>
+);
 };
 
 export default Carousel;
