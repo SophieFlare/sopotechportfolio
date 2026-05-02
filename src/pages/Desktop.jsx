@@ -44,23 +44,14 @@ const Desktop = () => {
       {/* TASKBAR */}
       <WindowsBar />
 
-      {/* ================= RIGHT IMAGE PANEL ================= */}
-      <div className="absolute top-40 right-0 h-full w-[320px] z-20 flex items-center justify-center">
-        <div className="w-[190px] h-[52vh] border border-[#ff0033] shadow-[0_0_30px_#ff0033] bg-white  relative overflow-hidden">
-
-          <img
-            src="/cv/pixel_sc.png"
-            className="w-full h-full object-cover "
-            alt="system panel"
-          />
-
-          {/* glow overlay */}
-          <div className="absolute inset-0 bg-[#ff0033]/10" />
-
-          {/* scan line effect */}
-          <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent,rgba(255,0,51,0.2),transparent)] animate-pulse" />
-        </div>
-      </div>
+    {/* ================= RIGHT IMAGE PANEL ================= */}
+<div className="absolute bottom-0 right-0 h-[50vh] w-[20%] z-20 flex items-center justify-center overflow-hidden">
+  <img
+    src="/cv/pixel_sopo.png"
+    className="w-full h-full object-cover object-center"
+    alt="system panel"
+  />
+</div>
 
       {/* ================= WINDOWS ================= */}
 
