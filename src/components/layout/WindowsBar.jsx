@@ -1,15 +1,18 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { FaHome, FaDesktop, FaEnvelope, FaTerminal } from "react-icons/fa";
+import { FaHome, FaDesktop, FaEnvelope, FaTerminal, FaSearch, FaNetworkWired } from "react-icons/fa";
+import { MdOutlineFolder, MdOutlineDesktopWindows , MdComputer } from "react-icons/md";
+import { GiButterfly } from "react-icons/gi";
 import Terminal from "./terminal/Terminal";
 import FileExplorer from "../../pages/FileExplorer";
-import WSearch from "./WSearch";
-import CMD from "./terminal/CMD"
+import CMD from "./terminal/CMD";
+import NetworkPanel from "./NetworkPanel";
 
 const WindowsBar = () => {
   const [searchOpen, setSearchOpen] = useState(false);
   const [startOpen, setStartOpen] = useState(false);
   const [activeWindow, setActiveWindow] = useState(null);
+  const [networkOpen, setNetworkOpen] = useState(false);
 
   const [position, setPosition] = useState({ x: 500, y: 120 });
   const [dragging, setDragging] = useState(false);
@@ -75,6 +78,7 @@ const WindowsBar = () => {
       {/* TASKBAR */}
       <div className={`fixed bottom-0 left-0 w-full h-12 bg-black border-t ${theme.border} flex items-center font-mono ${theme.text} z-[9999]`}>
 
+        {/* LEFT SIDE */}
         <div className="flex items-center h-full relative">
 
           {/* START */}
@@ -85,12 +89,12 @@ const WindowsBar = () => {
             ⊞
           </div>
 
-          {/* SEARCH ICON (NEXT TO START) */}
+          {/* SEARCH BUTTON */}
           <div
             onClick={() => setSearchOpen(true)}
             className={`w-12 h-full flex items-center justify-center ${theme.hoverBg} cursor-pointer`}
           >
-            🔍
+            <FaSearch />
           </div>
 
           {/* START MENU */}
@@ -101,27 +105,26 @@ const WindowsBar = () => {
               </div>
 
               <div className="flex flex-col text-sm">
-                <Link to="/" onClick={() => setStartOpen(false)} className={`px-3 py-2 flex items-center gap-2 ${theme.text} ${theme.hoverBg}`}>
+                <Link to="/" className={`px-3 py-2 flex items-center gap-2 ${theme.hoverBg}`}>
                   <FaHome /> Home
                 </Link>
 
-                <Link to="/pages/itsupport" onClick={() => setStartOpen(false)} className={`px-3 py-2 flex items-center gap-2 ${theme.text} ${theme.hoverBg}`}>
-                  <FaDesktop /> CV
+                <Link to="/pages/itsupport" className={`px-3 py-2 flex items-center gap-2 ${theme.hoverBg} drop-shadow-[0_0_6px_pink]`}>
+                  <GiButterfly /> CV
                 </Link>
 
-                <Link to="/pages/network" onClick={() => setStartOpen(false)} className={`px-3 py-2 flex items-center gap-2 ${theme.text} ${theme.hoverBg}`}>
-                  ᯤ Network
+                <Link to="/pages/network" className={`px-3 py-2 flex items-center gap-2 ${theme.hoverBg}`}>
+                  <FaNetworkWired /> Network
+                </Link>
+    <Link to="/pages/desktop" className={`px-3 py-2 flex items-center gap-2 ${theme.hoverBg}`}>
+                  <MdOutlineDesktopWindows /> Desktop
                 </Link>
 
-                <Link to="/pages/desktop" onClick={() => setStartOpen(false)} className={`px-3 py-2 flex items-center gap-2 ${theme.text} ${theme.hoverBg}`}>
-                  <FaDesktop /> Desktop
-                </Link>
-
-                <Link to="/pages/contact" onClick={() => setStartOpen(false)} className={`px-3 py-2 flex items-center gap-2 ${theme.text} ${theme.hoverBg}`}>
+                <Link to="/pages/contact" className={`px-3 py-2 flex items-center gap-2 ${theme.hoverBg}`}>
                   <FaEnvelope /> Contact
                 </Link>
 
-                <div onClick={() => openApp("terminal")} className={`px-3 py-2 flex items-center gap-2 ${theme.text} ${theme.hoverBg} cursor-pointer`}>
+                <div onClick={() => openApp("terminal")} className={`px-3 py-2 flex items-center gap-2 ${theme.hoverBg} cursor-pointer`}>
                   <FaTerminal /> Terminal
                 </div>
               </div>
@@ -129,80 +132,81 @@ const WindowsBar = () => {
           )}
         </div>
 
+        {/* SPACER */}
         <div className="flex-1" />
 
-        {/* CLOCK */}
-        <div className={`flex items-center gap-4 pr-3 text-xs ${theme.text}/80`}>
-          <span>{time}</span>
-          <span className="text-[10px] opacity-70">{date}</span>
+        {/* RIGHT SIDE */}
+        <div className={`flex items-center gap-3 pr-3 text-xs ${theme.text}/80`}>
+
+          {/* NETWORK */}
+          <div
+            onClick={() => setNetworkOpen(!networkOpen)}
+            className={`cursor-pointer ${theme.hoverBg} px-2 py-1`}
+          >
+            📶
+          </div>
+
+          {/* TIME */}
+          <div className="flex flex-col items-end leading-tight">
+            <span>{time}</span>
+            <span className="text-[10px] opacity-70">{date}</span>
+          </div>
         </div>
       </div>
 
-   {searchOpen && (
-  <div className={`fixed bottom-12 left-0 w-[420px] h-[520px] bg-black border ${theme.borderSoft} ${theme.glow} z-[10000] flex flex-col font-mono`}>
-    
-    <div className={`flex justify-between p-2 border-b ${theme.borderSoft} ${theme.text}`}>
-      <span>SYSTEM SEARCH</span>
-      <button onClick={() => setSearchOpen(false)}>✕</button>
-    </div>
+      {/* NETWORK PANEL */}
+      {networkOpen && (
+        <NetworkPanel theme={theme} onClose={() => setNetworkOpen(false)} />
+      )}
 
-    <div className="p-3">
-      <input
-        autoFocus
-        placeholder="Search apps..."
-        className={`w-full bg-black border ${theme.borderSoft} px-2 py-1 ${theme.text} outline-none`}
-      />
-    </div>
+      {/* SEARCH WINDOW */}
+      {searchOpen && (
+        <div className={`fixed bottom-12 left-0 w-[420px] h-[520px] bg-black border ${theme.borderSoft} ${theme.glow} z-[10000] flex flex-col font-mono`}>
 
-    <div className="flex-1 px-3 space-y-2">
+          <div className={`flex justify-between p-2 border-b ${theme.borderSoft}`}>
+            <span>SEARCH</span>
+            <button onClick={() => setSearchOpen(false)}>✕</button>
+          </div>
 
-      <SearchItem
-        label="📁 FILE EXPLORER"
-        onClick={() => openApp("explorer")}
-        theme={theme}
-        setSearchOpen={setSearchOpen}
-      />
+          <div className="p-3">
+            <input
+              autoFocus
+              placeholder="Search apps..."
+              className={`w-full bg-black border ${theme.borderSoft} px-2 py-1 outline-none`}
+            />
+          </div>
 
-      <SearchItem
-        label="⌨ TERMINAL"
-        onClick={() => openApp("terminal")}
-        theme={theme}
-        setSearchOpen={setSearchOpen}
-      />
+          <div className="flex-1 px-3 space-y-2">
 
-      <SearchItem
-        label="💻 CMD"
-        onClick={() => openApp("cmd")}
-        theme={theme}
-        setSearchOpen={setSearchOpen}
-      />
+            <SearchItem icon={<MdOutlineFolder />} label="File Explorer" onClick={() => openApp("explorer")} />
 
-    </div>
-  </div>
-)}
+            <SearchItem icon={<FaTerminal />} label="Terminal" onClick={() => openApp("terminal")} />
 
-      {/* DRAG WINDOW */}
+            <SearchItem icon={<MdComputer />} label="CMD" onClick={() => openApp("cmd")} />
+
+          </div>
+        </div>
+      )}
+
+      {/* WINDOW */}
       {activeWindow && (
         <div className="fixed z-[99999]" style={{ left: position.x, top: position.y }}>
-          <div className={`w-[620px] h-[620px] bg-[#05070d] border ${theme.border} ${theme.glow} flex flex-col font-mono`}>
+          <div className={`w-[620px] h-[620px] bg-[#05070d] border ${theme.border} ${theme.glow} flex flex-col`}>
 
             <div
               onMouseDown={handleMouseDown}
-              className={`flex justify-between items-center px-3 py-2 border-b ${theme.borderSoft} ${theme.text} cursor-grab`}
+              className={`flex justify-between px-3 py-2 border-b ${theme.borderSoft} cursor-grab`}
             >
               <span>{activeWindow.toUpperCase()}</span>
               <button onClick={closeWindow}>✕</button>
             </div>
 
-          <div className="flex-1 overflow-hidden bg-black">
-  {activeWindow === "explorer" && <FileExplorer />}
-  {activeWindow === "terminal" && <Terminal />}
-  {activeWindow === "cmd" && (
-    <div className="w-full h-full">
-      <CMD />
-    </div>
-  )}
-</div>
+            <div className="flex-1 bg-black">
+              {activeWindow === "explorer" && <FileExplorer />}
+              {activeWindow === "terminal" && <Terminal />}
+              {activeWindow === "cmd" && <CMD />}
+            </div>
+
           </div>
         </div>
       )}
@@ -212,20 +216,15 @@ const WindowsBar = () => {
 
 export default WindowsBar;
 
+
 /* SEARCH ITEM */
-function SearchItem({ label, onClick, highlight, theme, setSearchOpen }) {
+function SearchItem({ icon, label, onClick }) {
   return (
     <div
-      onClick={() => {
-        onClick();
-        setSearchOpen(false);
-      }}
-      className={`
-        px-3 py-2 cursor-pointer border ${theme.borderSoft}
-        ${theme.hoverBg} hover:text-white transition
-        ${highlight ? `${theme.text} ${theme.glow}` : "text-white/70"}
-      `}
+      onClick={onClick}
+      className="flex items-center gap-2 px-3 py-2 border border-white/10 hover:bg-white/10 cursor-pointer"
     >
+      {icon}
       {label}
     </div>
   );
