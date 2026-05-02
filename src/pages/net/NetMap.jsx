@@ -1,8 +1,17 @@
 import React, {useState} from 'react'
 import { motion } from "framer-motion";
-
+import {
+  FaGlobe,
+  FaServer,
+  FaWifi,
+  FaDesktop,
+  FaMobileAlt,
+  FaNetworkWired,
+} from "react-icons/fa";
 
 const NetMap = () => {
+
+
   const [hovered, setHovered] = useState(null);
   const getNode = (id) => nodes.find((n) => n.id === id);
 
@@ -24,6 +33,20 @@ const NetMap = () => {
   { id: "laptop", label: "💻 LAPTOP", x: "85%", y: "85%", info: "Wireless client" },
 ];
 
+
+const iconMap = {
+  internet: <FaGlobe />,
+  isp: <FaServer />,
+  modem: <FaNetworkWired />,
+  firewall: <FaNetworkWired />,
+  router: <FaNetworkWired />,
+  switch: <FaNetworkWired />,
+  wifi: <FaWifi />,
+  pc: <FaDesktop />,
+  server: <FaServer />,
+  phone: <FaMobileAlt />,
+  laptop: <FaDesktop />,
+};
 const lines = [
   ["internet", "modem"],
  ["internet", "isp"],
@@ -84,8 +107,9 @@ const lines = [
           {/* CIRCLE */}
           <div className="w-16 h-16 rounded-full border border-sky-400 bg-black flex items-center justify-center shadow-[0_0_20px_#38bdf8] hover:shadow-[0_0_35px_#38bdf8] transition">
             {/* IMAGE PLACEHOLDER */}
-            <div className="w-8 h-8 bg-sky-400/20 rounded-full" />
-          </div>
+          <div className="text-white text-xl">
+  {iconMap[node.id]}
+</div>  </div>
 
           {/* LABEL */}
           <div className="mt-2 text-[10px] text-sky-400 font-mono text-center">

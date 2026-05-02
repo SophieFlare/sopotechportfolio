@@ -4,116 +4,216 @@ import { motion } from "framer-motion";
 const Devices = () => {
   const [panelOpen, setPanelOpen] = useState(false);
   const [index, setIndex] = useState(0);
- 
-const devices = [
-  { name: "📡 Hub", label: "Legacy Network Signal Distributor" },
-  { name: "🔥 Router  ", label: "Traffic Routing Gateway (LAN ↔ WAN)" },
-  { name: "🌐 Gateway", label: "Internet Service Provider Bridge" },
-  { name: "📶 NIC   x", label: "Network Interface Controller (Device Adapter)" },
-  { name: "📡 Modem", label: "ISP Signal Converter (Digital ↔ Analog)" },
-  { name: "📡 Repeater", label: "Signal Range Extender" },
-  { name: "📶 WAP", label: "Wireless Access Point (WiFi Distribution)" },
-  { name: "🛡️ Firewall  x", label: "Network Security Filter & Traffic Monitor" },
-  { name: "🔍 IDPS  x", label: "Intrusion Detection & Prevention System" },
-  { name: "🔐 VPN     x", label: "Encrypted Secure Tunnel (Private Network Access)" },
-];
- const next = () => setIndex((prev) => (prev + 1) % devices.length);
-const prev = () => setIndex((prev) => (prev - 1 + devices.length) % devices.length);
- 
-  return (
-    <div className="w-full h-screen bg-black relative overflow-hidden flex items-center justify-center font-mono">
 
-      {/* GRID BACKGROUND */}
+const devices = [
+  {
+    key: "hub",
+    name: "📡 Hub",
+    label: "Legacy Network Signal Distributor",
+    learn: "Hub broadcasts data to all devices in the network without filtering.",
+    img: "/net/hub.jpg",
+  },
+  {
+    key: "router",
+    name: "🔥 Router",
+    label: "Traffic Routing Gateway (LAN ↔ WAN)",
+    learn: "Router connects different networks and directs data packets efficiently.",
+    img: "/net/routerr.png",
+  },
+  {
+    key: "gateway",
+    name: "🌐 Gateway",
+    label: "ISP Bridge",
+    learn: "Gateway acts as a bridge between different network protocols and systems.",
+    img: "/net/gateway.gif",
+  },
+  {
+    key: "nic",
+    name: "📶 NIC",
+    label: "Network Interface Controller",
+    learn: "NIC allows a device to connect to a network via Ethernet or WiFi.",
+    img: "/net/nic_98.jpg",
+  },
+  {
+    key: "modem",
+    name: "📡 Modem",
+    label: "Signal Converter",
+    learn: "Modem converts digital data into signals for ISP communication.",
+    img: "/net/modem.jpg",
+  },
+  {
+    key: "repeater",
+    name: "📡 Repeater",
+    label: "Signal Extender",
+    learn: "Repeater boosts weak signals to extend network range.",
+    img: "/net/repeaterr.jpg",
+  },
+  {
+    key: "wap",
+    name: "📶 WAP",
+    label: "Wireless Access Point",
+    learn: "WAP provides wireless network access for devices.",
+    img: "/net/wap.jpg",
+  },
+  {
+    key: "firewall",
+    name: "🛡️ Firewall",
+    label: "Security Filter",
+    learn: "Firewall monitors and blocks unauthorized network traffic.",
+    img: "/net/firewall.jpg",
+  },
+  {
+    key: "idps",
+    name: "🔍 IDPS",
+    label: "Intrusion Prevention",
+    learn: "Detects and prevents malicious network activities.",
+    img: "/net/idps.jpg",
+  },
+  {
+    key: "vpn",
+    name: "🔐 VPN",
+    label: "Secure Tunnel",
+    learn: "VPN encrypts traffic and creates secure private connections.",
+    img: "/net/vpn.png",
+  },
+];
+const learningImages = {
+  hub: "/net/hubb.webp",
+  router: "/net/routerrr.png",
+  gateway: "/net/gateway.png",
+  nic: "/net/nic.png",
+  modem: "/net/modemm.png",
+  repeater: "/net/repeater.png",
+  wap: "/net/wappp.jpg",
+  firewall: "/net/firewalll.png",
+  idps: "/net/idpss.png",
+  vpn: "/net/vpnnn.png",
+};
+  const next = () => setIndex((prev) => (prev + 1) % devices.length);
+  const prev = () => setIndex((prev) => (prev - 1 + devices.length) % devices.length);
+
+  return (
+    <div className="w-full h-screen bg-black flex font-mono text-sky-400">
+
+      {/* GRID */}
       <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle,#38bdf8_1px,transparent_1px)] [background-size:22px_22px]" />
 
-      {/* MAIN CENTER DEVICE */}
-    <div className="flex flex-col items-center justify-center text-sky-400 z-10">
+      {/* LEFT SIDE */}
+      <div className="w-1/2 flex items-center justify-center relative">
 
-  {/* DEVICE DISPLAY */}
+        <div className="flex flex-col items-center z-10">
+
+          {/* DEVICE DISPLAY */}
+          <motion.div
+            key={index}
+            className="w-[20vw] h-[20vw] max-w-[260px] max-h-[260px] border border-sky-400 bg-black flex items-center justify-center shadow-[0_0_40px_#38bdf8] rounded-xl"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="text-center text-xs px-2">
+          <img
+  src={devices[index].img}
+  alt={devices[index].name}
+  className="w-full h-full object-contain"
+/>
+            </div>
+          </motion.div>
+
+          {/* TEXT */}
+          <div className="mt-6 text-center space-y-1">
+            <div className="text-lg tracking-widest">{devices[index].name}</div>
+            <div className="text-xs opacity-70">{devices[index].label}</div>
+          </div>
+
+          {/* CONTROLS */}
+          <div className="mt-6 flex items-center gap-3">
+
+            <button
+              onClick={prev}
+              className="px-3 py-2 border border-sky-400 hover:bg-sky-400/10"
+            >
+              {"<"}
+            </button>
+
+            <button
+              onClick={() => setPanelOpen(true)}
+              className="px-4 py-2 border border-sky-400 shadow-[0_0_15px_#38bdf8] hover:bg-sky-400/10"
+            >
+              OPEN PANEL
+            </button>
+
+            <button
+              onClick={next}
+              className="px-3 py-2 border border-sky-400 hover:bg-sky-400/10"
+            >
+              {">"}
+            </button>
+
+          </div>
+        </div>
+      </div>
+
+      {/* RIGHT SIDE - LEARNING PANEL */}
+  {/* RIGHT SIDE - LEARNING PANEL */}
+<div className="w-1/2 flex items-center justify-center px-10">
+
   <motion.div
-    className="w-[20vw] h-[20vw] max-w-[260px] max-h-[260px] border border-sky-400 bg-black flex items-center justify-center shadow-[0_0_40px_#38bdf8] rounded-xl"
     key={index}
-    initial={{ opacity: 0, scale: 0.8 }}
-    animate={{ opacity: 1, scale: 1 }}
+    className="w-full max-w-md h-[70vh] border border-sky-400 bg-black shadow-[0_0_40px_#38bdf8] flex flex-col"
+    initial={{ opacity: 0, x: 30 }}
+    animate={{ opacity: 1, x: 0 }}
     transition={{ duration: 0.3 }}
   >
-    <div className="w-1/2 h-1/2 bg-sky-400/20 rounded-full flex items-center justify-center text-xs text-center">
-      {devices[index].name}
+
+    {/* TOP 50% - TEXT */}
+    <div className="h-1/2 p-6 border-b border-sky-400 flex flex-col justify-center">
+
+      <div className="text-lg mb-3 border-b border-sky-400 pb-2">
+        📘 LEARNING MODULE
+      </div>
+
+      <div className="text-xl mb-2">
+        {devices[index].name}
+      </div>
+
+      <div className="text-sm opacity-80 leading-relaxed">
+        {devices[index].learn}
+      </div>
+
+      <div className="mt-4 text-xs opacity-50">
+        Tip: Use arrows to explore networking components step-by-step.
+      </div>
+
     </div>
-  </motion.div>
 
-  {/* TEXT */}
-  <div className="mt-6 text-center space-y-1">
-    <div className="text-lg tracking-widest">{devices[index].name}</div>
-    <div className="text-xs opacity-70">{devices[index].label}</div>
-  </div>
+    {/* BOTTOM 50% - IMAGE AREA */}
+    <div className="h-1/2 flex items-center justify-center relative">
 
-  {/* BUTTON + ARROWS (your requested line layout) */}
-  <div className="mt-6 flex items-center gap-3">
+      {/* IMAGE FRAME */}
+      <div className="w-[75%] h-[75%] border border-sky-400 bg-black flex items-center justify-center shadow-[0_0_25px_#38bdf8]">
 
-    {/* LEFT ARROW */}
-    <button
-      onClick={prev}
-      className="px-3 py-2 border border-sky-400 text-sky-400 hover:bg-sky-400/10"
-    >
-      {"<"}
-    </button>
-
-    {/* MAIN BUTTON */}
-    <button
-      onClick={() => setPanelOpen(true)}
-      className="px-4 py-2 border border-sky-400 text-sky-400 hover:bg-sky-400/10 shadow-[0_0_15px_#38bdf8]"
-    >
-      OPEN CONTROL
-    </button>
-
-    {/* RIGHT ARROW */}
-    <button
-      onClick={next}
-      className="px-3 py-2 border border-sky-400 text-sky-400 hover:bg-sky-400/10"
-    >
-      {">"}
-    </button>
-
-  </div>
+        {/* IMAGE PLACEHOLDER */}
+   <div className="w-full h-full flex items-center justify-center">
+ 
+<img
+  src={learningImages[devices[index].key] || devices[index].img}
+  alt={devices[index].name}
+  className="w-full h-full object-contain"
+/>
 </div>
 
-      {/* RIGHT SLIDING PANEL */}
-      <motion.div
-        className="absolute top-0 right-0 h-full w-[320px] bg-black border-l border-sky-400 shadow-[0_0_40px_#38bdf8] font-mono z-20"
-        initial={{ x: "100%" }}
-        animate={{ x: panelOpen ? "0%" : "100%" }}
-        transition={{ type: "spring", stiffness: 120 }}
-      >
+      </div>
 
-        {/* HEADER */}
-        <div className="p-4 border-b border-sky-400 flex justify-between items-center text-sky-400">
-          <span>ROUTER PANEL</span>
-          <button onClick={() => setPanelOpen(false)}>✕</button>
-        </div>
+      {/* LABEL */}
+      <div className="absolute bottom-3 text-xs opacity-50">
+        Device visualization area
+      </div>
 
-        {/* CONTENT */}
-        <div className="p-4 space-y-4 text-sm text-sky-400">
+    </div>
 
-          <div className="border border-sky-400 p-3">
-            🔌 Status: ONLINE
-          </div>
-
-          <div className="border border-sky-400 p-3">
-            📡 Connections: 12 devices
-          </div>
-
-          <div className="border border-sky-400 p-3">
-            🌐 Bandwidth: 300 Mbps
-          </div>
-
-          <div className="border border-sky-400 p-3">
-            🔥 Firewall: ACTIVE
-          </div>
-
-        </div>
-      </motion.div>
-
+  </motion.div>
+</div>
     </div>
   );
 };
