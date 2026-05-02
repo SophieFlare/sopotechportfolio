@@ -102,7 +102,7 @@ const WindowsBar = () => {
                   className={`px-3 py-2 flex items-center gap-2 ${theme.text} ${theme.hoverBg}`}>
                   <FaDesktop /> CV
                 </Link>
-    <Link to="/pages/desktop" onClick={() => setStartOpen(false)}
+    <Link to="/pages/network" onClick={() => setStartOpen(false)}
                   className={`px-3 py-2 flex items-center gap-2 ${theme.text} ${theme.hoverBg}`}>
                   ᯤ Network
                 </Link>

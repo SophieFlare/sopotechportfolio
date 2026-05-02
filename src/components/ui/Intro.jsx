@@ -1,19 +1,96 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Intro({ open, onClose }) {
+
+  const [text1, setText1] = useState("");
+  const [text2, setText2] = useState("");
+  const [text3, setText3] = useState("");
+  const [text4, setText4] = useState("");
+
+  // RESET + TYPE ON OPEN
+  useEffect(() => {
+    if (!open) return;
+
+    setText1("");
+    setText2("");
+    setText3("");
+    setText4("");
+
+    const lines = [
+      {
+        text: "Welcome to SopoTech Network",
+        setter: setText1,
+        speed: 30,
+      },
+      {
+        text: "> secure tunnel: ACTIVE",
+        setter: setText2,
+        speed: 25,
+      },
+      {
+        text: "> nodes: SYNCED",
+        setter: setText3,
+        speed: 25,
+      },
+      {
+        text: '$SOPO = "Born_For_Deep_Tech_Exploration"',
+        setter: setText4,
+        speed: 20,
+      },
+    ];
+
+    let i = 0;
+
+    const typeLine = (line, setter, speed, callback) => {
+      let index = 0;
+
+      const interval = setInterval(() => {
+        setter(line.slice(0, index));
+        index++;
+
+        if (index > line.length) {
+          clearInterval(interval);
+          callback?.();
+        }
+      }, speed);
+    };
+
+    const run = () => {
+      if (i >= lines.length) return;
+
+      typeLine(lines[i].text, lines[i].setter, lines[i].speed, () => {
+        i++;
+        run();
+      });
+    };
+
+    run();
+  }, [open]);
+
   return (
     <AnimatePresence>
       {open && (
         <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/70 backdrop-blur-md">
 
-          {/* WINDOW */}
+          {/* ================= LEFT CHARACTER ================= */}
+          <div className="fixed op-1/2 left-[15%] z-[9998] pointer-events-none">
+            <div className="relative w-[410px] h-[570px]">
+              <img
+                src="/sopo_pixel.png"
+                alt="character"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+
+          {/* ================= CENTER WINDOW ================= */}
           <motion.div
             initial={{ scale: 0.85, opacity: 0, y: 20 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.85, opacity: 0, y: 20 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="w-[480px] bg-black border border-sky-400 shadow-[0_0_35px_rgba(56,189,248,0.5)] font-mono text-sky-300 overflow-hidden"
+            className="w-[480px] bg-black border border-sky-400 shadow-[0_0_35px_rgba(56,189,248,0.5)] font-mono text-sky-300 overflow-hidden relative z-10"
           >
 
             {/* HEADER */}
@@ -24,46 +101,23 @@ export default function Intro({ open, onClose }) {
               </button>
             </div>
 
-            {/* BODY */}
+            {/* BODY (TYPEWRITER) */}
             <div className="p-5 space-y-3 text-sm">
 
-              <motion.div
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.1 }}
-                className="text-green-400"
-              >
-                ● CONNECTED
-              </motion.div>
+              <div className="text-green-400">● CONNECTED</div>
 
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.2 }}
-                className="text-white/80"
-              >
-                Welcome to SopoTechie Network
-              </motion.div>
+              <div className="text-white/80">
+                {text1}
+              </div>
 
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.35 }}
-                className="text-white/60 space-y-1"
-              >
-                <div>&gt; secure tunnel: ACTIVE</div>
-                <div>&gt; nodes: SYNCED</div>
-                <div>&gt; system latency: 12ms</div>
-              </motion.div>
+              <div className="text-white/60 space-y-1">
+                <div>&gt; {text2}</div>
+                <div>&gt; {text3}</div>
+              </div>
 
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 }}
-                className="border border-sky-400/30 p-3 text-white/70 text-center"
-              >
-                "You are inside the system"
-              </motion.div>
+              <div className="border border-sky-400/30 p-3 text-white/70 text-center">
+                {text4}
+              </div>
 
             </div>
 

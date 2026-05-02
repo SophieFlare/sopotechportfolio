@@ -116,7 +116,7 @@ export default function Footer({ onAction }) {
       </div>
 
       {/* ================= CV BUTTON ================= */}
-  <button
+<button
   onClick={() => navigate("/pages/itsupport")}
   className="
     absolute right-10 top-[35%] -translate-y-1/2
@@ -125,14 +125,14 @@ export default function Footer({ onAction }) {
 
     text-white
 
-    bg-white/5 backdrop-blur-sm
+    bg-sky-500/10 backdrop-blur-sm
 
-    border border-sky-400/30
+    border border-sky-400/40
 
-    shadow-[0_0_25px_rgba(56,189,248,0.25)]
+    shadow-[0_0_25px_rgba(56,189,248,0.35)]
 
-    hover:shadow-[0_0_70px_rgba(56,189,248,0.7)]
-    hover:border-sky-300/70
+    hover:shadow-[0_0_70px_rgba(56,189,248,0.8)]
+    hover:border-sky-300/80
     hover:scale-105
 
     transition-all duration-500 ease-out
@@ -145,7 +145,6 @@ export default function Footer({ onAction }) {
     group
   "
 >
-
   {/* glass inner glow */}
   <span className="
     absolute inset-0

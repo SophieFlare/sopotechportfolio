@@ -57,7 +57,7 @@ const LoadingPage = ({ onFinish }) => {
       }
 
       titleRef.current.innerText = arr.join("");
-    }, 50);
+    }, 100);
 
     return () => clearInterval(interval);
   }, [typedText]);
@@ -79,7 +79,7 @@ const LoadingPage = ({ onFinish }) => {
       }
 
       paragraphRef.current.innerText = arr.join("");
-    }, 50);
+    }, 150);
 
     return () => clearInterval(interval);
   }, [typedParagraph]);
@@ -112,28 +112,54 @@ const LoadingPage = ({ onFinish }) => {
         {typedParagraph}
       </p>
 
-      {/* BUTTON */}
-      {showButton && (
-        <button
-          onClick={handleButtonClick}
-          className="
-            mt-6 sm:mt-10 px-5 py-3
-            border border-[#38bdf8]
-            bg-[#0b1f33]
-            text-[#38bdf8]
-            rounded-lg
-            font-mono
-            transition-all duration-300
-            hover:scale-110
-            hover:bg-[#38bdf8]/10
-            hover:shadow-[0_0_20px_#38bdf8]
-          "
-        >
-          <span className="animate-pulse tracking-widest">
-            CONNECT:443
-          </span>
-        </button>
-      )}
+{/* BUTTON */}
+{showButton && (
+  <button
+    onClick={handleButtonClick}
+    className="
+      mt-6 sm:mt-10 px-6 py-3
+
+      relative overflow-hidden group
+
+      border border-sky-400/40
+
+      bg-sky-500/10 backdrop-blur-md
+
+      text-sky-300
+
+      font-mono tracking-widest
+
+      transition-all duration-500 ease-out
+
+      hover:scale-110
+      hover:border-sky-300/80
+      hover:shadow-[0_0_35px_rgba(56,189,248,0.7)]
+    "
+  >
+    {/* glass glow layer */}
+    <span className="
+      absolute inset-0
+      bg-gradient-to-br from-sky-500/10 via-white/5 to-sky-500/10
+      opacity-60
+    " />
+
+    {/* moving shine */}
+    <span className="
+      absolute inset-0
+      -translate-x-full
+      bg-gradient-to-r from-transparent via-white/20 to-transparent
+      group-hover:translate-x-full
+      transition-transform duration-700
+    " />
+
+    {/* text */}
+    <span className="relative z-10 animate-pulse">
+      CONNECT:443
+    </span>
+
+  </button>
+)}
+  
     </div>
   );
 };
