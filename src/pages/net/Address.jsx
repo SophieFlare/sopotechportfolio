@@ -4,55 +4,32 @@ import { motion, AnimatePresence } from "framer-motion";
 const panels = {
   ip: {
     title: "🌐 IP ADDRESS",
-    content: `
-An IP address is a unique identifier for a device on a network.
+    content: `IP address is a unique identifier for a device.
 
 Types:
 - IPv4: 192.168.1.1
 - IPv6: 2001:0db8::1
 
-Purpose:
-- Identifies device location in a network
-- Used for routing data across internet
-
-Think of it like: HOME ADDRESS of your device
-    `,
+Used for routing data across networks.`,
   },
 
   mac: {
     title: "💻 MAC ADDRESS",
-    content: `
-MAC (Media Access Control) address is a hardware identifier.
+    content: `MAC address is a hardware identifier.
 
 Format:
-- 00:1A:2B:3C:4D:5E
+00:1A:2B:3C:4D:5E
 
-Properties:
-- Unique for every network card
-- Permanent (burned into hardware)
-
-Think of it like: DEVICE SERIAL NUMBER
-Used inside local network only (LAN)
-    `,
+It is unique per network card.`,
   },
 
   subnet: {
     title: "🧩 SUBNET MASK",
-    content: `
-Subnet mask divides IP into network + host part.
+    content: `Subnet mask separates network and host.
 
 Example:
-IP:        192.168.1.10
-Mask:      255.255.255.0
-
-Meaning:
-- First part = Network
-- Last part = Device
-
-Used for:
-- Splitting networks
-- Organizing large systems
-    `,
+IP:   192.168.1.10
+Mask: 255.255.255.0`,
   },
 };
 
@@ -68,64 +45,68 @@ export default function Address() {
   };
 
   return (
-    <div className="w-full h-screen bg-black text-sky-400 font-mono relative overflow-hidden">
+    <div className="w-full h-full bg-black text-sky-400 font-mono relative overflow-hidden border border-sky-400">
 
       {/* GRID BACKGROUND */}
       <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle,#38bdf8_1px,transparent_1px)] [background-size:22px_22px]" />
 
-      {/* LEFT PANEL (BUTTONS) */}
-      <div className="absolute left-10 top-1/2 -translate-y-1/2 flex flex-col gap-4 z-10">
-
-        <button
-          onClick={() => toggle("ip")}
-          className="px-4 py-2 border border-sky-400 hover:bg-sky-400/10"
-        >
-          IP ADDRESS
-        </button>
-
-        <button
-          onClick={() => toggle("mac")}
-          className="px-4 py-2 border border-sky-400 hover:bg-sky-400/10"
-        >
-          MAC ADDRESS
-        </button>
-
-        <button
-          onClick={() => toggle("subnet")}
-          className="px-4 py-2 border border-sky-400 hover:bg-sky-400/10"
-        >
-          SUBNET MASK
-        </button>
+      {/* HEADER */}
+      <div className="relative z-10 flex justify-between items-center px-3 py-2 border-b border-sky-400 text-xs">
+        <span>ADDRESS SYSTEM</span>
       </div>
 
-      {/* FLOATING WINDOWS */}
-      <AnimatePresence>
-        {Object.keys(open).map((key) =>
-          open[key] ? (
-            <motion.div
-              key={key}
-              className="absolute top-20 left-1/3 w-[420px] bg-black border border-sky-400 shadow-[0_0_30px_#38bdf8]"
-              initial={{ opacity: 0, y: 20, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 20, scale: 0.95 }}
-              transition={{ duration: 0.25 }}
-            >
+      {/* BUTTONS */}
+      <div className="relative z-10 flex gap-2 p-2 flex-wrap border-b border-sky-400">
+        {Object.keys(panels).map((key) => (
+          <button
+            key={key}
+            onClick={() => toggle(key)}
+            className="text-[10px] px-2 py-1 border border-sky-400 hover:bg-sky-400/10"
+          >
+            {key.toUpperCase()}
+          </button>
+        ))}
+      </div>
 
-              {/* TITLE BAR */}
-              <div className="flex justify-between items-center px-3 py-2 border-b border-sky-400">
-                <span>{panels[key].title}</span>
-                <button onClick={() => toggle(key)}>✕</button>
-              </div>
+      {/* CONTENT WINDOWS */}
+      <div className="relative z-10 p-2">
 
-              {/* CONTENT */}
-              <div className="p-4 text-xs whitespace-pre-line opacity-90 leading-relaxed">
-                {panels[key].content}
-              </div>
-            </motion.div>
-          ) : null
+        <AnimatePresence>
+          {Object.keys(open).map((key) =>
+            open[key] ? (
+              <motion.div
+                key={key}
+                className="border border-sky-400 bg-black p-3 mb-3 text-xs"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+              >
+                <div className="text-sm mb-1">
+                  {panels[key].title}
+                </div>
+
+                <div className="opacity-80 whitespace-pre-line leading-relaxed">
+                  {panels[key].content}
+                </div>
+
+                <button
+                  onClick={() => toggle(key)}
+                  className="mt-2 text-[10px] border border-sky-400 px-2 py-1"
+                >
+                  CLOSE
+                </button>
+              </motion.div>
+            ) : null
+          )}
+        </AnimatePresence>
+
+        {!Object.values(open).some(Boolean) && (
+          <div className="text-xs opacity-50 p-2">
+            Click a panel to view network address data
+          </div>
         )}
-      </AnimatePresence>
 
+      </div>
     </div>
   );
 }
