@@ -8,7 +8,6 @@ import ITSupport from "../pages/ITSupport";
 
 import ScrollToTop from "./ScrollToTop";
 import Network from "../pages/Network";
-
 const AppRouter = () => {
   return (
     <>
@@ -25,6 +24,7 @@ const AppRouter = () => {
         {/* CONTACT */}
         <Route path="/pages/contact" element={<Contact />} />
         <Route path="/pages/network" element={<Network />} />
+
 
         {/* IT SUPPORT */}
         <Route path="/pages/itsupport" element={<ITSupport />} /> 

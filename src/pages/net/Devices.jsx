@@ -153,7 +153,9 @@ const learningImages = {
           </div>
         </div>
       </div>
-
+ <div>
+        📘 Network Devices
+        </div> 
       {/* RIGHT SIDE - LEARNING PANEL */}
   {/* RIGHT SIDE - LEARNING PANEL */}
 <div className="w-1/2 flex items-center justify-center px-10">
@@ -169,20 +171,21 @@ const learningImages = {
     {/* TOP 50% - TEXT */}
     <div className="h-1/2 p-6 border-b border-sky-400 flex flex-col justify-center">
 
-      <div className="text-lg mb-3 border-b border-sky-400 pb-2">
-        📘 LEARNING MODULE
-      </div>
-
-      <div className="text-xl mb-2">
+      <div className="text-lg uppercase mb-3 border-b border-sky-400 pb-2 flex-row ">
+      
+         <div className="text-xl mb-2">
         {devices[index].name}
       </div>
+      </div>
+
+     
 
       <div className="text-sm opacity-80 leading-relaxed">
         {devices[index].learn}
       </div>
 
       <div className="mt-4 text-xs opacity-50">
-        Tip: Use arrows to explore networking components step-by-step.
+       qweq
       </div>
 
     </div>
@@ -191,10 +194,10 @@ const learningImages = {
     <div className="h-1/2 flex items-center justify-center relative">
 
       {/* IMAGE FRAME */}
-      <div className="w-[75%] h-[75%] border border-sky-400 bg-black flex items-center justify-center shadow-[0_0_25px_#38bdf8]">
+      <div className="">
 
         {/* IMAGE PLACEHOLDER */}
-   <div className="w-full h-full flex items-center justify-center">
+   <div className="">
  
 <img
   src={learningImages[devices[index].key] || devices[index].img}
@@ -205,11 +208,7 @@ const learningImages = {
 
       </div>
 
-      {/* LABEL */}
-      <div className="absolute bottom-3 text-xs opacity-50">
-        Device visualization area
-      </div>
-
+     
     </div>
 
   </motion.div>
