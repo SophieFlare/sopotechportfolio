@@ -27,7 +27,7 @@ const AppRouter = () => {
         <Route path="/pages/network" element={<Network />} />
 
         {/* IT SUPPORT */}
-        <Route path="/pages/itsupport" element={<ITSupport />} />  <Route path="/pages/router" element={<Router />} />
+        <Route path="/pages/itsupport" element={<ITSupport />} /> 
       </Routes>
     </>
   );
