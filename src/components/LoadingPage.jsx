@@ -4,7 +4,7 @@ import GlitchText from "./atoms/GlitchText";
 
 const LoadingPage = ({ onFinish }) => {
   const fullText = "HELLO_WORLD";
-  const paragraphText = "WELCOME TO SOPO'S NETWORK PORTAL";
+  const paragraphText = "WELCOME TO SOPØTECH NETWORK PORTAL";
 
   const [titleIndex, setTitleIndex] = useState(0);
   const [paraIndex, setParaIndex] = useState(0);
