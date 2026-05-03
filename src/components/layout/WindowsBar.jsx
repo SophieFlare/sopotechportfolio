@@ -7,8 +7,9 @@ import FileExplorer from "../../pages/FileExplorer";
 import CMD from "./terminal/CMD";
 import NetworkPanel from "./NetworkPanel";
 import Terminal from "./terminal/Terminal";
+import SidePanel from "../../pages/net/SidePanel";
 
-const WindowsBar = () => {
+const WindowsBar = ({ onOpenPanel }) => {
   const [searchOpen, setSearchOpen] = useState(false);
   const [startOpen, setStartOpen] = useState(false);
   const [activeWindow, setActiveWindow] = useState(null);
@@ -20,6 +21,9 @@ const WindowsBar = () => {
 
   const location = useLocation();
   const isDesktop = location.pathname === "/pages/desktop";
+const isNetwork = location.pathname === "/pages/network";
+
+
 
   const theme = {
     text: isDesktop ? "text-[#ff0033]" : "text-sky-400",
@@ -188,28 +192,31 @@ const WindowsBar = () => {
         </div>
       )}
 
-      {/* WINDOW */}
-      {activeWindow && (
-        <div className="fixed z-[99999]" style={{ left: position.x, top: position.y }}>
-          <div className={`w-[620px] h-[620px] bg-[#05070d] border ${theme.border} ${theme.glow} flex flex-col`}>
+  {/* WINDOW */}
+{activeWindow && (
+  <div className="fixed z-[99999]" style={{ left: position.x, top: position.y }}>
+    <div className={`w-[620px] h-[620px] bg-[#05070d] border ${theme.border} ${theme.glow} flex flex-col`}>
 
-            <div
-              onMouseDown={handleMouseDown}
-              className={`flex justify-between px-3 py-2 border-b ${theme.borderSoft} cursor-grab`}
-            >
-              <span>{activeWindow.toUpperCase()}</span>
-              <button onClick={closeWindow}>✕</button>
-            </div>
+      <div
+        onMouseDown={handleMouseDown}
+        className={`flex justify-between px-3 py-2 border-b ${theme.borderSoft} cursor-grab`}
+      >
+        <span>{activeWindow.toUpperCase()}</span>
+        <button onClick={closeWindow}>✕</button>
+      </div>
 
-            <div className="flex-1 bg-black">
-              {activeWindow === "explorer" && <FileExplorer />}
-            {activeWindow === "terminal" && <Terminal />}
-              {activeWindow === "cmd" && <CMD />}
-            </div>
+      <div className="flex-1 bg-black">
+        {activeWindow === "explorer" && <FileExplorer />}
+        {activeWindow === "terminal" && <Terminal />}
+        {activeWindow === "cmd" && <CMD />}
+      </div>
 
-          </div>
-        </div>
-      )}
+    </div>
+  </div>
+)}
+
+{/* SIDE PANEL (ONLY ON NETWORK PAGE) */}
+{isNetwork && <SidePanel onOpen={onOpenPanel} />}
     </>
   );
 };
