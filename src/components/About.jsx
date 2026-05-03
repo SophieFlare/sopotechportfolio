@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import akamePfp from "/silknet_logoo.png";
+import akamePfp from "/cv/ss.jpg";
 import Scanner from "./ui/Scanner";
 
 import "../styles/intro.css";
@@ -138,7 +138,7 @@ const About = () => {
           />
 
          <h1 className="glitch text-5xl font-bold text-sky-400">
-  HELLO_WORLD.exe
+  $opoTechieG1rl.exe
 </h1>
 
 <div className="flex flex-col space-y-3">

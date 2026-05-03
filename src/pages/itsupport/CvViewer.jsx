@@ -121,7 +121,7 @@ export default function CvViewer({ hideArrowTrigger }) {
               {/* LEFT PDF */}
               <div className="flex-1 flex flex-col bg-black">
 
-                <div className="h-12 flex items-center justify-between px-4 bg-gradient-to-r from-[#2b75ae] to-[#225e8b] text-white">
+                <div className="h-12 flex items-center justify-between px-4 bg-black text-sky-400">
                   <span className="font-semibold">📄 CV Viewer</span>
 
                   <button
@@ -132,13 +132,13 @@ export default function CvViewer({ hideArrowTrigger }) {
                   </button>
                 </div>
 
-                <div className="flex-1 overflow-y-auto bg-black">
-                  <iframe
-                    src="/Sopo_IT_CV_.pdf"
-                    className="w-full h-[200vh]"
-                    title="CV PDF"
-                  />
-                </div>
+              <div className="flex-1 bg-black overflow-hidden">
+  <iframe
+    src="/Sopo_IT_CV_.pdf"
+    className="w-full h-full"
+    title="CV PDF"
+  />
+</div>
               </div>
 
               {/* RIGHT PANEL */}

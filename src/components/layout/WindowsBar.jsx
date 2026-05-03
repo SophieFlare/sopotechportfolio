@@ -3,10 +3,10 @@ import { Link, useLocation } from "react-router-dom";
 import { FaHome, FaDesktop, FaEnvelope, FaTerminal, FaSearch, FaNetworkWired } from "react-icons/fa";
 import { MdOutlineFolder, MdOutlineDesktopWindows , MdComputer } from "react-icons/md";
 import { GiButterfly } from "react-icons/gi";
-import Terminal from "./terminal/Terminal";
 import FileExplorer from "../../pages/FileExplorer";
 import CMD from "./terminal/CMD";
 import NetworkPanel from "./NetworkPanel";
+import Terminal from "./terminal/Terminal";
 
 const WindowsBar = () => {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -132,7 +132,7 @@ const WindowsBar = () => {
           )}
         </div>
 
-        {/* SPACER */}
+         SPACER 
         <div className="flex-1" />
 
         {/* RIGHT SIDE */}
@@ -203,7 +203,7 @@ const WindowsBar = () => {
 
             <div className="flex-1 bg-black">
               {activeWindow === "explorer" && <FileExplorer />}
-              {activeWindow === "terminal" && <Terminal />}
+            {activeWindow === "terminal" && <Terminal />}
               {activeWindow === "cmd" && <CMD />}
             </div>
 

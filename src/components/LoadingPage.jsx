@@ -1,165 +1,129 @@
-import { useEffect, useState, useRef } from "react";
-
-const chars = "☺Σ×Π#-_¯—→↓↑←0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZ";
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const LoadingPage = ({ onFinish }) => {
-  const [typedText, setTypedText] = useState("");
-  const [typedParagraph, setTypedParagraph] = useState("");
-  const [showButton, setShowButton] = useState(false);
-
   const fullText = "HELLO_WORLD";
   const paragraphText = "Welcome to my NETWORK PORTAL";
 
-  const titleRef = useRef(null);
-  const paragraphRef = useRef(null);
+  const [titleIndex, setTitleIndex] = useState(0);
+  const [paraIndex, setParaIndex] = useState(0);
+  const [showButton, setShowButton] = useState(false);
 
   useEffect(() => {
-    let index = 0;
+    if (titleIndex < fullText.length) {
+      const t = setTimeout(() => setTitleIndex((p) => p + 1), 140);
+      return () => clearTimeout(t);
+    }
 
-    const typingInterval = setInterval(() => {
-      setTypedText(fullText.slice(0, index + 1));
-      index++;
+    if (paraIndex < paragraphText.length) {
+      const t = setTimeout(() => setParaIndex((p) => p + 1), 35);
+      return () => clearTimeout(t);
+    }
 
-      if (index >= fullText.length) {
-        clearInterval(typingInterval);
+    if (paraIndex >= paragraphText.length) {
+      const t = setTimeout(() => setShowButton(true), 800);
+      return () => clearTimeout(t);
+    }
+  }, [titleIndex, paraIndex]);
 
-        let pIndex = 0;
-        const paragraphInterval = setInterval(() => {
-          setTypedParagraph(paragraphText.slice(0, pIndex + 1));
-          pIndex++;
-
-          if (pIndex >= paragraphText.length) {
-            clearInterval(paragraphInterval);
-          }
-        }, 28);
-
-        setTimeout(() => setShowButton(true), 1000);
-      }
-    }, 150);
-
-    return () => clearInterval(typingInterval);
-  }, []);
-
-  // glitch title
-  useEffect(() => {
-    if (!titleRef.current) return;
-
-    const interval = setInterval(() => {
-      if (!typedText) return;
-
-      const arr = typedText.split("");
-
-      for (let i = 0; i < Math.min(3, arr.length); i++) {
-        const randChar = chars[Math.floor(Math.random() * chars.length)];
-        const pos = Math.floor(Math.random() * arr.length);
-
-        if (arr[pos] !== " ") arr[pos] = randChar;
-      }
-
-      titleRef.current.innerText = arr.join("");
-    }, 100);
-
-    return () => clearInterval(interval);
-  }, [typedText]);
-
-  // glitch paragraph
-  useEffect(() => {
-    if (!paragraphRef.current) return;
-
-    const interval = setInterval(() => {
-      if (!typedParagraph) return;
-
-      const arr = typedParagraph.split("");
-
-      for (let i = 0; i < Math.min(2, arr.length); i++) {
-        const randChar = chars[Math.floor(Math.random() * chars.length)];
-        const pos = Math.floor(Math.random() * arr.length);
-
-        if (arr[pos] !== " ") arr[pos] = randChar;
-      }
-
-      paragraphRef.current.innerText = arr.join("");
-    }, 150);
-
-    return () => clearInterval(interval);
-  }, [typedParagraph]);
-
-  const handleButtonClick = () => {
-    setShowButton(false);
-    onFinish();
-  };
+  const typedTitle = fullText.slice(0, titleIndex);
+  const typedPara = paragraphText.slice(0, paraIndex);
 
   return (
-    <div className="bg-[#06121f] min-h-screen flex flex-col justify-center items-center select-none relative overflow-hidden">
+    <div className="relative min-h-screen flex flex-col items-center justify-center bg-[#06121f] overflow-hidden font-mono text-sky-400">
 
-      {/* TITLE */}
-      <h1
-        ref={titleRef}
-        className="font-mono text-5xl sm:text-6xl md:text-7xl lg:text-8xl
-        text-[#38bdf8] uppercase font-black tracking-widest
-        drop-shadow-[0_0_35px_#38bdf8]"
-      >
-        {typedText}
-      </h1>
+      {/* ================= GRID LINES ================= */}
+      <div className="absolute inset-0 opacity-20">
+        {/* vertical lines */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(56,189,248,0.15)_1px,transparent_1px)] bg-[size:80px_100%]" />
+        {/* horizontal lines */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(56,189,248,0.12)_1px,transparent_1px)] bg-[size:100%_60px]" />
+      </div>
 
-      {/* PARAGRAPH */}
-      <p
-        ref={paragraphRef}
-        className="mt-4 sm:mt-6 text-center text-sm sm:text-base md:text-xl lg:text-2xl
-        text-white font-mono max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl
-        drop-shadow-[0_0_20px_#38bdf8]"
-      >
-        {typedParagraph}
+      {/* ================= DIAGONAL SCAN BEAM ================= */}
+      <motion.div
+        className="absolute w-[200%] h-[2px] bg-sky-400/10 rotate-45 blur-sm"
+        animate={{ y: ["-20%", "120%"] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+      />
+
+      {/* ================= GLOW ORBS ================= */}
+      <motion.div
+        className="absolute w-[450px] h-[450px] bg-sky-500/10 rounded-full blur-[140px]"
+        animate={{ x: [0, 60, -60, 0], y: [0, -40, 40, 0] }}
+        transition={{ duration: 10, repeat: Infinity }}
+      />
+
+      {/* ================= GLITCH TITLE ================= */}
+  <motion.h1
+ className="text-[7rem] font-black tracking-widest drop-shadow-[0_0_35px_#38bdf8]" animate={{
+    textShadow: [
+      "0 0 10px #38bdf8",
+      "0 0 25px #38bdf8",
+      "0 0 10px #38bdf8",
+    ],
+  }}
+  transition={{ duration: 2, repeat: Infinity }}
+>
+  {typedTitle}
+  <span className="ml-2 animate-pulse">█</span>
+</motion.h1>
+
+      {/* ================= PARAGRAPH ================= */}
+      <p className="mt-6 text-center text-sky-200 text-lg md:text-xl max-w-md">
+        {typedPara.split("").map((char, i) => (
+          <motion.span
+            key={i}
+            initial={{ opacity: 0, filter: "blur(6px)" }}
+            animate={{ opacity: 1, filter: "blur(0px)" }}
+            transition={{ delay: i * 0.01, duration: 0.2 }}
+          >
+            {char}
+          </motion.span>
+        ))}
       </p>
 
-{/* BUTTON */}
-{showButton && (
-  <button
-    onClick={handleButtonClick}
-    className="
-      mt-6 sm:mt-10 px-6 py-3
+      {/* ================= BUTTON ================= */}
+   {/* ================= BUTTON ================= */}
+<AnimatePresence>
+  {showButton && (
+    <motion.div className="absolute bottom-10 left-1/2 -translate-x-1/2">
+      <motion.button
+        onClick={onFinish}
+        initial={{ opacity: 0, scale: 0.6 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0 }}
+        whileHover={{
+          scale: 1.1,
+          boxShadow: "0 0 40px rgba(56,189,248,0.9)",
+        }}
+        whileTap={{ scale: 0.95 }}
+        className="
+          px-6 py-3
+          border border-sky-400/40
+          bg-sky-500/10
+          text-sky-300
+          tracking-widest
+          backdrop-blur-md
+          relative overflow-hidden
+        "
+      >
+        {/* glass shine */}
+        <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-120%] animate-[slide_2s_linear_infinite]" />
 
-      relative overflow-hidden group
+        CONNECT:443
+      </motion.button>
+    </motion.div>
+  )}
+</AnimatePresence>
 
-      border border-sky-400/40
-
-      bg-sky-500/10 backdrop-blur-md
-
-      text-sky-300
-
-      font-mono tracking-widest
-
-      transition-all duration-500 ease-out
-
-      hover:scale-110
-      hover:border-sky-300/80
-      hover:shadow-[0_0_35px_rgba(56,189,248,0.7)]
-    "
-  >
-    {/* glass glow layer */}
-    <span className="
-      absolute inset-0
-      bg-gradient-to-br from-sky-500/10 via-white/5 to-sky-500/10
-      opacity-60
-    " />
-
-    {/* moving shine */}
-    <span className="
-      absolute inset-0
-      -translate-x-full
-      bg-gradient-to-r from-transparent via-white/20 to-transparent
-      group-hover:translate-x-full
-      transition-transform duration-700
-    " />
-
-    {/* text */}
-    <span className="relative z-10 animate-pulse">
-      CONNECT:443
-    </span>
-
-  </button>
-)}
-  
+      {/* animation */}
+      <style>{`
+        @keyframes slide {
+          0% { transform: translateX(-120%); }
+          100% { transform: translateX(120%); }
+        }
+      `}</style>
     </div>
   );
 };

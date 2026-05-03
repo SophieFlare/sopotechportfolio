@@ -1,111 +1,107 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import { commands } from "./commands";
+import HelpWindow from "./HelpWindow";
 
-export default function SoposTerminal({ onClose }) {
+const Terminal = () => {
+  const [helpOpen, setHelpOpen] = useState(false);
   const [input, setInput] = useState("");
-  const [output, setOutput] = useState([
-    "> SOPØ TERMINAL v1.0",
-    "> system ready...",
-    "> type HELP"
+
+  const [history, setHistory] = useState([
+    "PowerShell v3.0 [CYBER MODE]",
+    "Type 'help' for commands",
+    "",
   ]);
 
-  // ENTER key handling (fixed dependency bug)
-  useEffect(() => {
-    const handleKey = (e) => {
-      if (e.key === "Enter") {
-        runCommand();
-      }
-    };
+  const bottomRef = useRef(null);
 
-    window.addEventListener("keydown", handleKey);
-    return () => window.removeEventListener("keydown", handleKey);
-  }, [input]);
+  // auto scroll
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [history]);
 
   const runCommand = () => {
-    let res = "";
+    const cmd = input.toLowerCase().trim();
 
-    switch (input.toLowerCase()) {
-      case "help":
-        res = "commands: about / skills / clear / exit";
-        break;
+    if (!cmd) return;
 
-      case "about":
-        res = "SOPØ is a system explorer & tech learner.";
-        break;
-
-      case "skills":
-        res = "Windows, Linux, Networking, CLI, Hardware";
-        break;
-
-      case "clear":
-        setOutput([]);
-        setInput("");
-        return;
-
-      case "exit":
-        handleClose();
-        return;
-
-      default:
-        res = "command not found";
+    if (cmd === "clear") {
+      setHistory([]);
+      setInput("");
+      return;
     }
 
-    setOutput((p) => [...p, "> " + input, res]);
-    setInput("");
-  };
+    const output =
+      commands[cmd] || `ERROR: Command not found → ${cmd}`;
 
-  // ✅ SAFE CLOSE FUNCTION (IMPORTANT FIX)
-  const handleClose = () => {
+    setHistory((prev) => [
+      ...prev,
+      `PS C:\\SYSTEM> ${cmd}`,
+      output,
+      "",
+    ]);
+
     setInput("");
-    onClose?.(); // this actually closes parent state
   };
 
   return (
-    <div className="
-      fixed inset-0 bg-black/70 backdrop-blur-sm
-      flex items-center justify-center
-      z-[99999]
-    ">
+    <div className="w-full h-full bg-black text-sky-400 font-mono flex flex-col p-3 relative">
 
-      <div className="
-        w-[600px] h-[400px]
-        bg-black
-        border border-sky-400/40
-        shadow-[0_0_25px_#38bdf8]
-        flex flex-col
-        font-mono
-      ">
+      {/* ================= HEADER ================= */}
+      <div className="flex justify-between items-center text-[10px] tracking-[0.3em] text-sky-300 border-b border-sky-400/20 pb-2 mb-2">
 
-        {/* HEADER */}
-        <div className="flex justify-between p-2 border-b border-sky-400/30 text-sky-400 text-xs">
-          <span>SOPO TERMINAL</span>
+        <span>POWERSHELL // CYBER TERMINAL</span>
 
-          {/* ✅ FIXED CLOSE BUTTON */}
-          <button
-            onClick={handleClose}
-            className="hover:text-white transition"
-          >
-            ✕
-          </button>
-        </div>
-
-        {/* OUTPUT */}
-        <div className="flex-1 p-3 text-sky-300 overflow-y-auto text-sm">
-          {output.map((line, i) => (
-            <div key={i}>{line}</div>
-          ))}
-        </div>
-
-        {/* INPUT */}
-        <div className="border-t border-sky-400/30 p-2 flex">
-          <span className="text-sky-400 mr-2">&gt;</span>
-          <input
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            className="flex-1 bg-transparent outline-none text-white"
-          />
-        </div>
+        {/* HELP BUTTON */}
+        <button
+          onClick={() => setHelpOpen(true)}
+          className="text-sky-300 hover:text-white text-xs transition"
+        >
+          ?
+        </button>
 
       </div>
+
+      {/* ================= OUTPUT ================= */}
+      <div className="flex-1 overflow-y-auto text-sm space-y-1 pr-1">
+
+        {history.map((line, i) => (
+          <pre key={i} className="whitespace-pre-wrap leading-5">
+            {line}
+          </pre>
+        ))}
+
+        <div ref={bottomRef} />
+      </div>
+
+      {/* ================= INPUT ================= */}
+      <div className="flex items-center gap-2 border-t border-sky-400/20 pt-2">
+
+        <span className="text-sky-300">PS&gt;</span>
+
+        <input
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && runCommand()}
+          className="flex-1 bg-transparent outline-none text-sky-200"
+          placeholder="enter command..."
+        />
+
+        <button
+          onClick={runCommand}
+          className="px-3 py-1 border border-sky-400/40 hover:bg-sky-400/10 text-xs"
+        >
+          RUN
+        </button>
+
+      </div>
+
+      {/* ================= HELP WINDOW ================= */}
+      {helpOpen && (
+        <HelpWindow onClose={() => setHelpOpen(false)} />
+      )}
+
     </div>
   );
-}
+};
+
+export default Terminal;

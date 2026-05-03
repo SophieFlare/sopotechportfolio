@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { FaServer, FaWifi, FaNetworkWired } from "react-icons/fa";
 import { MdLan } from "react-icons/md";
 
 const nodes = [
   { id: "CORE", type: "core", x: 50, y: 15 },
-
   { id: "ROUTER-1", type: "router", x: 30, y: 40 },
   { id: "ROUTER-2", type: "router", x: 70, y: 40 },
-
   { id: "LAN-A", type: "lan", x: 20, y: 70 },
   { id: "LAN-B", type: "lan", x: 40, y: 70 },
   { id: "LAN-C", type: "lan", x: 60, y: 70 },
   { id: "LAN-D", type: "lan", x: 80, y: 70 },
-
   { id: "WIFI-1", type: "wifi", x: 10, y: 90 },
   { id: "WIFI-2", type: "wifi", x: 90, y: 90 },
 ];
@@ -39,15 +37,17 @@ const NetworkMap = () => {
   const [activeNode, setActiveNode] = useState(null);
   const [packets, setPackets] = useState([]);
 
+  // node glow activity
   useEffect(() => {
     const interval = setInterval(() => {
       const rand = nodes[Math.floor(Math.random() * nodes.length)];
       setActiveNode(rand.id);
-    }, 700);
+    }, 800);
 
     return () => clearInterval(interval);
   }, []);
 
+  // packet generator
   useEffect(() => {
     const interval = setInterval(() => {
       const [from, to] =
@@ -68,6 +68,7 @@ const NetworkMap = () => {
     return () => clearInterval(interval);
   }, []);
 
+  // packet movement
   useEffect(() => {
     const interval = setInterval(() => {
       setPackets((prev) =>
@@ -83,27 +84,56 @@ const NetworkMap = () => {
   const getNode = (id) => nodes.find((n) => n.id === id);
 
   return (
-    <div className="absolute inset-0 overflow-hidden bg-transparent pointer-events-none">
+    <motion.div
+      className="absolute inset-0 overflow-hidden bg-transparent pointer-events-none"
+      initial={{
+        opacity: 0,
+        scale: 1.05,
+        filter: "blur(10px)",
+      }}
+      animate={{
+        opacity: 1,
+        scale: 1,
+        filter: "blur(0px)",
+      }}
+      transition={{
+        duration: 1.4,
+        ease: "easeOut",
+      }}
+    >
+      {/* FLASH OVERLAY */}
+      <motion.div
+        className="absolute inset-0 bg-white/5 z-20"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: [0, 0.15, 0] }}
+        transition={{ duration: 1.2 }}
+      />
 
       {/* ===================== */}
-      {/* 🔵 BIG CENTER LOGO */}
+      {/* BIG LOGO */}
       {/* ===================== */}
-      <div className="absolute inset-0 flex items-center justify-center z-0 pointer-events-none">
+<motion.div
+  className="absolute inset-0 flex items-center justify-center z-0 pointer-events-none"
+  initial={{ opacity: 0, scale: 0.7, y: 0 }}
+  animate={{ opacity: 1, scale:  0.9, y: -30 }}
+  transition={{ duration: 1.2 }}
+>
         <img
           src="/silknet_logoo.png"
           alt="logo"
-          className="
-            w-[55%] h-[55%]
-            object-contain
-           
-          "
+          className="w-[55%] h-[55%] object-contain"
         />
-      </div>
+      </motion.div>
 
       {/* ===================== */}
       {/* CONNECTIONS */}
       {/* ===================== */}
-      <svg className="absolute inset-0 w-full h-full z-10">
+      <motion.svg
+        className="absolute inset-0 w-full h-full z-10"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.4, duration: 1 }}
+      >
         {connections.map(([a, b], i) => {
           const n1 = getNode(a);
           const n2 = getNode(b);
@@ -141,22 +171,28 @@ const NetworkMap = () => {
             />
           );
         })}
-      </svg>
+      </motion.svg>
 
       {/* ===================== */}
       {/* NODES */}
       {/* ===================== */}
-      {nodes.map((node) => {
+      {nodes.map((node, i) => {
         const Icon = iconMap[node.type];
 
         return (
-          <div
+          <motion.div
             key={node.id}
             className="absolute flex items-center justify-center z-30"
             style={{
-              top: `${node.y}%`,
-              left: `${node.x}%`,
+             top: `calc(${node.y}% - 4%)`,
+              left: `calc(${node.x}% - 2%)`,
               transform: "translate(-50%, -50%)",
+            }}
+            initial={{ opacity: 0, scale: 0.3 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{
+              duration: 0.5,
+              delay: 0.5,
             }}
           >
             <div
@@ -176,14 +212,12 @@ const NetworkMap = () => {
               `}
             >
               <Icon size={18} />
-              <span className="text-[8px] mt-[2px] text-center">
-                {node.id}
-              </span>
+              <span className="text-[8px] mt-[2px]">{node.id}</span>
             </div>
-          </div>
+          </motion.div>
         );
       })}
-    </div>
+    </motion.div>
   );
 };
 

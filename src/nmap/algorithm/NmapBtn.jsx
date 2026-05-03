@@ -1,32 +1,68 @@
 import React from "react";
 
 const NmapBtn = ({ onOpen }) => {
+  const neon = "#ff0033";
+
   return (
-<div className="fixed items-center justify-center z-50 font-mono drop-shadow-[0_0_15px_rgba(255,0,0,0.4)]"> 
+    <div className="fixed inset-0 flex flex-col items-center justify-center z-50 font-mono">
+
+      {/* BACKGROUND GLOW AURA */}
+      <div
+        className="absolute w-[340px] h-[340px] blur-3xl rounded-full animate-pulse"
+        style={{ backgroundColor: `${neon}1a` }}
+      />
+
+      {/* MAIN BUTTON WRAPPER */}
       <button
         onClick={onOpen}
         className="
-          px-10 py-5
-          text-lg
-          border-2 border-red-500
-          text-red-400
-          tracking-[0.3em]
-          uppercase
-          
+          relative px-16 py-7
+          text-xl tracking-[0.4em] uppercase font-bold
+          bg-black/80
 
-          hover:scale-110
-          hover:shadow-[0_0_30px_rgba(255,0,0,0.9)]
+          border-2
           transition-all duration-200
 
-          animate-pulse
-          bg-black/40
+          hover:scale-110 active:scale-95
+          overflow-hidden
         "
+        style={{
+          color: neon,
+          borderColor: neon,
+          boxShadow: `0 0 25px ${neon}66`,
+        }}
       >
-        Nmap
+        {/* SCANLINE EFFECT */}
+        <span
+          className="absolute inset-0 animate-pulse"
+          style={{
+            background: `linear-gradient(
+              to bottom,
+              transparent,
+              ${neon}1a,
+              transparent
+            )`,
+          }}
+        />
+
+        {/* TEXT */}
+        START NMAP SIMULATION
       </button>
 
-      <div className="text-[11px] text-red-500 mt-2 opacity-70 text-center tracking-widest">
-        SYSTEM FLOW MATRIX
+      {/* SUBTITLE */}
+      <div
+        className="mt-6 text-[12px] tracking-[0.5em] uppercase animate-pulse"
+        style={{ color: `${neon}aa` }}
+      >
+        ▓ Secure Network Exploration Game ▓
+      </div>
+
+      {/* SMALL HINT */}
+      <div
+        className="mt-2 text-[10px] tracking-widest"
+        style={{ color: `${neon}66` }}
+      >
+        Click to enter system environment
       </div>
 
     </div>

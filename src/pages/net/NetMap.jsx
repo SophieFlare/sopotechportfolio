@@ -97,7 +97,11 @@ const lines = [
         <motion.div
           key={node.id}
           className="absolute flex flex-col items-center"
-          style={{ left: node.x, top: node.y, transform: "translate(-40%, -40%)" }}
+          style={{
+  top: node.y,
+  left: node.x,
+  transform: "translate(-50%, -50%)"
+}}
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: i * 0.15 }}
