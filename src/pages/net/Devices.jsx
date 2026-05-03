@@ -80,10 +80,10 @@ const devices = [
 const learningImages = {
   hub: "/net/hubb.webp",
   router: "/net/routerrr.png",
-  gateway: "/net/gateway.png",
-  nic: "/net/nic.png",
+  gateway: "/net/gateway.gif",
+  nic: "/net/nic_98.jpg",
   modem: "/net/modemm.png",
-  repeater: "/net/repeater.png",
+  repeater: "/net/repeaterr.jpg",
   wap: "/net/wappp.jpg",
   firewall: "/net/firewalll.png",
   idps: "/net/idpss.png",
