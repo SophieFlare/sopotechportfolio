@@ -119,7 +119,7 @@ const NetworkMap = () => {
   transition={{ duration: 1.2 }}
 >
         <img
-          src="/silknet_logoo.png"
+          src="/silknetlogo.png"
           alt="logo"
           className="w-[55%] h-[55%] object-contain"
         />

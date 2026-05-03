@@ -10,12 +10,12 @@ const nodes = [
     info: "Traffic Distribution | Routes Data Between Networks",
   },
   {
-    img: "/assets/net/silknet_logoo.png",
+    img: "/assets/net/ssssss.png",
     label: "ISP_NETWORK",
     info: "Internet Service Provider | Connects Backbone to Local Areas",
   },
   {
-    img: "/assets/net/router.png",
+    img: "/assets/net/aaa.webp",
     label: "LOCAL_ROUTER / SWITCH",
     info: "LAN Gateway | Directs Traffic Inside Local Network",
   },
@@ -35,7 +35,7 @@ const nodes = [
     info: "Distributed Internet Systems | Redundant Routing Worldwide",
   },
   {
-    img: "/assets/net/cat.gif",
+    img: "/assets/net/intr.png",
     label: "USER_INTERFACE",
     info: "Final Output | Data Rendered in Browser / App",
   },

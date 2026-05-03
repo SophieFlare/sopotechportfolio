@@ -104,7 +104,7 @@ export default function Intro({ open, onClose }) {
             {/* BODY (TYPEWRITER) */}
             <div className="p-5 space-y-3 text-sm">
 
-              <div className="text-green-400 uppercase">● Incoming connection from  91.151.128.151
+              <div className="text-green-400 uppercase"> ● CLIENT CONNECTED :: 91.151.128.151
  </div>
 
               <div className="text-white/80">

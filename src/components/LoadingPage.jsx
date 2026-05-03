@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import GlitchText from "./atoms/GlitchText";
 
 const LoadingPage = ({ onFinish }) => {
   const fullText = "HELLO_WORLD";
@@ -65,7 +66,9 @@ const LoadingPage = ({ onFinish }) => {
   }}
   transition={{ duration: 2, repeat: Infinity }}
 >
+  <GlitchText speed={200}>
   {typedTitle}
+</GlitchText>
   <span className="ml-2 animate-pulse">█</span>
 </motion.h1>
 
@@ -88,31 +91,67 @@ const LoadingPage = ({ onFinish }) => {
 <AnimatePresence>
   {showButton && (
     <motion.div className="absolute bottom-10 left-1/2 -translate-x-1/2">
-      <motion.button
-        onClick={onFinish}
-        initial={{ opacity: 0, scale: 0.6 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0 }}
-        whileHover={{
-          scale: 1.1,
-          boxShadow: "0 0 40px rgba(56,189,248,0.9)",
-        }}
-        whileTap={{ scale: 0.95 }}
-        className="
-          px-6 py-3
-          border border-sky-400/40
-          bg-sky-500/10
-          text-sky-300
-          tracking-widest
-          backdrop-blur-md
-          relative overflow-hidden
-        "
-      >
-        {/* glass shine */}
-        <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-120%] animate-[slide_2s_linear_infinite]" />
+     <motion.button
+  onClick={onFinish}
+  initial={{ opacity: 0, scale: 0.6 }}
+  animate={{ opacity: 1, scale: 1 }}
+  exit={{ opacity: 0 }}
+  whileHover={{
+    scale: 1.05,
+  }}
+  whileTap={{ scale: 0.95 }}
+className="
+  relative px-10 py-5
 
-        CONNECT:443
-      </motion.button>
+  text-white uppercase tracking-[0.3em] text-base md:text-lg
+
+  bg-white/5 backdrop-blur-md
+
+  border border-sky-400/40
+
+  shadow-[0_0_20px_rgba(56,189,248,0.25)]
+
+  hover:shadow-[0_0_35px_rgba(56,189,248,0.6)]
+  hover:border-sky-300/70
+
+  transition-all duration-300
+
+  overflow-hidden
+  group
+"
+  
+>
+  {/* glass inner glow */}
+  <span className="absolute inset-0 bg-gradient-to-r from-sky-500/10 via-white/5 to-sky-500/10 opacity-60" />
+
+  {/* moving shine */}
+  <span
+    className="
+      absolute inset-0
+      -translate-x-full
+      bg-gradient-to-r from-transparent via-white/30 to-transparent
+      group-hover:translate-x-full
+      transition-transform duration-700
+    "
+  />
+
+  {/* border glow pulse */}
+  <span
+    className="
+      absolute inset-0 border border-sky-400/30
+      shadow-[inset_0_0_12px_rgba(56,189,248,0.2)]
+    "
+  />
+
+  {/* TEXT */}
+  <span className="relative z-10">
+    CONNECT:443
+  </span>
+
+  {/* corner accents */}
+  <span className="absolute top-1 left-2 w-2 h-2 bg-sky-400/70 rotate-45" />
+  <span className="absolute bottom-1 right-2 w-2 h-2 bg-sky-400/70 rotate-45" />
+</motion.button>
     </motion.div>
   )}
 </AnimatePresence>

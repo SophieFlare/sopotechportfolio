@@ -132,7 +132,7 @@ const WindowsBar = () => {
           )}
         </div>
 
-         SPACER 
+     
         <div className="flex-1" />
 
         {/* RIGHT SIDE */}
