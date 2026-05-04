@@ -1,24 +1,54 @@
 import React from "react";
 
-const SidePanel = ({ onOpen }) => {
+const SidePanel = ({ isOpen, onClose, onOpenSection }) => {
   return (
-    <div className="fixed right-0 top-0 h-full w-20 bg-black/80 border-l border-sky-400/20 backdrop-blur-md z-[9998] flex flex-col items-center pt-20 gap-4">
+    <div
+      className={`fixed top-0 right-0 h-full w-[260px] bg-black border-l border-sky-400/30 
+      transform transition-transform duration-300 z-[9998]
+      ${isOpen ? "translate-x-0" : "translate-x-full"}`}
+    >
+      {/* HEADER */}
+      <div className="p-4 border-b border-sky-400/20 flex justify-between items-center">
+        <span className="tracking-widest text-sky-300">SidePanel</span>
+        <button onClick={onClose}>✕</button>
+      </div>
 
-      <PanelButton label="LAB" onClick={() => onOpen("lab")} />
-      <PanelButton label="OSI" onClick={() => onOpen("models")} />
-      <PanelButton label="PRT" onClick={() => onOpen("protocol")} />
+      {/* CONTENT */}
+      <div className="p-4 flex flex-col gap-3 text-sm">
 
+        <button
+          onClick={() => {
+            onOpenSection("netcorelab");
+            onClose();
+          }}
+          className="border border-white/20 px-3 py-2 hover:border-sky-400"
+        >
+          Core Lab
+        </button>
+
+        <button
+          onClick={() => {
+            onOpenSection("models");
+            onClose();
+          }}
+          className="border border-white/20 px-3 py-2 hover:border-sky-400"
+        >
+          OSI / TCP Models
+        </button>
+
+        <button
+          onClick={() => {
+            onOpenSection("protocol");
+            onClose();
+          }}
+          className="border border-white/20 px-3 py-2 hover:border-sky-400"
+        >
+          Protocols
+        </button>
+
+      </div>
     </div>
   );
 };
-
-const PanelButton = ({ label, onClick }) => (
-  <button
-    onClick={onClick}
-    className="w-14 h-14 border border-sky-400/30 text-xs text-sky-300 hover:bg-sky-400/10 transition"
-  >
-    {label}
-  </button>
-);
 
 export default SidePanel;

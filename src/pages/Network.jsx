@@ -13,36 +13,45 @@ export default function Network() {
   const closePanel = () => setActivePanel(null);
 
   return (
-    <div className="w-full min-h-screen bg-black relative overflow-x-hidden">
+    <div className="w-full min-h-screen bg-black text-white relative overflow-x-hidden">
 
-      {/* WINDOWS BAR (PASS HANDLER) */}
+      {/* TASKBAR (ALWAYS TOP LAYER) */}
       <WindowsBar onOpenPanel={setActivePanel} />
 
-      {/* BASE CONTENT */}
-      <div className="relative w-full min-h-screen">
-        <NetMap />
-        <Devices />
-      </div>
+      {/* ================= SCENE SECTION ================= */}
+      <section className="relative w-full h-screen z-0">
+        
+        {/* BACKGROUND NETWORK SCENE */}
+    <div className="absolute inset-0 z-0">
+  <NetMap />
+  <Devices />
+</div>
 
-      {/* OVERLAY */}
-      {activePanel && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-md z-[9999] flex items-center justify-center">
+      </section>
 
+
+
+      {/* ================= OVERLAY PANELS ================= */}
+  {activePanel && (
+  <div className="fixed inset-0 bg-black/80 backdrop-blur-md z-[99999] flex items-center justify-center">
+          {/* CLOSE BUTTON */}
           <button
             onClick={closePanel}
-            className="absolute top-6 right-6 text-white text-xl"
+            className="absolute top-6 right-6 text-white text-xl z-[9001]"
           >
             ✕
           </button>
 
+          {/* CONTENT */}
           <div className="w-full h-full overflow-auto">
-            {activePanel === "lab" && <NetCoreLab />}
+            {activePanel === "netcorelab" && <NetCoreLab />}
             {activePanel === "models" && <NetModelss />}
             {activePanel === "protocol" && <Protocol />}
           </div>
 
         </div>
       )}
+
     </div>
   );
 }
