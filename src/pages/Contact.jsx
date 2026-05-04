@@ -39,11 +39,11 @@ const Contact = () => {
           </div>
 
           {/* ANIMATED TITLE */}
-          <div className="absolute top-8 left-1/2 -translate-x-1/2 z-20 text-center font-mono">
+          <div className="absolute top-8 left-1/2 -translate-x-1/2 z-20 text-center font-geo">
 
             {/* LINE 1 */}
             <motion.p
-              className="text-[#54c2e3] text-4xl font-bold tracking-[0.05em] uppercase leading-none"
+              className="text-sky-400 text-4xl font-bold tracking-[0.05em] uppercase leading-none"
               variants={container}
               initial="hidden"
               animate="show"
@@ -57,7 +57,7 @@ const Contact = () => {
 
             {/* LINE 2 */}
             <motion.p
-              className="text-[#54c2e3] text-4xl font-bold tracking-[0.05em] uppercase mt-2 leading-none"
+              className="text-sky-400] text-4xl font-bold tracking-[0.05em] uppercase mt-2 leading-none"
               variants={container}
               initial="hidden"
               animate="show"

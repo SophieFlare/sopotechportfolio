@@ -26,8 +26,7 @@ export default function App() {
 
   return (
     <>
-      {/* always active scroll reset */}
-      <ScrollToTop />
+
 
       {!loadingDone ? (
         <LoadingPage onFinish={() => setLoadingDone(true)} />
