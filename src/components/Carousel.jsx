@@ -38,7 +38,7 @@ const Carousel = () => {
   ];
 
 return (
-  <div id="gallery" className="w-full min-h-[80vh] py-20 flex justify-center items-center overflow-hidden pt-[20%]">
+  <div id="gallery" className="w-full min-h-[80vh] py-20 flex justify-center items-center overflow-hidden pt-[35%]">
 
     <style>{`
       .banner {
