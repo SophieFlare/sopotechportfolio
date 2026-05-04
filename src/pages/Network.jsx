@@ -24,7 +24,11 @@ export default function Network() {
         {/* SECTION 1 - VISUAL MAP */}
         <section className="relative w-full h-screen">
           <NetMap />
+         
+        </section>
+           <section className="relative w-full h-screen">
           <TNet />
+         
         </section>
 
         {/* SECTION 2 - EXTRA SPACE (THIS CREATES SCROLL) */}
