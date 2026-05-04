@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import akamePfp from "/cv/ss.jpg";
+import akamePfp from "/sssss.jpg";
 import Scanner from "./ui/Scanner";
 
 import "../styles/intro.css";

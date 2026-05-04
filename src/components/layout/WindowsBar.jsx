@@ -13,7 +13,7 @@ import {
   MdComputer,
 } from "react-icons/md";
 import { GiButterfly } from "react-icons/gi";
-
+import { FiWifi } from "react-icons/fi";
 import FileExplorer from "../../pages/FileExplorer";
 import CMD from "./terminal/CMD";
 import NetworkPanel from "./NetworkPanel";
@@ -134,12 +134,13 @@ const WindowsBar = ({ onOpenPanel }) => {
 
         {/* RIGHT SIDE */}
         <div className="flex items-center gap-3 pr-3 text-xs">
-          <div
-            onClick={() => setNetworkOpen(!networkOpen)}
-            className="cursor-pointer px-2 py-1"
-          >
-            📶
-          </div>
+         <div
+  onClick={() => setNetworkOpen(!networkOpen)}
+  className="cursor-pointer px-2 py-1"
+>
+  <FiWifi className="text-sky-400 text-lg drop-shadow-[0_0_6px_#38bdf8]" />
+</div>
+     
 
           <div className="flex flex-col items-end">
             <span>{time}</span>
@@ -151,8 +152,7 @@ const WindowsBar = ({ onOpenPanel }) => {
       {/* START MENU */}
    {/* START MENU */}
 {startOpen && (
-  <div className={`absolute bottom-12 left-0 w-52 bg-black border ${theme.borderSoft} shadow-[0_0_25px_rgba(56,189,248,0.15)] z-[10000] uppercase font-mono`}>
-
+ <div className={`fixed bottom-12 left-0 w-52 bg-black border ${theme.borderSoft} shadow-[0_0_25px_rgba(56,189,248,0.15)] z-[10000] uppercase font-mono`}>
     {/* HEADER */}
     <div className="p-2 border-b border-sky-400/30 text-xs opacity-70 tracking-widest">
       SYSTEM MENU
@@ -202,7 +202,10 @@ const WindowsBar = ({ onOpenPanel }) => {
         <div className={`fixed bottom-12 left-0 w-[420px] h-[520px] bg-black border ${theme.borderSoft} z-[10000]`}>
           <div className="p-2 border-b flex justify-between">
             <span>SEARCH</span>
-            <button onClick={() => setSearchOpen(false)}>✕</button>
+            <button onClick={() => {
+  setSearchOpen(false);
+  setActiveWindow(null);
+}}>✕</button>
           </div>
 
           <div className="p-3 space-y-2">
