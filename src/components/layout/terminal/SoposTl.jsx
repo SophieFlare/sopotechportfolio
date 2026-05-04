@@ -5,7 +5,7 @@ const MAX_LINES = 12;
 const SoposTl = () => {
   const [logs, setLogs] = useState([
     { type: "sys", msg: "SOPOS NODE BOOT SEQUENCE INITIATED" },
-    { type: "sys", msg: "KERNEL STATUS: STABLE" },
+    { type: "sys", msg: "SYSTEM STATUS: STABLE" },
     { type: "net", msg: "LISTENING ON 0.0.0.0:443 (TLS ENABLED)" },
   ]);
 
@@ -38,43 +38,52 @@ const SoposTl = () => {
         });
 
         i++;
-
         if (i < stream.length) {
-          setTimeout(pushLine, 600);
+          setTimeout(pushLine, 500);
         }
       };
 
       pushLine();
-    }, 4000);
+    }, 3500);
 
     return () => clearInterval(interval);
   }, []);
 
   const color = (type) => {
-    if (type === "net") return "text-blue-400";
+    if (type === "net") return "text-sky-300";
     if (type === "ok") return "text-gray-300";
-    return "text-white";
+    return "text-gray-100";
   };
 
   return (
-    <div className="w-full h-full flex items-center justify-center ">
+    <div className="w-full h-full flex items-center justify-center bg-black">
 
       {/* WINDOW */}
-      <div className="w-[90%] max-w-[520px] h-[75%] 
-        border border-blue-300/40 
-        shadow-[0_0_30px_rgba(59,130,246,0.25)] 
-        flex flex-col font-mono 
-        text-white bg-gray-900/40 backdrop-blur-md 
-        overflow-hidden rounded-md">
+      <div className="
+        w-[90%] max-w-[520px] h-[75%]
+        bg-black/60 backdrop-blur-md
+        border border-sky-400/30
+        shadow-[0_0_40px_rgba(56,189,248,0.15)]
+        flex flex-col font-mono text-white
+        overflow-hidden rounded-md
+      ">
 
         {/* HEADER */}
-        <div className="h-10 flex items-center justify-between px-4 
-          border-b border-gray-500/30 text-xs tracking-widest text-gray-200">
-          <span>root@sopos-node:~/listener</span>
-          <span className="text-blue-300 animate-pulse">● LIVE CONNECTION</span>
+        <div className="
+          h-10 flex items-center justify-between px-4
+          border-b border-sky-400/20
+          text-xs tracking-widest text-gray-300
+        ">
+          <span className="text-gray-300">
+            root@kali:~/sopos-node
+          </span>
+
+          <span className="text-sky-400 animate-pulse">
+            ● LIVE CONNECTION
+          </span>
         </div>
 
-        {/* TERMINAL BODY */}
+        {/* BODY */}
         <div className="flex-1 p-3 flex flex-col justify-end gap-1 overflow-hidden">
 
           {logs.filter(Boolean).map((l, i) => {
@@ -83,27 +92,37 @@ const SoposTl = () => {
             return (
               <div
                 key={i}
-                style={{ opacity: fade < 0.4 ? 0.4 : fade }}
+                style={{ opacity: fade < 0.35 ? 0.35 : fade }}
                 className={`${color(l.type)} flex gap-3 text-sm transition-all`}
               >
-                <span className="opacity-40 w-[80px] text-gray-400">
+                <span className="opacity-40 w-[85px] text-gray-400">
                   [{getTime()}]
                 </span>
 
-                <span className="text-gray-300">node@kernel:~#</span>
+                <span className="text-gray-300">
+                  node@kali:~#
+                </span>
 
-                <span className="opacity-90">{l.msg}</span>
+                <span className="opacity-90 text-gray-100">
+                  {l.msg}
+                </span>
               </div>
             );
           })}
 
           {/* CURSOR */}
-          <div className="text-blue-300 animate-pulse">█</div>
+          <div className="text-sky-400 animate-pulse mt-1">
+            █
+          </div>
         </div>
 
         {/* FOOTER */}
-        <div className="h-8 border-t border-gray-500/30 px-3 flex items-center text-[10px] text-gray-300">
-          TLS ACTIVE • PACKET FILTER ON • INTRUSION MONITORING ENABLED
+        <div className="
+          h-8 border-t border-sky-400/20
+          px-3 flex items-center text-[10px]
+          text-gray-400 tracking-widest
+        ">
+          TLS 1.3 • PACKET FILTER ACTIVE • MONITOR MODE ENABLED
         </div>
 
       </div>

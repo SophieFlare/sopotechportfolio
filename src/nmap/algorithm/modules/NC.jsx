@@ -45,7 +45,7 @@ const NC = ({ onClose, onComplete  }) => {
 
         {/* HEADER */}
         <div className="text-xs mb-4 flex justify-between text-purple-300 tracking-widest">
-          <span>NETCAT://QUANTUM CORE ACCESS</span>
+          <span>SOPO://QUANTUM CORE ACCESS</span>
           <span className="animate-pulse text-purple-400">● LIVE</span>
         </div>
 

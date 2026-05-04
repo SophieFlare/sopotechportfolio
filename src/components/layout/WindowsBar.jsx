@@ -149,19 +149,53 @@ const WindowsBar = ({ onOpenPanel }) => {
       </div>
 
       {/* START MENU */}
-      {startOpen && (
-        <div className={`absolute bottom-12 left-0 w-52 bg-black border ${theme.borderSoft} z-[10000]`}>
-          <div className="p-2 border-b opacity-70 text-xs">SYSTEM MENU</div>
+   {/* START MENU */}
+{startOpen && (
+  <div className={`absolute bottom-12 left-0 w-52 bg-black border ${theme.borderSoft} shadow-[0_0_25px_rgba(56,189,248,0.15)] z-[10000] uppercase font-mono`}>
 
-          <div className="flex flex-col text-sm uppercase">
-            <Link to="/" className={`px-3 py-2 ${theme.hoverBg}`}>Home</Link>
-            <Link to="/pages/network" className={`px-3 py-2 ${theme.hoverBg}`}>Network</Link>
-            <Link to="/pages/desktop" className={`px-3 py-2 ${theme.hoverBg}`}>Desktop</Link>
-           <Link to="/pages/contact" className={`px-3 py-2 ${theme.hoverBg}`}>Contact</Link>
-           
-          </div>
-        </div>
-      )}
+    {/* HEADER */}
+    <div className="p-2 border-b border-sky-400/30 text-xs opacity-70 tracking-widest">
+      SYSTEM MENU
+    </div>
+
+    {/* ITEMS */}
+    <div className="flex flex-col text-sm">
+
+      <Link
+        to="/"
+        className={`px-3 py-2 flex items-center gap-2 ${theme.hoverBg} transition`}
+      >
+        <FaHome className="text-sky-400" />
+        Home
+      </Link>
+
+      <Link
+        to="/pages/network"
+        className={`px-3 py-2 flex items-center gap-2 ${theme.hoverBg} transition`}
+      >
+        <FaNetworkWired className="text-sky-400" />
+        Network
+      </Link>
+
+      <Link
+        to="/pages/desktop"
+        className={`px-3 py-2 flex items-center gap-2 ${theme.hoverBg} transition`}
+      >
+        <MdOutlineDesktopWindows className="text-sky-400" />
+        Desktop
+      </Link>
+
+      <Link
+        to="/pages/contact"
+        className={`px-3 py-2 flex items-center gap-2 ${theme.hoverBg} transition`}
+      >
+        <FaEnvelope className="text-sky-400" />
+        Contact
+      </Link>
+
+    </div>
+  </div>
+)}
 
       {/* SEARCH */}
       {searchOpen && (

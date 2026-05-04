@@ -31,12 +31,7 @@ export default function Network() {
          
         </section>
 
-        {/* SECTION 2 - EXTRA SPACE (THIS CREATES SCROLL) */}
-        <section className="relative w-full min-h-screen bg-black border-t border-sky-400/10">
-          <div className="w-full h-full flex items-center justify-center text-sky-400 opacity-40">
-            NETWORK LAB CONTINUES BELOW...
-          </div>
-        </section>
+    
 
       </div>
 
