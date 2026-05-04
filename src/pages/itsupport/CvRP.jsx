@@ -80,9 +80,9 @@ export default function CvRP() {
     about:
       " სალამი ★ მე ვარ სოფო  \n > ტექნოლოგიებზე შეყვარებული ადამიანი.\n > მიყვარს სისტემების დაშლა, პრობლემების დიაგნოსტიკა და ქსელების კვლევა ⚡︎",
     skills:
-      "• Windows OS (User & Basic Admin)\n• Linux (Basic CLI & Navigation)\n• Networking Basics (TCP/IP, OSI)\n• Command Line / Terminal\n• System Troubleshooting\n• Hardware Fundamentals",
+    "• Networking Fundamentals (TCP/IP, OSI Model)\n• Command Line (PowerShell, Bash)\n• System Troubleshooting\n• Hardware Fundamentals\n• Programming: JS, Python ",  
     experience:
-      "მაქვს გამოცდილება IT Support-ის პოზიციაზე კიბერ-სპორტ არენაში, სადაც ვუზრუნველყოფდი:  კომპიუტერის Hard|Soft-ware სისტემების & ინტერნეტის სტაბილურობას",
+      "მაქვს გამოცდილება IT Support-ის პოზიციაზე კიბერ-სპორტ არენაში, სადაც ვუზრუნველყოფდი:  კომპიუტერის Hard|Soft-ware სისტემების და ინტერნეტის სტაბილურობას",
     contact:
       "გაეცანით CV-ს\n > მეტი დეტალური ინფორმაციის სანახავად გახსენით File_Explorer",
   };

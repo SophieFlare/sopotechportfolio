@@ -1,191 +1,138 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import devices from "./deviceData";
 
 const Devices = () => {
   const [index, setIndex] = useState(0);
-  const [learnMode, setLearnMode] = useState(false);
+  const [mode, setMode] = useState("idle");
 
-  const devices = [
-    {
-      key: "hub",
-      name: "📡 Hub",
-      label: "Signal Distributor",
-      learn: "Broadcasts data to all devices without filtering.",
-      img: "/net/hub.jpg",
-    },
-    {
-      key: "router",
-      name: "🔥 Router",
-      label: "LAN ↔ WAN Gateway",
-      learn: "Routes packets between different networks.",
-      img: "/net/routerr.png",
-    },
-    {
-      key: "gateway",
-      name: "🌐 Gateway",
-      label: "Protocol Bridge",
-      learn: "Translates between different network systems.",
-      img: "/net/gateway.gif",
-    },
-    {
-      key: "nic",
-      name: "📶 NIC",
-      label: "Network Interface",
-      learn: "Connects device to network.",
-      img: "/net/nic_98.jpg",
-    },
-    {
-      key: "modem",
-      name: "📡 Modem",
-      label: "Signal Converter",
-      learn: "Converts digital ↔ analog signals.",
-      img: "/net/modem.jpg",
-    },
-    {
-      key: "repeater",
-      name: "📡 Repeater",
-      label: "Signal Booster",
-      learn: "Extends network range.",
-      img: "/net/repeaterr.jpg",
-    },
-    {
-      key: "wap",
-      name: "📶 WAP",
-      label: "Wireless Access",
-      learn: "Provides WiFi connectivity.",
-      img: "/net/wap.jpg",
-    },
-    {
-      key: "firewall",
-      name: "🛡️ Firewall",
-      label: "Security Filter",
-      learn: "Blocks unauthorized traffic.",
-      img: "/net/firewall.jpg",
-    },
-    {
-      key: "idps",
-      name: "🔍 IDPS",
-      label: "Threat Detection",
-      learn: "Detects & prevents attacks.",
-      img: "/net/idps.jpg",
-    },
-    {
-      key: "vpn",
-      name: "🔐 VPN",
-      label: "Secure Tunnel",
-      learn: "Encrypts and hides traffic.",
-      img: "/net/vpn.png",
-    },
-  ];
+  const next = () => {
+    setMode("idle");
+    setIndex((p) => (p + 1) % devices.length);
+  };
 
-  const next = () => setIndex((prev) => (prev + 1) % devices.length);
-  const prev = () => setIndex((prev) => (prev - 1 + devices.length) % devices.length);
+  const prev = () => {
+    setMode("idle");
+    setIndex((p) => (p - 1 + devices.length) % devices.length);
+  };
 
-  return (
-    <div className="w-full h-screen bg-black text-sky-400 font-mono flex items-center justify-center">
+  const scanDevice = () => {
+    setMode("scanning");
+    setTimeout(() => setMode("analyzed"), 1200);
+  };
 
-      {/* MAIN CONTAINER */}
-      <div className="w-[90%] max-w-[1200px] h-[80vh] grid grid-cols-2 gap-10">
+  const device = devices[index];
 
-        {/* ================= LEFT — DEVICE ================= */}
-        <div className="flex flex-col items-center justify-center">
 
-          {/* DEVICE CARD */}
-          <motion.div
-            key={index}
-            className="w-[260px] h-[260px] border border-sky-400/40 rounded-xl 
-            flex items-center justify-center bg-black
-            shadow-[0_0_40px_#38bdf8]"
-            initial={{ opacity: 0, scale: 0.85 }}
-            animate={{ opacity: 1, scale: 1 }}
-          >
-            <img
-              src={devices[index].img}
-              alt={devices[index].name}
-              className="w-full h-full object-contain p-4"
-            />
-          </motion.div>
+return (
+  <div className="w-full h-full bg-black text-sky-400 font-mono flex">
+      {/* ================= LEFT PANEL ================= */}
+      <div className="w-full h-full border-r border-sky-400/20 p-8 flex flex-col justify-between">
 
-          {/* TITLE */}
-          <div className="mt-6 text-center">
-            <div className="text-xl tracking-widest">{devices[index].name}</div>
-            <div className="text-xs opacity-60">{devices[index].label}</div>
+        {/* HEADER */}
+        <div>
+          <div className="text-xs tracking-[0.3em] opacity-40">
+            NETWORK DEVICE TERMINAL
           </div>
 
-          {/* CONTROLS */}
-          <div className="mt-8 flex items-center gap-4">
+          <div className="mt-6 text-2xl tracking-widest">
+            {device.name}
+          </div>
 
+          <div className="text-sm opacity-60 mt-1">
+            {device.label}
+          </div>
+
+          {/* IMAGE */}
+          <motion.div
+            key={index}
+            className="mt-6 w-full h-[200px] flex items-center justify-center border border-sky-400/20"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          >
+            <img
+              src={device.img}
+              alt={device.name}
+              className="max-h-full object-contain"
+            />
+
+            {mode === "scanning" && (
+              <motion.div
+                className="absolute w-full h-[2px] bg-sky-400"
+                initial={{ y: "-100%" }}
+                animate={{ y: "100%" }}
+                transition={{ duration: 1, repeat: Infinity }}
+              />
+            )}
+          </motion.div>
+
+          {/* DESCRIPTION */}
+          <div className="mt-6 text-sm opacity-70">
+            {device.desc}
+          </div>
+        </div>
+
+        {/* STATUS + LEARNING */}
+        <div className="text-sm">
+
+          <div className="mb-3">
+            STATUS:{" "}
+            <span className="opacity-80">
+              {mode === "idle" && "IDLE"}
+              {mode === "scanning" && "SCANNING..."}
+              {mode === "analyzed" && "ANALYZED"}
+            </span>
+          </div>
+
+          {mode === "analyzed" && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="space-y-3"
+            >
+              <div className="text-xs opacity-80">
+                {device.learn}
+              </div>
+
+              <div className="text-xs opacity-40">
+                {device.extra}
+              </div>
+            </motion.div>
+          )}
+        </div>
+
+        {/* CONTROLS */}
+        <div className="flex flex-col gap-4 pb-10">
+
+          <div className="flex gap-3">
             <button
               onClick={prev}
-              className="px-3 py-2 border border-sky-400/40 hover:bg-sky-400/10"
+              className="flex-1 py-2 border border-sky-400/40 hover:bg-sky-400/10"
             >
-              ◀
-            </button>
-
-            <button
-              onClick={() => setLearnMode(!learnMode)}
-              className="px-5 py-2 border border-sky-400 shadow-[0_0_15px_#38bdf8] hover:bg-sky-400/10"
-            >
-              {learnMode ? "HIDE INFO" : "LEARN MODE"}
+              ◀ PREV
             </button>
 
             <button
               onClick={next}
-              className="px-3 py-2 border border-sky-400/40 hover:bg-sky-400/10"
+              className="flex-1 py-2 border border-sky-400/40 hover:bg-sky-400/10"
             >
-              ▶
+              NEXT ▶
             </button>
-
           </div>
-        </div>
 
-        {/* ================= RIGHT — INFO PANEL ================= */}
-        <div className="flex items-center justify-center">
-
-          <motion.div
-            key={index + "-" + learnMode}
-            className="w-full max-w-md h-full border border-sky-400/30 bg-black 
-            shadow-[0_0_30px_#38bdf8] flex flex-col"
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
+          <button
+            onClick={scanDevice}
+            className="py-3 border border-sky-400 shadow-[0_0_20px_#38bdf8] hover:bg-sky-400/10 tracking-widest"
           >
+            INITIATE SCAN
+          </button>
 
-            {/* HEADER */}
-            <div className="p-4 border-b border-sky-400/20 text-sm tracking-widest">
-              DEVICE ANALYSIS
-            </div>
-
-            {/* CONTENT */}
-            <div className="flex-1 p-6 flex flex-col justify-between">
-
-              {learnMode ? (
-                <>
-                  <div>
-                    <div className="text-lg mb-3">
-                      {devices[index].name}
-                    </div>
-
-                    <div className="text-sm opacity-80 leading-relaxed">
-                      {devices[index].learn}
-                    </div>
-                  </div>
-
-                  <div className="mt-6 text-xs opacity-40">
-                    STATUS: LEARNING MODE ACTIVE
-                  </div>
-                </>
-              ) : (
-                <div className="flex flex-col items-center justify-center h-full opacity-50 text-sm">
-                  ENABLE LEARN MODE TO VIEW DETAILS
-                </div>
-              )}
-
-            </div>
-
-          </motion.div>
         </div>
-
       </div>
+
+      {/* RIGHT SIDE (EMPTY FOR NOW) */}
+      <div className="w-[40%]" />
+
     </div>
   );
 };
