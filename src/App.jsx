@@ -7,22 +7,8 @@ import ScrollToTop from "./routes/ScrollToTop"; // ✅ FIXED IMPORT
 export default function App() {
   const [loadingDone, setLoadingDone] = useState(false);
 
-  useEffect(() => {
-    const lenis = new Lenis({
-      smooth: true,
-    });
+    new Lenis({ autoRaf: true });
 
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-
-    return () => {
-      lenis.destroy();
-    };
-  }, []);
 
   return (
     <>

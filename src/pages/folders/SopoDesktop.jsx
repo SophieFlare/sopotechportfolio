@@ -1,14 +1,30 @@
 import React, { useEffect, useState } from "react";
 
 const SopoDesktop = () => {
-  const [showMsg, setShowMsg] = useState(false);
+  const [messageIndex, setMessageIndex] = useState(0);
+
+  const messages = [
+    `➤ TCP Handshake Failed  
+SYN → ❌  
+ACK → ❌  
+Connection Timeout`,
+
+    `➤ Restart network`
+  ];
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowMsg(true);
-    }, 800); // delay for "boot effect"
+    const bootTimer = setTimeout(() => {
+      setMessageIndex(0);
+    }, 800);
 
-    return () => clearTimeout(timer);
+    const switchTimer = setTimeout(() => {
+      setMessageIndex(1);
+    }, 3000); // switch to 2nd message
+
+    return () => {
+      clearTimeout(bootTimer);
+      clearTimeout(switchTimer);
+    };
   }, []);
 
   return (
@@ -23,25 +39,18 @@ const SopoDesktop = () => {
         />
       </div>
 
-      {/* SOPØ MESSAGE BOX */}
-      {showMsg && (
-        <div className="absolute bottom-[44vh] right-[8%] z-30 font-mono">
-          
-          {/* speech bubble */}
-          <div className="relative bg-black border border-[#ff0033] text-[#ff0033] px-4 py-3 shadow-[0_0_20px_#ff0033] max-w-[260px] animate-pulse">
+      {/* MESSAGE BOX */}
+      <div className="absolute bottom-[44vh] right-[8%] z-30 font-mono">
+        <div className="relative bg-black border border-[#ff0033] text-[#ff0033] px-4 py-3 shadow-[0_0_20px_#ff0033] max-w-[290px] animate-pulse">
 
-            <p className="text-s tracking-wider">
-              ▓ SYSTEM ACTIVE ▓<br />
-              SOPØ.<br />
-              PS➤ gateway.local : offline
-            </p>
+          <p className="text-s tracking-wider whitespace-pre-line">
+            {messages[messageIndex]}
+          </p>
 
-            {/* triangle pointer */}
-            <div className="absolute bottom-[-8px] right-6 w-4 h-4 bg-black border-r border-b border-[#ff0033] rotate-45" />
-          </div>
-
+          {/* triangle pointer */}
+          <div className="absolute bottom-[-8px] right-6 w-4 h-4 bg-black border-r border-b border-[#ff0033] rotate-45" />
         </div>
-      )}
+      </div>
 
     </div>
   );
