@@ -15,11 +15,11 @@ Connection Timeout`,
   useEffect(() => {
     const bootTimer = setTimeout(() => {
       setMessageIndex(0);
-    }, 800);
+    }, 3000);
 
     const switchTimer = setTimeout(() => {
       setMessageIndex(1);
-    }, 3000); // switch to 2nd message
+    }, 6000); // switch to 2nd message
 
     return () => {
       clearTimeout(bootTimer);

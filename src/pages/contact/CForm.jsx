@@ -72,8 +72,7 @@ const CForm = () => {
   }, []);
 
   return (
-    <div className="w-full max-w-md mx-auto mt-[-20px] bg-black border border-sky-400 shadow-[0_0_25px_#38bdf8] p-6 flex flex-col gap-4 font-mono text-sky-400 overflow-hidden relative">
-
+   <div className="w-full max-w-[27rem] mx-auto mt-[-20px] bg-black border border-sky-400 shadow-[0_0_25px_#38bdf8] p-6 flex flex-col gap-4 font-mono text-sky-400 overflow-hidden relative scale-[0.95]">
       {/* FLASH */}
       {flash && (
         <div className="fixed inset-0 bg-sky-400/30 pointer-events-none z-[9999] animate-ping" />
