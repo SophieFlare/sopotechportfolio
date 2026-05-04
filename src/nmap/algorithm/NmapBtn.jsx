@@ -4,8 +4,7 @@ const NmapBtn = ({ onOpen }) => {
   const neon = "#ff0033";
 
   return (
-    <div className="fixed inset-0 flex flex-col items-center justify-center z-50 font-mono">
-
+  <div className="relative flex flex-col items-center justify-center z-50 font-mono overflow-hidden">
       {/* BACKGROUND GLOW AURA */}
       <div
         className="absolute w-[340px] h-[340px] blur-3xl rounded-full animate-pulse"

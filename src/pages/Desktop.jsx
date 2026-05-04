@@ -4,7 +4,7 @@ import WindowsBar from "../components/layout/WindowsBar";
 import FileExplorer from "./FileExplorer";
 import Network from "./cv/folders/Network";
 import Nmap from "../nmap/algorithm/Nmap";
-
+import SopoDesktop from "./folders/SopoDesktop"
 const Desktop = () => {
   const [openFolder, setOpenFolder] = useState(null);
 
@@ -12,7 +12,7 @@ const Desktop = () => {
     { id: "trash", label: "Recycle Bin", icon: "🗑️", x: 3, y: 25 },
     { id: "thispc", label: "This PC", icon: "💻", x: 4, y: 5 },
     { id: "network", label: "Network", icon: "🌐", x: 4, y: 15 },
-    { id: "nmap", label: "Nmap", icon: "📁", x: 4, y: 85 },
+    { id: "nmap", label: "Nmap", icon: "📁", x: 4, y: 45 },
     { id: "sopo", label: "SOPØ", icon: "📁", x: 4, y: 35 },
   ];
 
@@ -45,14 +45,9 @@ const Desktop = () => {
       <WindowsBar />
 
     {/* ================= RIGHT IMAGE PANEL ================= */}
-<div className="absolute bottom-0 right-0 h-[50vh] w-[20%] z-20 flex items-center justify-center overflow-hidden">
-  <img
-    src="/cv/pixel_sopo.png"
-    className="w-full h-full object-cover object-center"
-    alt="system panel"
-  />
+<div className="absolute inset-0 z-20 pointer-events-none">
+  <SopoDesktop />
 </div>
-
       {/* ================= WINDOWS ================= */}
 
       {openFolder === "sopo" && (
@@ -81,11 +76,12 @@ const Desktop = () => {
         </Window>
       )}
 
-      {openFolder === "nmap" && (
-        <Window title="NMAP" theme={theme} onClose={() => setOpenFolder(null)}>
-          <Nmap />
-        </Window>
-      )}
+  {openFolder === "nmap" && (
+  <Window title="NMAP" theme={theme} onClose={() => setOpenFolder(null)}>
+    <Nmap />
+  </Window>
+)}
+      
     </div>
   );
 };
