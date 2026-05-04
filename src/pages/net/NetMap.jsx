@@ -16,21 +16,21 @@ const NetMap = () => {
   const getNode = (id) => nodes.find((n) => n.id === id);
 
   const nodes = [
-  { id: "internet", label: "🌍 INTERNET (WAN)", x: "50%", y: "0%", info: "Global network" },
-  { id: "isp", label: "📡 silknet", x: "50%", y: "10%", info: "ispisp isp" },
+  { id: "internet", label: "INTERNET (WAN)", x: "50%", y: "5%", info: "Global network" },
+  { id: "isp", label: "📡 silknet", x: "50%", y: "17%", info: "ispisp isp" },
 
-  { id: "modem", label: "📡 MODEM / ONT", x: "50%", y: "22%", info: "Signal converter" },
-  { id: "firewall", label: "🔥 FIREWALL", x: "50%", y: "36%", info: "Security layer" },
-  { id: "router", label: "📡 ROUTER", x: "50%", y: "57%", info: "Traffic controller" },
+  { id: "modem", label: "MODEM / ONT", x: "50%", y: "30%", info: "Signal converter" },
+  { id: "firewall", label: "FIREWALL", x: "50%", y: "43%", info: "Security layer" },
+  { id: "router", label: "ROUTER", x: "50%", y: "57%", info: "Traffic controller" },
 
   { id: "switch", label: "🔌 SWITCH", x: "25%", y: "68%", info: "LAN distributor" },
-  { id: "wifi", label: "📶 WIFI (AP)", x: "75%", y: "68%", info: "Wireless access" },
+  { id: "wifi", label: "WIFI (AP)", x: "75%", y: "68%", info: "Wireless access" },
 
-  { id: "pc", label: "💻 PC", x: "15%", y: "85%", info: "Client device" },
+  { id: "pc", label: "PC", x: "15%", y: "85%", info: "Client device" },
   { id: "server", label: "🖥 SERVER", x: "35%", y: "85%", info: "Server node" },
 
-  { id: "phone", label: "📱 PHONE", x: "65%", y: "85%", info: "Mobile device" },
-  { id: "laptop", label: "💻 LAPTOP", x: "85%", y: "85%", info: "Wireless client" },
+  { id: "phone", label: "PHONE", x: "65%", y: "85%", info: "Mobile device" },
+  { id: "laptop", label: "LAPTOP", x: "85%", y: "85%", info: "Wireless client" },
 ];
 
 
@@ -93,46 +93,96 @@ const lines = [
       </svg>
 
       {/* CIRCLES (CENTERED ON CONNECTION POINTS) */}
-      {nodes.map((node, i) => (
-        <motion.div
-          key={node.id}
-          className="absolute flex flex-col items-center"
-          style={{
-  top: node.y,
-  left: node.x,
-  transform: "translate(-50%, -50%)"
-}}
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ delay: i * 0.15 }}
-          onMouseEnter={() => setHovered(node)}
-          onMouseLeave={() => setHovered(null)}
-        >
-          {/* CIRCLE */}
-          <div className="w-16 h-16 rounded-full border border-sky-400 bg-black flex items-center justify-center shadow-[0_0_20px_#38bdf8] hover:shadow-[0_0_35px_#38bdf8] transition">
-            {/* IMAGE PLACEHOLDER */}
-          <div className="text-white text-xl">
-  {iconMap[node.id]}
-</div>  </div>
+   {nodes.map((node, i) => (
+  <motion.div
+    key={node.id}
+    className="absolute flex items-center gap-3"
+    style={{
+      top: `calc(${node.y} - 4%)`,
+      left: `calc(${node.x} - 2%)`,
+      transform: "translate(-50%, -50%)",
+    }}
+    initial={{ scale: 0, opacity: 0 }}
+    animate={{ scale: 1, opacity: 1 }}
+    transition={{ delay: i * 0.12 }}
+    onMouseEnter={() => setHovered(node)}
+    onMouseLeave={() => setHovered(null)}
+  >
+    {/* ================= NODE GLOW CORE ================= */}
+    <div className="relative w-16 h-16 flex items-center justify-center">
 
-          {/* LABEL */}
-          <div className="mt-2 text-[10px] text-sky-400 font-mono text-center">
-            {node.label}
-          </div>
-        </motion.div>
-      ))}
+      {/* outer glow pulse */}
+      <div className="absolute w-20 h-20 rounded-full bg-sky-400/10 blur-xl animate-pulse" />
+
+      {/* ring */}
+      <div className="absolute w-16 h-16 rounded-full border border-sky-400/60 shadow-[0_0_20px_#38bdf8]" />
+
+      {/* core */}
+      <div className="w-10 h-10 rounded-full bg-black flex items-center justify-center shadow-[0_0_25px_#38bdf8]">
+        <div className="text-sky-300 text-lg drop-shadow-[0_0_6px_#38bdf8]">
+          {iconMap[node.id]}
+        </div>
+      </div>
+    </div>
+
+    {/* ================= LABEL (RIGHT SIDE) ================= */}
+    <div className="flex flex-col leading-tight">
+      <div className="text-[11px] tracking-widest text-sky-300">
+        {node.label}
+      </div>
+      <div className="text-[9px] opacity-40">
+        NODE ID: {node.id.toUpperCase()}
+      </div>
+    </div>
+  </motion.div>
+))}
 
       {/* HOVER BOX */}
-      {hovered && (
-        <motion.div
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2 bg-black border border-sky-400 px-4 py-2 text-sm text-sky-400 shadow-[0_0_20px_#38bdf8] font-mono"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-        >
-          <strong>{hovered.label}</strong>
-          <div className="text-xs opacity-80 mt-1">{hovered.info}</div>
-        </motion.div>
-      )}
+{/* HOVER HUD (TOP RIGHT PANEL) */}
+{hovered && (
+  <motion.div
+    className="absolute top-6 right-6 w-[260px]
+    bg-black/80 border border-sky-400/40
+    backdrop-blur-md shadow-[0_0_30px_#38bdf8]
+    text-sky-300 font-mono text-sm"
+    initial={{ opacity: 0, x: 20 }}
+    animate={{ opacity: 1, x: 0 }}
+  >
+    {/* HEADER */}
+    <div className="px-4 py-2 border-b border-sky-400/20 flex justify-between items-center">
+      <span className="text-xs tracking-widest text-sky-200">
+        NODE INFO
+      </span>
+      <span className="text-[10px] text-green-400 animate-pulse">
+        ● LIVE
+      </span>
+    </div>
+
+    {/* CONTENT */}
+    <div className="p-4 space-y-2">
+
+      <div className="text-sky-200 font-bold tracking-widest text-sm">
+        {hovered.label}
+      </div>
+
+      <div className="text-xs opacity-70 leading-relaxed">
+        {hovered.info}
+      </div>
+
+      {/* fake system stats */}
+      <div className="mt-3 text-[10px] space-y-1 opacity-60">
+        <div>STATUS: ACTIVE</div>
+        <div>PACKETS: FLOWING</div>
+        <div>LATENCY: LOW</div>
+        <div>SECURITY: OK</div>
+      </div>
+
+    </div>
+
+    {/* GLOW LINE */}
+    <div className="h-[2px] w-full bg-sky-400/30 shadow-[0_0_10px_#38bdf8]" />
+  </motion.div>
+)}
 </div>
   )
 }

@@ -18,7 +18,7 @@ const ProtocolExplorer = () => {
    <section className="w-full min-h-screen flex gap-10 px-16 py-32 bg-black text-white relative z-10">
       {/* LEFT SIDE */}
       {/* LEFT SIDE */}
-<div className="w-1/2 flex flex-col gap-4">
+<div className="w-1/2 flex flex-col gap-4 ">
 
   {/* LAYER BUTTONS */}
   <div className="flex gap-3 flex-wrap">

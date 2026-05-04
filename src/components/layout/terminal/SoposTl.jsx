@@ -30,8 +30,6 @@ const SoposTl = () => {
 
       const pushLine = () => {
         const line = stream[i];
-
-        // 🛑 safety guard (prevents undefined crash)
         if (!line) return;
 
         setLogs((prev) => {
@@ -53,42 +51,46 @@ const SoposTl = () => {
   }, []);
 
   const color = (type) => {
-    if (type === "net") return "text-[#ff0033]";
-    if (type === "ok") return "text-red-300";
-    return "text-red-500";
+    if (type === "net") return "text-blue-400";
+    if (type === "ok") return "text-gray-300";
+    return "text-white";
   };
 
   return (
-    <div className="w-full h-full flex items-center justify-center bg-black">
+    <div className="w-full h-full flex items-center justify-center ">
 
       {/* WINDOW */}
-      <div className="w-[90%] max-w-[520px] h-[75%] border border-[#ff0033]/60 shadow-[0_0_35px_#ff0033] flex flex-col font-mono text-[#ff0033] bg-black overflow-hidden">
+      <div className="w-[90%] max-w-[520px] h-[75%] 
+        border border-blue-300/40 
+        shadow-[0_0_30px_rgba(59,130,246,0.25)] 
+        flex flex-col font-mono 
+        text-white bg-gray-900/40 backdrop-blur-md 
+        overflow-hidden rounded-md">
 
         {/* HEADER */}
-        <div className="h-10 flex items-center justify-between px-4 border-b border-[#ff0033]/30 text-xs tracking-widest">
+        <div className="h-10 flex items-center justify-between px-4 
+          border-b border-gray-500/30 text-xs tracking-widest text-gray-200">
           <span>root@sopos-node:~/listener</span>
-          <span className="animate-pulse">● LIVE CONNECTION</span>
+          <span className="text-blue-300 animate-pulse">● LIVE CONNECTION</span>
         </div>
 
         {/* TERMINAL BODY */}
         <div className="flex-1 p-3 flex flex-col justify-end gap-1 overflow-hidden">
 
           {logs.filter(Boolean).map((l, i) => {
-            if (!l) return null;
-
             const fade = 1 - (logs.length - i) * 0.06;
 
             return (
               <div
                 key={i}
                 style={{ opacity: fade < 0.4 ? 0.4 : fade }}
-                className={`${color(l.type)} flex gap-3 text-sm transition-all duration-300`}
+                className={`${color(l.type)} flex gap-3 text-sm transition-all`}
               >
-                <span className="opacity-40 w-[80px]">
+                <span className="opacity-40 w-[80px] text-gray-400">
                   [{getTime()}]
                 </span>
 
-                <span className="text-[#ff0033]">node@kernel:~#</span>
+                <span className="text-gray-300">node@kernel:~#</span>
 
                 <span className="opacity-90">{l.msg}</span>
               </div>
@@ -96,11 +98,11 @@ const SoposTl = () => {
           })}
 
           {/* CURSOR */}
-          <div className="text-[#ff0033] animate-pulse">█</div>
+          <div className="text-blue-300 animate-pulse">█</div>
         </div>
 
         {/* FOOTER */}
-        <div className="h-8 border-t border-[#ff0033]/30 px-3 flex items-center text-[10px] opacity-70">
+        <div className="h-8 border-t border-gray-500/30 px-3 flex items-center text-[10px] text-gray-300">
           TLS ACTIVE • PACKET FILTER ON • INTRUSION MONITORING ENABLED
         </div>
 
