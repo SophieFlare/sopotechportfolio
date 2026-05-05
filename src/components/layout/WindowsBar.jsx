@@ -168,7 +168,13 @@ const WindowsBar = ({ onOpenPanel }) => {
         <FaHome className="text-sky-400" />
         Home
       </Link>
-
+ <Link
+        to="/pages/itsupport"
+        className={`px-3 py-2 flex items-center gap-2 ${theme.hoverBg} transition`}
+      >
+        <GiButterfly className="text-sky-400" />
+        CV
+      </Link>
       <Link
         to="/pages/network"
         className={`px-3 py-2 flex items-center gap-2 ${theme.hoverBg} transition`}
