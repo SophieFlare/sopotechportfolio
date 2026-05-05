@@ -14,12 +14,12 @@ export default function Navbar() {
       ],
     },
     experience: {
-      title: "გამოცდილება",
-      items: [
-        "Junior Support - 1 წელი",
-        "Networking diagnostics",
-        "Customer troubleshooting",
-      ],
+  title: "გამოცდილება",
+items: [
+  "IT მხარდაჭერი — Cyber Club Arena (10 თვე)",
+  "PC / ქსელი / პროგრამული მხარდაჭერა",
+  "ვებ სისტემების ტექნიკური დახმარება",
+]
     },
     skills: {
       title: "უნარები",
@@ -31,11 +31,12 @@ export default function Navbar() {
     },
     contact: {
       title: "კონტაქტი",
-      items: [
-        "Email: sopo.gurgenidze3@gmail.com",
-        "Phone: +995 593 833 833",
-        "Location: Tbilisi",
-      ],
+ items: [
+  "Windows / Linux administration basics",
+  "Network diagnostics (ping, traceroute, connectivity issues)",
+  "Subnetting, IP addressing & network segmentation",
+  "React / frontend development",
+]
     },
   };
 
