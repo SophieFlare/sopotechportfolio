@@ -89,19 +89,53 @@ export default function Form({ onClose }) {
           </div>
         </Card>
 
-        {/* EDUCATION */}
-        <Card title="განათლება">
-          <div className="text-sm text-gray-700 font-sans">
-            IT College - Networking
-          </div>
-        </Card>
+ {/* EDUCATION */}
+<Card title="განათლება">
+  <div className="text-sm text-gray-700 font-sans space-y-2">
+    <div>
+      თვითნასწავლი — ქსელური ტექნოლოგიები (Networking)
+    </div>
 
-        {/* EXPERIENCE */}
-        <Card title="გამოცდილება">
-          <div className="text-sm text-gray-700 font-sans">
-            Junior Support (1 წელი)
-          </div>
-        </Card>
+    <div className="text-xs text-gray-500">
+      სწავლა ონლაინ რესურსების, პრაქტიკული ლაბორატორიებისა და დამოუკიდებელი კვლევის მეშვეობით
+    </div>
+  </div>
+</Card>
+
+{/* PROGRAMMING */}
+<Card title="პროგრამირება">
+  <div className="text-sm text-gray-700 font-sans space-y-2">
+    <div>JavaScript / React / NextJs </div>
+    <div>Python (networking, scripting)</div>
+    <div>Basic PowerShell</div>
+  </div>
+</Card>
+      {/* EXPERIENCE */}
+<Card title="გამოცდილება">
+  <div className="text-sm text-gray-700 font-sans space-y-3">
+
+    {/* IT SUPPORT */}
+    <div>
+      <div className="font-semibold">
+        IT მხარდაჭერი
+      </div>
+      <div className="text-xs text-gray-500">
+        10 თვე
+      </div>
+    </div>
+
+    {/* FULL STACK */}
+    <div>
+      <div className="font-semibold">
+        ვებ-აპლიკაციების სრულფასოვანი დეველოპერი
+      </div>
+      <div className="text-xs text-gray-500">
+        3 წელი
+      </div>
+    </div>
+
+  </div>
+</Card>
 
         {/* LANGUAGES */}
         <Card title="ენების ცოდნა">

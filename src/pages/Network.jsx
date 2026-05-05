@@ -6,7 +6,7 @@ import WindowsBar from "../components/layout/WindowsBar";
 import NetCoreLab from "./net/NetCoreLab";
 import NetModelss from "./net/NetModelss";
 import Protocol from "./net/Protocol";
-
+import Subnet from "./net/Subnet";
 export default function Network() {
   const [activePanel, setActivePanel] = useState(null);
 
@@ -50,6 +50,7 @@ export default function Network() {
             {activePanel === "netcorelab" && <NetCoreLab />}
             {activePanel === "models" && <NetModelss />}
             {activePanel === "protocol" && <Protocol />}
+            {activePanel === "subnet" && <Subnet />}
           </div>
 
         </div>

@@ -45,7 +45,15 @@ const SidePanel = ({ isOpen, onClose, onOpenSection }) => {
         >
           Protocols
         </button>
-
+<button
+  onClick={() => {
+    onOpenSection("subnet");
+    onClose();
+  }}
+  className="border border-white/20 px-3 py-2 hover:border-sky-400"
+>
+  Subnet
+</button>
       </div>
     </div>
   );
