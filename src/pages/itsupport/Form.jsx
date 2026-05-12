@@ -120,7 +120,7 @@ export default function Form({ onClose }) {
         IT მხარდაჭერი
       </div>
       <div className="text-xs text-gray-500">
-        10 თვე
+        1 წელი
       </div>
     </div>
 

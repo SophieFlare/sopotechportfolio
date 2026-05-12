@@ -16,7 +16,7 @@ export default function Navbar() {
     experience: {
   title: "გამოცდილება",
 items: [
-  "IT მხარდაჭერი — Cyber Club Arena (10 თვე)",
+  "IT მხარდაჭერი — Cyber Club Arena (1 წელი)",
   "PC / ქსელი / პროგრამული მხარდაჭერა",
   "ვებ სისტემების ტექნიკური დახმარება",
 ]
@@ -24,8 +24,8 @@ items: [
     skills: {
       title: "უნარები",
       items: [
-        "Windows / Linux basics",
-        "Networking (ping, traceroute)",
+        "Windows / CMD/  Linux basics",
+        "Networking ",
         "React / UI development",
       ],
     },

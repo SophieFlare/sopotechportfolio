@@ -2,11 +2,15 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import GlitchText from "../atoms/GlitchText";
 import sLogo from "/silknet_logoo.png";
+import TerminalPy from "../../pages/TerminalPy";
+import { FaTerminal } from "react-icons/fa";
+
+
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   const navigate = useNavigate();
-
+const [terminalOpen, setTerminalOpen] = useState(false);
   const go = (path) => {
     navigate(path);
     setToggle(false);
@@ -60,14 +64,39 @@ const Navbar = () => {
               <span className="w-5 h-[2px] bg-sky-600"></span>
             </div>
           </button>
+          <div>
 
-          {/* DROPDOWN */}
-   {/* DROPDOWN */}
+
+
+      
+<button
+  onClick={() => setTerminalOpen(true)}
+  className="w-12 h-12 flex items-center justify-center
+             bg-white rounded-full
+             border border-sky-400
+             shadow-md
+             text-sky-700
+             hover:text-sky-500 hover:shadow-[0_0_10px_#38bdf8]
+             transition-all duration-200"
+>
+  <FaTerminal className="text-sky-600 text-lg" />
+</button>
+
+<TerminalPy
+  isOpen={terminalOpen}
+  onClose={() => setTerminalOpen(false)}
+/>
+</div>
+
+
+
+
+       {/* DROPDOWN */}
 {toggle && (
   <div className="absolute top-16 right-0 w-32
                   bg-white/90 backdrop-blur-md
                   border border-sky-300
-                   shadow-xl
+                  shadow-xl
                   p-4 flex flex-col gap-3">
 
     {/* HOME */}
@@ -85,53 +114,30 @@ const Navbar = () => {
     >
       // CV
     </button>
-    {/* CV */}
+
+    {/* NETWORK */}
     <button
       onClick={() => go("/pages/network")}
       className="text-left text-sky-700 hover:text-sky-500"
     >
       // NETWORK
     </button>
-      {/* DESKTOP (LOCKED) */}
-    <div className="relative group cursor-not-allowed text-sky-700">
 
-      <div className="text-left hover:text-sky-500 transition">
-        // DESKTOP
-      </div>
+    {/* DESKTOP */}
+    <button
+      onClick={() => go("/pages/desktop")}
+      className="text-left text-sky-700 hover:text-sky-500"
+    >
+      // DESKTOP
+    </button>
 
-      {/* tooltip BELOW */}
-      <div className="
-        absolute left-0 top-full mt-1
-        text-[10px] text-white bg-black/80 px-2 py-[2px]
-        rounded
-        opacity-0 group-hover:opacity-100
-        transition
-        tracking-widest
-      ">
-        LOCKED
-      </div>
-    </div>
-
-    {/* CONTACT (LOCKED) */}
-    {/* CONTACT (LOCKED) */}
-    <div className="relative group cursor-not-allowed text-sky-700">
-
-      <div className="text-left hover:text-sky-500 transition">
-        // CONTACT
-      </div>
-
-      {/* tooltip BELOW */}
-      <div className="
-        absolute left-0 top-full mt-1
-        text-[10px] text-white bg-black/80 px-2 py-[2px]
-        rounded
-        opacity-0 group-hover:opacity-100
-        transition
-        tracking-widest
-      ">
-        LOCKED
-      </div>
-    </div>
+    {/* CONTACT */}
+    <button
+      onClick={() => go("/pages/contact")}
+      className="text-left text-sky-700 hover:text-sky-500"
+    >
+      // CONTACT
+    </button>
 
   </div>
 )}

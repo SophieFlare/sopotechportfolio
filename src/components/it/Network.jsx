@@ -9,7 +9,7 @@ const Network = ({  }) => {
 
 return (
     <div>
-    <div className=' relative'>
+    <div className=' relative mt-[15%]'>
         
          
        

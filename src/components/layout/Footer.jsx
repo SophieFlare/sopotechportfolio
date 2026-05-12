@@ -43,53 +43,23 @@ export default function Footer({ onAction }) {
               NAVIGATION
             </div>
 
-        {navItems.map((item) => {
-  const isLocked = item.title.includes("DESKTOP") || item.title.includes("CONTACT");
+    {navItems.map((item) => (
+  <div key={item.id} className="relative group">
 
-  return (
-    <div key={item.id} className="relative group">
+    <Link
+      to={item.path}
+      className="
+        text-sky-400
+        hover:text-white
+        hover:scale-[1.03]
+        transform-gpu transition-transform duration-200
+      "
+    >
+      {item.title}
+    </Link>
 
-      {/* LINK */}
-      {isLocked ? (
-        <div
-          className="
-            text-sky-400/40 cursor-not-allowed
-            hover:text-white transition
-          "
-          onMouseEnter={() => console.log("LOCKED")}
-        >
-          {item.title}
-        </div>
-      ) : (
-        <Link
-          to={item.path}
-          className="
-            text-sky-400
-            hover:text-white
-            hover:scale-[1.03]
-            transform-gpu transition-transform duration-200
-          "
-        >
-          {item.title}
-        </Link>
-      )}
-
-      {/* TOOLTIP */}
-      {isLocked && (
-        <div className="
-          absolute left-0 -top-6
-          text-[10px] text-white
-          opacity-0 group-hover:opacity-100
-          transition
-          tracking-widest
-        ">
-          LOCKED
-        </div>
-      )}
-
-    </div>
-  );
-})}
+  </div>
+))}
           </div>
 
           {/* SYSTEM (moved 5% LEFT) */}
